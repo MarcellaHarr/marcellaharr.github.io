@@ -1,7 +1,7 @@
-- 👋 Hi, I’m @MarcellaHarr
+- 👋 Hi, I’m Marcella and you can find me @MarcellaHarr
 - 👀 I’m interested in Data Analytics
-- 🌱 I’m currently learning SQL, R, and PowerBI
-- 💞️ I’m looking to collaborate on all projects Data
+- 🌱 I’m currently learning SQL, R, Python, and PowerBI
+- 💞️ I’m looking to collaborate on all projects Data related
 - 📫 How to reach me marlorraineharr@gmail.com
 
 <!---
