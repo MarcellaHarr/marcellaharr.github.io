@@ -1,8 +1,27 @@
-- 👋 Hi, I’m Marcella and you can find me @MarcellaHarr
-- 👀 I’m interested in Data Analytics
-- 🌱 I’m currently learning SQL, R, Python, and PowerBI
-- 💞️ I’m looking to collaborate on all projects Data related
-- 📫 How to reach me marlorraineharr@gmail.com
+# MARCELLA HARRIS
+
+<a href="https://github.com/MarcellaHarr">
+    <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg"/>
+</a>
+<a href="https://www.linkedin.com/in/marcellalharris">
+    <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"/>
+</a>
+<a href="https://www.kaggle.com/marcellaharris">
+    <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kaggle/kaggle-original-wordmark.svg"/>
+</a>
+</a>
+<a href="https://twitter.com/cellaharris">
+    <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"/>
+</a>
+
+## Hello, hello!👋
+
+My name is Marcella and I am a junior data analyst in progress. I started this journey in May of 2021 and I am learning so much about data, the different types of programming languages, methods and tips shared by professionals and enthusiates alike. Literally, as much as I can take in and absorb. More importantly, I'm losing all my hair and have not gotten any sleep sleep since I started. Joking aside though, I would not change a thing because every struggle I have had allowed me to problem-solve uniquely. Ultamately, my goal is to be versed enough in Python, SQL, and R to unlock all sorts of information, solutions, and insights.
+
+### Language & Tools:
+
+<img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"/><img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"/><img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" /><img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" /><img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" /><img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rstudio/rstudio-plain.svg" /><img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" /><img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original-wordmark.svg" />
+
 
 <!---
 MarcellaHarr/MarcellaHarr is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
