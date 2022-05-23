@@ -1,5 +1,5 @@
 # MARCELLA HARRIS
-<br/>
+
 #### connect with me:
 <a href="https://github.com/MarcellaHarr">
     <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg"/>
