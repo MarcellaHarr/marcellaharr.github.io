@@ -1,18 +1,14 @@
 # MARCELLA HARRIS
 
-#### connect with me:
 <a href="https://github.com/MarcellaHarr">
     <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg"/>
 </a>
-
 <a href="https://www.linkedin.com/in/marcellalharris">
     <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"/>
 </a>
-
 <a href="https://www.kaggle.com/marcellaharris">
     <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kaggle/kaggle-original-wordmark.svg"/>
 </a>
-
 <a href="https://twitter.com/cellaharris">
     <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"/>
 </a>
