@@ -4,10 +4,14 @@ My name is `Marcella` and I am a junior data analyst in progress. I started this
 <br/>
 
 
-<a href="https://www.flaticon.com/free-stickers/user" title="User stickers created by Stickers - Flaticon" target="_blank">
-    <img align=right height="400" src="https://github.com/MarcellaHarr/marcellaharr.github.io/blob/main/woman_clipart.png?raw=true" alt="User stickers created by Stickers - Flaticon"  /><br clear=right />User stickers created by Stickers - Flaticon
-</a>
-
+<div align="right">
+    <img height="400" src="https://github.com/MarcellaHarr/marcellaharr.github.io/blob/main/woman_clipart.png?raw=true" />
+    <p align="right">
+        <em>
+            <a href="https://www.flaticon.com/free-stickers/user" title="user stickers" target="_blank"><br clear="right"/>User stickers created by Stickers - Flaticon</a>
+        </em>
+    </p>
+</div>
 
 
 #### Connect with your girl!
