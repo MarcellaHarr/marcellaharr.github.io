@@ -1,17 +1,20 @@
 # MARCELLA HARRIS
+
+<div style="text-align: right">
+    <img align="right" height="400" src="https://github.com/MarcellaHarr/marcellaharr.github.io/blob/main/woman_clipart.png?raw=true">
+    <p>
+        <em>
+            <a href="https://www.flaticon.com/free-stickers/user" title="user stickers" target="_blank">User stickers created by Stickers - Flaticon</a>
+        </em>
+    </p>
+</div>
+
 ### Hello, hello!👋
 
-My name is `Marcella` and I am a junior data analyst in progress. I started this journey in `May of 2021`, and I am learning so much about data, the different types of programming languages, methods, and tips shared by professionals and enthusiasts alike. Simply put, I'm taking things day by day. More importantly, I'm losing all of my hair and have not gotten any sleep since I started. :laughing: All right, joking aside I would not change a thing because for every challenge I have had, it allowed me to problem-solve uniquely. Ultimately, my goal is to be versed enough in Python, SQL, and R to unlock all sorts of information, solutions, and insights to help those that will need it.
+My name is `Marcella` and I am a junior data analyst in progress. I started this journey in `May of 2021`, and I am learning so much about data, the different types of programming languages, methods, and tips shared by professionals and enthusiasts alike. Simply put, I'm taking things day by day. More importantly, I'm losing all of my hair and have not gotten any sleep since I started. :laughing: All right, joking aside I would not change a thing because for every challenge I have had, it allowed me to problem-solve uniquely. Ultimately, my goal is to be versed enough in Python, SQL, and R to unlock all sorts of information, solutions, and insights to help those that will need it
 
 
-<p align="right">
-    <img height="400" src="https://github.com/MarcellaHarr/marcellaharr.github.io/blob/main/woman_clipart.png?raw=true" />
-<p align="right">
-    <em>
-        <a href="https://www.flaticon.com/free-stickers/user" title="user stickers" target="_blank">User stickers created by Stickers - Flaticon</a>
-    </em>
-</p>
-</p>
+
 
 #
 #### Language & Tools:
