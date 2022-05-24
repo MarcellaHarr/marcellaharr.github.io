@@ -1,13 +1,14 @@
 # MARCELLA HARRIS
 
-<div style="text-align: right">
+<div align="right" dir="auto">
     <img align="right" height="400" src="https://github.com/MarcellaHarr/marcellaharr.github.io/blob/main/woman_clipart.png?raw=true">
-    <p>
+    <p halign="0.7em" dir="auto">
         <em>
             <a href="https://www.flaticon.com/free-stickers/user" title="user stickers" target="_blank">User stickers created by Stickers - Flaticon</a>
         </em>
     </p>
 </div>
+
 
 ### Hello, hello!👋
 
@@ -16,14 +17,14 @@ My name is `Marcella` and I am a junior data analyst in progress. I started this
 
 
 
-#
+
 #### Language & Tools:
 
 <img height=70 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"/>  <img height=70 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"/>  <img height=70 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" />  <img height=70 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" />  <img height=70 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" />   <img height=70 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rstudio/rstudio-plain.svg" />    <img height=70 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" />  <img height=70 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original-wordmark.svg" />
-#
-#
 
-#### Connect with your girl!
+
+
+#### Connect with your girl:
 
 <a href="https://github.com/MarcellaHarr">
     <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg"/>
