@@ -12,16 +12,11 @@
 <a href="https://twitter.com/cellaharris">
     <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"/>
 </a>
-<div>
-    <figure>
-        <img align=right height="400" src="https://github.com/MarcellaHarr/marcellaharr.github.io/blob/main/woman_clipart.png" alt="missing"/>
-        <em>
-            <figcaption>
-                <a href="https://www.flaticon.com/free-stickers/user" title="user stickers" target="_blank">User stickers created by Stickers - Flaticon</a>
-            </figcaption>
-        </em>
-    </figure>
-</div>
+<em>
+    <a href="https://www.flaticon.com/free-stickers/user" title="user stickers" target="_blank">User stickers created by Stickers - Flaticon
+    <img align=right height="400" src="https://github.com/MarcellaHarr/marcellaharr.github.io/blob/main/woman_clipart.png" alt="missing"/>
+    </a>
+</em>
     
 ## Hello, hello!👋
 
