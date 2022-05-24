@@ -12,7 +12,7 @@
 <a href="https://twitter.com/cellaharris">
     <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"/>
 </a>
-<a href="https://www.flaticon.com/free-stickers/user" title="user stickers" target="_blank">
+<a href="https://www.flaticon.com/free-stickers/user" title="User stickers created by Stickers - Flaticon" target="_blank">
     <img align=right height="400" src="https://github.com/MarcellaHarr/marcellaharr.github.io/blob/89447e5d1d7a454ac6dce66f266f61d4cff04575/woman_clipart.png" alt="User stickers created by Stickers - Flaticon"/>
 </a>
     
