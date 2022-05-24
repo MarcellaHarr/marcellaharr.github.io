@@ -13,7 +13,7 @@
     <img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"/>
 </a>
 <a href="https://www.flaticon.com/free-stickers/user" title="User stickers created by Stickers - Flaticon" target="_blank">
-    <img align=right height="400" src=".../main/marcellaharr.github.io/woman_clipart.png" alt="User stickers created by Stickers - Flaticon"/>
+    <img align=right height="400" src="https://github.com/MarcellaHarr/marcellaharr.github.io/blob/main/woman_clipart.png?raw=true" alt="User stickers created by Stickers - Flaticon"/>
 </a>
     
 ## Hello, hello!👋
