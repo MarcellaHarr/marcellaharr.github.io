@@ -1,9 +1,8 @@
 # MARCELLA HARRIS
 
 <div align="right" dir="auto">
-    <img align="right" height="400" src="https://github.com/MarcellaHarr/marcellaharr.github.io/blob/main/woman_clipart.png?raw=true">
-    <p>
-        <em><br /><a href="https://www.flaticon.com/free-stickers/user" title="user stickers" target="_blank">User stickers created by Stickers - Flaticon</a></em></p></div>
+    ![](woman_clipart.png)
+</div>
             
 
 
