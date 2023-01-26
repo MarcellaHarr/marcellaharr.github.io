@@ -2,7 +2,7 @@
 
 <figure style="display:inline; float:right">
 
-![Flaticon Clipart](woman_clipart.png)<br/>
+<img src="https://github.com/MarcellaHarr/marcellaharr.github.io/blob/main/woman_clipart.png?raw=true"><br />
     <p style="text-indent:115px"><a href="https://www.flaticon.com/free-stickers/user" title="user stickers" target="_blank">User stickers created by Stickers - Flaticon</a></p>
 
 </figure>
