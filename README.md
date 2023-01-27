@@ -1,4 +1,4 @@
-# MARCELLA HARRIS
+
 
 <figure style="display:inline; float:right">
 
