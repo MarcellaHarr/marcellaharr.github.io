@@ -1,4 +1,6 @@
-
+<h1 style="visibility:hidden">
+    Marcella Harris
+</h1>
 
 <figure style="display:inline; float:right">
 
