@@ -58,7 +58,7 @@ My name is `Marcella` and I'm a junior data analyst in progress. I've been on th
 <a href="https://www.kaggle.com/marcellaharris">
     <img align="left" height="40" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kaggle/kaggle-original-wordmark.svg"/>
 </a>
-<a href="https://twitter.com/cellaharris">
+<a href="https://twitter.com/MarcellaDaANLST">
     <img align="left" height="40" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"/>
 </a>
 
