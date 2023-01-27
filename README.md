@@ -15,7 +15,7 @@ My name is `Marcella` and I'm a junior data analyst in progress. I've been on th
 
 <br />
 
-#
+
 
 <h4 style="text-align:left"> Language & Tools: </h4>
 
@@ -46,7 +46,7 @@ My name is `Marcella` and I'm a junior data analyst in progress. I've been on th
 
 <br />
 
-#
+
 
 <h4 style="text-align:left"> Connect with your girl: </h4>
 
@@ -62,6 +62,8 @@ My name is `Marcella` and I'm a junior data analyst in progress. I've been on th
 <a href="https://twitter.com/cellaharris">
     <img align="left" height="40" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"/>
 </a>
+
+<br />
 
 
 <!---
