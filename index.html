@@ -144,6 +144,7 @@
     <link href="./assets/css/blog.css" rel="stylesheet" />
   </head>
   <body>
+    <!--Bootstrap colomode and interactive settings begin-->
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
         <path
@@ -169,7 +170,6 @@
         ></path>
       </symbol>
     </svg>
-
     <div
       class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle"
     >
@@ -240,7 +240,6 @@
         </li>
       </ul>
     </div>
-
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol
         id="aperture"
@@ -268,8 +267,9 @@
         ></path>
       </symbol>
     </svg>
-
+    <!--Bootstrap colomode and interactive settings end-->
     <div class="container">
+      <!--Header text logo begin-->
       <header class="border-bottom lh-1 py-3">
         <div class="row flex-nowrap justify-content-center align-items-center">
           <div class="col-4 text-center">
@@ -281,7 +281,8 @@
           </div>
         </div>
       </header>
-
+      <!--Header text logo end-->
+      <!--Navlink texts begin-->
       <div class="nav-scroller py-1 mb-3 border-bottom">
         <nav class="nav nav-underline justify-content-between">
           <a
@@ -317,9 +318,10 @@
           >
         </nav>
       </div>
+      <!--Navlink texts end-->
     </div>
-
     <main class="container">
+      <!--Banner begin-->
       <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
         <div class="col-lg-6 px-0">
           <h1 class="display-4 fst-italic">
@@ -333,7 +335,8 @@
           </p>
         </div>
       </div>
-
+      <!--Banner end-->
+      <!--Cards begin-->
       <div class="row mb-2">
         <div class="col-md-6">
           <div
@@ -368,20 +371,6 @@
                   aria-label="Placeholder: Thumbnail"
                 />
               </div>
-              <!-- <svg
-                class="bd-placeholder-img"
-                width="200"
-                height="250"
-                xmlns="http://www.w3.org/2000/svg"
-                role="img"
-                aria-label="Placeholder: Thumbnail"
-                preserveAspectRatio="xMidYMid slice"
-                focusable="false"
-              >
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c"></rect>
-                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-              </svg> -->
             </div>
           </div>
         </div>
@@ -422,18 +411,17 @@
           </div>
         </div>
       </div>
-
+      <!--Cards end-->
       <div class="row g-5">
         <!--Far left-side begin-->
         <div class="col-md-8">
           <h3 class="pb-4 mb-4 fst-italic border-bottom">From the Firehose</h3>
-
+          <!--Article-1 begin-->
           <article class="blog-post">
             <h2 class="display-5 link-body-emphasis mb-1">Sample blog post</h2>
             <p class="blog-post-meta">
               January 1, 2021 by <a href="#">Mark</a>
             </p>
-
             <p>
               This blog post shows a few different types of content that’s
               supported and styled with Bootstrap. Basic typography, lists,
@@ -576,13 +564,13 @@
             </p>
             <hr />
           </article>
-
+          <!--Article-1 end-->
+          <!--Article-2 begin-->
           <article class="blog-post">
             <h2 class="display-5 link-body-emphasis mb-1">Another blog post</h2>
             <p class="blog-post-meta">
               December 23, 2020 by <a href="#">Jacob</a>
             </p>
-
             <p>
               This is some additional paragraph placeholder content. It has been
               written to fill the available space and show how a longer snippet
@@ -638,7 +626,6 @@
                 </tr>
               </tfoot>
             </table>
-
             <p>
               This is some additional paragraph placeholder content. It's a
               slightly shorter version of the other highly repetitive body text
@@ -646,13 +633,13 @@
             </p>
             <hr />
           </article>
-
+          <!--Article-2 end-->
+          <!--Article-3 begin-->
           <article class="blog-post">
             <h2 class="display-5 link-body-emphasis mb-1">New feature</h2>
             <p class="blog-post-meta">
               December 14, 2020 by <a href="#">Chris</a>
             </p>
-
             <p>
               This is some additional paragraph placeholder content. It has been
               written to fill the available space and show how a longer snippet
@@ -671,7 +658,8 @@
               used throughout.
             </p>
           </article>
-
+          <!--Article-3 end-->
+          <!--Post navlinks begin-->
           <nav class="blog-pagination" aria-label="Pagination">
             <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
             <a
@@ -680,9 +668,9 @@
               >Newer</a
             >
           </nav>
+          <!--Post navlinks end-->
         </div>
         <!--Far left-side end-->
-
         <!--Far right-side begin-->
         <div class="col-md-4">
           <div class="position-sticky" style="top: 2rem">
@@ -694,7 +682,7 @@
                 Totally up to you.
               </p>
             </div>
-
+            <!--Recent posts begin-->
             <div>
               <h4 class="fst-italic">Recent posts</h4>
               <ul class="list-unstyled">
@@ -774,7 +762,8 @@
                 </li>
               </ul>
             </div>
-
+            <!--Recent posts end-->
+            <!--Acrchive links begin-->
             <div class="p-4">
               <h4 class="fst-italic">Archives</h4>
               <ol class="list-unstyled mb-0">
@@ -792,7 +781,8 @@
                 <li><a href="#">April 2020</a></li>
               </ol>
             </div>
-
+            <!--Acrchive links end-->
+            <!--Elsewhere links begin-->
             <div class="p-4">
               <h4 class="fst-italic">Elsewhere</h4>
               <ol class="list-unstyled">
@@ -801,12 +791,13 @@
                 <li><a href="#">Facebook</a></li>
               </ol>
             </div>
+            <!--Elsewhere links end-->
           </div>
         </div>
         <!--Far right-side end-->
       </div>
     </main>
-
+    <!--Footer begin-->
     <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
       <p>
         Blog template built for
@@ -817,6 +808,7 @@
         <a href="#">Back to top</a>
       </p>
     </footer>
+    <!--Footer end-->
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
