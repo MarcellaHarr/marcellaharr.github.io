@@ -1,3 +1,7 @@
+# Ignore image folder
 images/
 
+# Ignore submodule
+/bootstrap/
+/bootstrap
 bootstrap/
