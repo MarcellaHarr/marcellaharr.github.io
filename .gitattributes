@@ -3,9 +3,19 @@
 *.Rmd linguist-language=R
 *.R linguist-language=R
 *.qmd linguist-language=R
+*.java linguist-language=Java
+*.html linguist-language=HTML
+*.htm linguist-language=HTML
+*.css linguist-language=CSS
+*.js linguist-language=JavaScript
 *.html linguist-documentation
 *.css linguist-documentation
 *.js linguist-documentation
+*.yaml -linguist-detectable
+*.yml -linguist-detectable
+*.xml -linguist-detectable
+*.json -linguist-detectable
+*.svg -linguist-detectable
 
 # Detect other languages
 * linguist-detectable=true
