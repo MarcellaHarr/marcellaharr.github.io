@@ -531,64 +531,142 @@
               December 23, 2020 by <a href="#">Jacob</a>
             </p>
             <p>
-              This is some additional paragraph placeholder content. It has been
-              written to fill the available space and show how a longer snippet
-              of text affects the surrounding content. We'll repeat it often to
-              keep the demonstration flowing, so be on the lookout for this
-              exact same string of text.
+              Within this comprehensive initiative, a series of carefully designed SQL 
+              queries were executed in SQL Server Management Studio 2018, representing 
+              a pivotal step in optimizing a dataset for enhanced performance. The dataset, 
+              sourced from AlexTheAnalyst on GitHub as part of the Data Analyst Portfolio 
+              Project, was downloaded onto an external thumb drive and systematically 
+              organized into folders. It consists of 19 columns and an impressive 56,477 
+              rows, excluding the header. Key columns include UniqueID, ParcelID, and SaleDate.
             </p>
-            <blockquote>
-              <p>
-                Longer quote goes here, maybe with some
-                <strong>emphasized text</strong> in the middle of it.
-              </p>
-            </blockquote>
             <p>
-              This is some additional paragraph placeholder content. It has been
-              written to fill the available space and show how a longer snippet
-              of text affects the surrounding content. We'll repeat it often to
-              keep the demonstration flowing, so be on the lookout for this
-              exact same string of text.
+              <table>
+                <thead>
+                  <tr>
+                    <th>ParcelID</th>
+                    <th>PropertyAddress</th>
+                    <th>ParcelID (nash2)</th>
+                    <th>PropertyAddress (nash2)</th>
+                    <th>MergedPropertyAddress</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>001</td>
+                    <td>123 Main St</td>
+                    <td>001</td>
+                    <td></td>
+                    <td>123 Main St</td>
+                  </tr>
+                  <tr>
+                    <td>002</td>
+                    <td></td>
+                    <td>002</td>
+                    <td>456 Oak St</td>
+                    <td>456 Oak St</td>
+                  </tr>
+                  <tr>
+                    <td>003</td>
+                    <td></td>
+                    <td>003</td>
+                    <td>789 Pine St</td>
+                    <td>789 Pine St</td>
+                  </tr>
+                  <tr>
+                    <td>004</td>
+                    <td>876 Maple St</td>
+                    <td>004</td>
+                    <td></td>
+                    <td>876 Maple St</td>
+                  </tr>
+                  <tr>
+                    <td>005</td>
+                    <td>543 Elm St</td>
+                    <td>005</td>
+                    <td></td>
+                    <td>543 Elm St</td>
+                  </tr>
+                </tbody>
+              </table>              
             </p>
-            <h3>Example table</h3>
-            <p>And don't forget about tables in these posts:</p>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Upvotes</th>
-                  <th>Downvotes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Alice</td>
-                  <td>10</td>
-                  <td>11</td>
-                </tr>
-                <tr>
-                  <td>Bob</td>
-                  <td>4</td>
-                  <td>3</td>
-                </tr>
-                <tr>
-                  <td>Charlie</td>
-                  <td>7</td>
-                  <td>9</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td>Totals</td>
-                  <td>21</td>
-                  <td>23</td>
-                </tr>
-              </tfoot>
-            </table>
             <p>
-              This is some additional paragraph placeholder content. It's a
-              slightly shorter version of the other highly repetitive body text
-              used throughout.
+              Upon the initial examination in Microsoft Excel, the dataset displayed 18 columns 
+              with a "General" data type, and one column was formatted as "Date (April 9, 2013)." 
+              Notably, all general columns were in uppercase, and the month names in the date column 
+              were presented in title case. A closer scrutiny of the SoldAsVacant column revealed 
+              responses such as No, N, Yes, and Y. Interestingly, several columns, including OwnerName, 
+              OwnerAddress, Acreage, TaxDistrict, LandValue, BuildingValue, TotalValue, YearBuilt, 
+              Bedrooms, FullBath, and HalfBath, contained a noteworthy number of null values.
+            </p>
+            <p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>UniqueID</th>
+                    <th>ParcelID</th>
+                    <th>PropertyAddress</th>
+                    <th>SalePrice</th>
+                    <th>SaleDate</th>
+                    <th>LegalReference</th>
+                    <th>RowNum</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>001</td>
+                    <td>123456</td>
+                    <td>789 Main St</td>
+                    <td>250,000</td>
+                    <td>2023-01-15</td>
+                    <td>ABC123</td>
+                    <td>2</td>
+                  </tr>
+                  <tr>
+                    <td>002</td>
+                    <td>789012</td>
+                    <td>456 Oak St</td>
+                    <td>300,000</td>
+                    <td>2023-02-20</td>
+                    <td>XYZ789</td>
+                    <td>2</td>
+                  </tr>
+                  <tr>
+                    <td>003</td>
+                    <td>345678</td>
+                    <td>123 Pine St</td>
+                    <td>200,000</td>
+                    <td>2023-03-10</td>
+                    <td>LMN456</td>
+                    <td>3</td>
+                  </tr>
+                  <tr>
+                    <td>004</td>
+                    <td>901234</td>
+                    <td>876 Maple St</td>
+                    <td>400,000</td>
+                    <td>2023-04-05</td>
+                    <td>PQR789</td>
+                    <td>2</td>
+                  </tr>
+                  <tr>
+                    <td>005</td>
+                    <td>567890</td>
+                    <td>543 Elm St</td>
+                    <td>150,000</td>
+                    <td>2023-05-12</td>
+                    <td>STU012</td>
+                    <td>3</td>
+                  </tr>
+                </tbody>
+              </table>              
+            </p>
+            <p>
+              During the transition to SQL Server, despite the absence of initial documentation on 
+              data types, null counts, or distinct value counts, the queries were adeptly organized 
+              into multiple files, categorized based on specific tasks. Following the cleansing process, 
+              the dataset retained 21 columns while maintaining its original 56,477 rows. A total of 26 
+              meticulously crafted query statements were utilized in this endeavor, underscoring the 
+              analytical acumen and dedication invested in the project.
             </p>
             <hr />
           </article>
