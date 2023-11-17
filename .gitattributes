@@ -9,6 +9,3 @@
 *.html linguist-documentation
 *.css linguist-documentation
 *.js linguist-documentation
-
-# Detect other languages
-* linguist-detectable=true
