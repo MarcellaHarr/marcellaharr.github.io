@@ -10,4 +10,4 @@
 *.xml linguist-detectable=false
 
 # Detect other languages
-* linguist-detectable=true
+* linguist-detectable=false
