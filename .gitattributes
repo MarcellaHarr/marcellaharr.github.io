@@ -11,11 +11,11 @@
 *.html linguist-documentation
 *.css linguist-documentation
 *.js linguist-documentation
-*.yaml linguist-vendored
-*.yml linguist-vendored
-*.xml linguist-vendored
-*.json linguist-vendored
-*.svg linguist-vendored
+*.yaml linguist-language=plaintext -linguist-detectable
+*.yml linguist-language=plaintext -linguist-detectable
+*.xml linguist-language=plaintext -linguist-detectable
+*.json linguist-language=plaintext -linguist-detectable
+*.svg linguist-language=plaintext -linguist-detectable
 
 # Detect other languages
 * linguist-detectable=true
