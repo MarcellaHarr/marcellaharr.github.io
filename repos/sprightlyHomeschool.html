@@ -302,7 +302,9 @@
           <a class="nav-item nav-link link-body-emphasis" href="./excel.html"
             >Excel repo</a
           >
-          <a class="nav-item nav-link link-body-emphasis active" href="./web-dev.html"
+          <a
+            class="nav-item nav-link link-body-emphasis active"
+            href="./web-dev.html"
             >Web Dev repo</a
           >
           <a class="nav-item nav-link link-body-emphasis" href="./sql-repo.html"
@@ -335,16 +337,116 @@
               January 1, 2021 by <a href="#">Marcella</a>
             </p>
             <p>
-              This blog post shows a few different types of content that’s
-              supported and styled with Bootstrap. Basic typography, lists,
-              tables, images, code, and more are all supported as expected.
+              Embarking on the dual roles of a homeschooling mom and a data
+              analysis enthusiast, I am thrilled to share my journey of
+              developing a comprehensive website application designed to improve
+              the organization, productivity, and convenience of homeschooling
+              my soon-to-be eighth grader.
             </p>
             <p>
-              This is some additional paragraph placeholder content. It has been
-              written to fill the available space and show how a longer snippet
-              of text affects the surrounding content. We'll repeat it often to
-              keep the demonstration flowing, so be on the lookout for this
-              exact same string of text.
+              At the heart of this initiative was my desire to simplify our
+              homeschooling experience by creating a singular, customizable
+              platform. This platform acts as a centralized hub, seamlessly
+              integrating various elements crucial to my daughter's educational
+              journey. The goal was to eliminate the complexities associated
+              with homeschooling, streamlining the use of multiple platforms and
+              teaching methods.
+            </p>
+            <p>
+              As a data analysis enthusiast, I seized the opportunity to
+              incorporate database functionality into the project. This not only
+              allowed me to gather and analyze data related to my daughter's
+              progress but also provided a platform for implementing and
+              learning valuable practices of database design.
+            </p>
+            <h3>
+              <strong>Development Timeline</strong>
+            </h3>
+            <p>
+              Commencing the project on July 28th and successfully completing it 
+              by September 1st, just in time for my daughter's first day of school 
+              on September 4th, 2023, the development timeline reflects the 
+              dedication invested in this endeavor.
+            </p>
+            <h2>Project structure:</h2>
+            <p>
+              <pre>
+                project_root/
+                ├── __pyache__/
+                ├── images/
+                ├── instance/
+                ├── migrations/
+                ├── venv/
+                ├── website/
+                │   ├── __pyache__/
+                │   ├── static/
+                │   ├── templates/
+                │   ├── __init__.py
+                │   ├── adminUpload_views.py
+                │   ├── authUser_views.py
+                │   ├── dashUser_views.py
+                │   ├── elaLesson_views.py
+                │   ├── historyLesson_views.py
+                │   ├── mathLesson_views.py
+                │   ├── models.py
+                │   ├── scienceLesson_views.py
+                │   ├── socialLesson_views.py
+                │   ├── webTemps_views.py
+                ├── .gitignore
+                ├── app.py
+                ├── README.md
+                ├── requirements.txt
+              </pre>
+            </p>
+            <h2>Current Challenges</h2>
+            <p>
+              <strong>Stalled or Slow Image loads</strong>
+            </p>
+            <p>
+              <div style="max-width: 848px; margin: auto;">
+                <img src="../assets/img/sprightly-homeschool/stalledLessonImage.JPG" style="width: 100%;" />
+              </div>
+            </p>
+            <h2>Challenges Faced</h2>
+            <p>
+              However, every journey comes with challenges, and mine was no different. One significant hurdle involved persistent
+              Internal 500 errors related to the studentPortfolio.html page. While the specific resolution remains uncertain,
+              successfully mitigating the error involved incorporating a static image, albeit deviating from the initial intent of
+              dynamic image handling.
+            </p>
+            <p>
+              <pre>
+                `OperationalError: (mysql.connector.errors.OperationalError) MySQL Connection not available.
+                [SQL: SELECT `userAccount`.`accountTableID` AS `userAccount_accountTableID`, `userAccount`.`userEmail` AS `userAccount_userEmail`, 
+                 `userAccount`.`userFirstName` AS `userAccount_userFirstName`, `userAccount`.`userLastName` AS `userAccount_userLastName`, 
+                 `userAccount`.hash AS `userAccount_hash`, `userAccount`.`accountDate` AS `userAccount_accountDate` 
+                FROM `userAccount` 
+                WHERE `userAccount`.`accountTableID` = %(pk_1)s]
+                [parameters: [{'pk_1': 2}]]`
+              </pre>
+            </p>
+            <p>
+              Another obstacle emerged in the form of random Internal 500 errors during various interactions within the application.
+              Resolving this issue required adjusting connection pooling, a solution achieved by incorporating a specific line in
+              the app.configuration.
+            </p>
+            <p>
+              <pre>
+                `app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 280, 'pool_pre_ping':True}`
+              </pre>
+            </p>
+            <h2>
+              <strong>Future Improvements</strong>
+            </h2>
+            <p>
+              Looking ahead, the development process has identified areas for future improvements. These include addressing the
+              display of multiple values in the 'subAnswer' column, refining subject grading calculations, and enhancing the user
+              experience in studentPortfolio.html by exploring methods to hide file input elements while retaining functionality.
+            </p>
+            <p>
+              The journey documented here stands as a testament to the creation of the inaugural website for Sprightly Homeschool &
+              Life. May it not only provide insights into the development process but also serve as a valuable resource for future
+              enhancements. Thank you for joining me on this transformative adventure!
             </p>
           </article>
           <!--Blog article-1 end-->
@@ -364,19 +466,19 @@
                   >
                     <!--Thumbnail size 117.35 x 96-->
                     <img
-                      src="../assets/img/recent-posts-thumbnail.gif"
-                      alt="Your GIF Alt Text"
+                      src="../assets/img/sprightly-homeschool/flaskFramework.png"
+                      alt="Flask logo"
                       width="100%"
                       height="32"
                       class="bd-placeholder-img"
                       aria-hidden="true"
-                      style="object-fit: cover;"
+                      style="object-fit: cover"
                     />
                     <div class="col-lg-8">
-                      <h6 class="mb-0">Resource post title</h6>
-                      <small class="text-body-secondary"
-                        >January 15, 2023</small
-                      >
+                      <h6 class="mb-0">Flask framework</h6>
+                      <small class="text-body-secondary">Flask, a Python micro web framework, stands out for its independence from specific
+                        tools, lacking features like a database abstraction layer and form validation commonly found in third-party
+                        libraries.</small>
                     </div>
                   </a>
                 </li>
@@ -387,19 +489,18 @@
                   >
                     <!--Thumbnail size 117.35 x 96-->
                     <img
-                      src="../assets/img/recent-posts-thumbnail.gif"
-                      alt="Your GIF Alt Text"
+                      src="../assets/img/sprightly-homeschool/pythonAnywhere.png"
+                      alt="Python Anywhere logo"
                       width="100%"
                       height="32"
                       class="bd-placeholder-img"
                       aria-hidden="true"
-                      style="object-fit: cover;"
+                      style="object-fit: cover"
                     />
                     <div class="col-lg-8">
-                      <h6 class="mb-0">This is another resource post title</h6>
-                      <small class="text-body-secondary"
-                        >January 14, 2023</small
-                      >
+                      <h6 class="mb-0">PythonAnywhere</h6>
+                      <small class="text-body-secondary">PythonAnywhere is a web hosting service and integrated development environment (IDE)
+                        that operates online, built around the Python programming language.</small>
                     </div>
                   </a>
                 </li>
@@ -410,21 +511,18 @@
                   >
                     <!--Thumbnail size 117.35 x 96-->
                     <img
-                      src="../assets/img/recent-posts-thumbnail.gif"
+                      src="../assets/img/sprightly-homeschool/visualStudio.png"
                       alt="Your GIF Alt Text"
                       width="100%"
                       height="32"
                       class="bd-placeholder-img"
                       aria-hidden="true"
-                      style="object-fit: cover;"
+                      style="object-fit: cover"
                     />
                     <div class="col-lg-8">
-                      <h6 class="mb-0">
-                        Longer resource post title: This one has multiple lines!
-                      </h6>
-                      <small class="text-body-secondary"
-                        >January 13, 2023</small
-                      >
+                      <h6 class="mb-0">Visual Studio Code</h6>
+                      <small class="text-body-secondary">Visual Studio Code, commonly known as VS Code, is a source-code editor created by
+                        Microsoft designed for use on Windows, Linux, and macOS.</small>
                     </div>
                   </a>
                 </li>
