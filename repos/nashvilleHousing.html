@@ -305,7 +305,9 @@
           <a class="nav-item nav-link link-body-emphasis" href="./web-dev.html"
             >Web Dev repo</a
           >
-          <a class="nav-item nav-link link-body-emphasis active" href="./sql-repo.html"
+          <a class="nav-item nav-link link-body-emphasis active"
+           href="./sql-repo.html"
+           style="color: #FFFFC0 !important;"
             >SQL repo</a
           >
           <a class="nav-item nav-link link-body-emphasis" href="./jupyter.html"
@@ -330,21 +332,29 @@
         <div class="col-md-8">
           <!--Blog article-1 begin-->
           <article class="blog-post">
-            <h2 class="display-5 link-body-emphasis mb-1">Sample post title</h2>
+            <h2 class="display-5 link-body-emphasis mb-1">Cleaned Nashville Hosuing Dataset</h2>
             <p class="blog-post-meta">
-              January 1, 2021 by <a href="#">Marcella</a>
+              June 21, 2022 by <a href="#" style="color: #E0E0E0 !important;">Marcella</a>
             </p>
             <p>
-              This blog post shows a few different types of content that’s
-              supported and styled with Bootstrap. Basic typography, lists,
-              tables, images, code, and more are all supported as expected.
+              This project not only aimed to enhance the dataset's performance but also involved a comprehensive process of
+              cleaning, restructuring, organization, and normalization. The dataset, originally sourced from AlexTheAnalyst on
+              GitHub as part of a Data Analyst Portfolio Project, underwent a thorough transformation using SQL queries in SQL
+              Server Management Studio 2018.
             </p>
             <p>
-              This is some additional paragraph placeholder content. It has been
-              written to fill the available space and show how a longer snippet
-              of text affects the surrounding content. We'll repeat it often to
-              keep the demonstration flowing, so be on the lookout for this
-              exact same string of text.
+              Initially organized in Microsoft Excel with 18 general columns and 1 date column, the dataset posed challenges such as
+              columns in all capital letters and month names in title case. With 19 columns and 56,477 rows, the dataset exhibited
+              varied responses in the "SoldAsVacant" column, including No, N, Yes, or Y. Notably, numerous columns contained
+              significant null values, such as OwnerName, OwnerAddress, Acreage, TaxDistrict, LandValue, BuildingValue, TotalValue,
+              YearBuilt, Bedrooms, FullBath, and HalfBath.
+            </p>
+            <p>
+              During the transition to SQL Server, despite the absence of recorded initial data types, total nulls, and distinct
+              values, the dataset underwent a holistic transformation through multiple queries, each categorized for specific tasks.
+              The result is a cleaned dataset featuring 21 columns, 56,477 rows (excluding the header), and a total of 26 query
+              statements. This meticulous approach aimed not only at optimizing performance but also at ensuring the dataset's
+              cleanliness, structure, organization, and normalization for improved analytical insights.
             </p>
           </article>
           <!--Blog article-1 end-->
