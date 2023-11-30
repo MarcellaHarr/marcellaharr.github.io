@@ -280,6 +280,53 @@
                         This meticulous process involves replacing problematic dates, ensuring consistent formatting,
                         and handling issues during the <span style="color: #F0E67F !important;">as.Date</span> conversion.
                     </p>
+                    <p>
+                        <p><small>Dataset:</small></p>
+                        <pre>
+                            ## # A tibble: 2,587 x 3
+                            ##    governor_full_name     took_office       left_office      
+                            ##      chr                     chr                 chr            
+                            ##  1 William Wyatt Bibb     November 9, 1819  July 10, 1820    
+                            ##  2 Thomas Bibb            July 10, 1820     November 9, 1821 
+                            ##  3 Israel Pickens         November 9, 1821  November 25, 1825
+                            ##  4 John Murphy            November 25, 1825 November 25, 1829
+                            ##  5 Gabriel Moore          November 25, 1829 March 3, 1831    
+                            ##  6 Samuel Moore           March 3, 1831     November 26, 1831
+                            ##  7 John Gayle             November 26, 1831 November 21, 1835
+                            ##  8 Clement Comer Clay     November 21, 1835 July 17, 1837    
+                            ##  9 Hugh McVay             July 17, 1837     November 21, 1837
+                            ## 10 Arthur Pendleton Bagby November 21, 1837 November 22, 1841
+                            ## # ... with 2,577 more rows
+                        </pre>
+                    </p>
+                    <p>
+                        <p><small>Code:</small></p>
+                        <pre>
+                            #................ convert & save .............................
+                            StateGov_df %>%
+                              mutate(took_office = as.Date(took_office,
+                                                           format = "%B %d, %Y"),
+                                     left_office = as.Date(left_office,
+                                                           format = "%B %d, %Y")) -> StateGov_df
+                            #................ view ........
+                            StateGov_df %>% 
+                              select(governor_full_name,
+                                     took_office,
+                                     left_office) %>% 
+                              head(n = 3)
+                        </pre>
+                    </p>
+                    <p>
+                        <p><small>Result:</small></p>
+                        <pre>
+                            ## # A tibble: 3 x 3
+                            ##   governor_full_name took_office left_office
+                            ##      chr              date           date     
+                            ## 1 William Wyatt Bibb 1819-11-09  1820-07-10 
+                            ## 2 Thomas Bibb        1820-07-10  1821-11-09 
+                            ## 3 Israel Pickens     1821-11-09  1825-11-25
+                        </pre>
+                    </p>
                     <h5 style="color: #5A759E !important;">Revisiting the Imported Dataframe</h5>
                     <p>
                         During the review, challenges related to duplicate governor seat numbers leading to NAs are
