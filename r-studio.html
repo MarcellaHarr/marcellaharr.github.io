@@ -109,6 +109,7 @@
 
   <!-- Custom styles for this template -->
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap" rel="stylesheet" />
+  <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' />
   <!-- Custom styles for this template -->
   <link href="./assets/css/blog.css" rel="stylesheet" />
 </head>
@@ -232,9 +233,10 @@
   </div>
   <main class="container">
     <!--Banner begin-->
-    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
-      <div class="col-lg-6 px-0">
-        <h1 class="display-4 fst-italic">R & R-Studio repositories ...</h1>
+    <div class="row featurette p-4 p-md-5 mb-4 rounded text-body-emphasis align-items-center">
+      <!--Text begin-->
+      <div class="col-md-7 px-0">
+        <h1 class="postBannerTitle">R & R-Studio repositories ...</h1>
         <p class="lead my-3">
           Step into the enchanting realm of R and R-Studio repositories!
           Whether you're a data aficionado or a coding maestro, join me on a
@@ -245,13 +247,23 @@
           the captivating landscape of R magic and R-Studio expertise.
         </p>
       </div>
+      <!--Text end-->
+      <!--Image begin-->
+      <div class="col-md-5 ">
+        <img 
+          class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" 
+          src="./assets/img/us-governors/glen-carrie-8lNHkM9URlw-unsplash.jpg"
+          style="width: 350px;" 
+        />
+      </div>
+      <!--Image end-->
     </div>
     <!--Banner end-->
     <!--Cards begin-->
     <div class="row mb-2">
       <!--Card-1 begin-->
       <div class="col-md-6">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="row g-0 card border-light rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
             <h3 class="mb-0">Governors of the U.S.</h3>
             <div class="mb-1 text-body-secondary">
@@ -260,7 +272,11 @@
             <p class="card-text mb-auto">
               This was an EDA on the United States Governors from Januarry 10th, 1769 to May 12th, 2021.
             </p>
-            <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+            <a 
+              href="https://github.com/MarcellaHarr/us_governors-project/tree/741b735ed9525e0dd9b3cf999502eaf0cc575a3b" 
+              class="icon-link gap-1 icon-link-hover stretched-link"
+              style="color: #CD8827 !important; text-decoration:underline !important;"
+            >
               Continue reading
               <svg class="bi">
                 <use xlink:href="#chevron-right"></use>
