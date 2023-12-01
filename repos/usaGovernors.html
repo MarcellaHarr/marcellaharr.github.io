@@ -273,6 +273,30 @@
                     and operates under the CC0: Public Domain license.
                     </p>
                     <br>
+                    <h3>
+                        <strong style="color: #5A759E !important;">Some Questions & Answers</strong>
+                    </h3>
+                    <p>
+                        <ol>
+                            <li>
+                                <strong style="color: #A82E2B !important;">Show governors that share the same seat number.</strong>
+                            </li>
+                            <p>The lower the seat number the more governors served.</p>
+                            <li>
+                                <strong style="color: #A82E2B !important;">What is the earliest inaugural date?</strong>
+                            </li>
+                            <p>January 10, 1769 is the earliest inaugural date.</p>
+                            <li>
+                                <strong style="color: #A82E2B !important;">How many distinct party_affiliations are there?</strong>
+                            </li>
+                            <p>There are 34 distinct affiliations combined. Interestingly, Rhode Island has the most affiliations with 11.</p>
+                            <li>
+                                <strong style="color: #A82E2B !important;">Which state has the most governors so far?</strong>
+                            </li>
+                            <p>South Carolina has the most governors served with 91 governors.</p>
+                        </ol>
+                    </p>
+                    <br>
                     <h2 style="color: #5A759E !important;">Tidying the Data</h2>
                     <p>
                         Various tidying steps enhance the dataset, including converting date columns, standardizing
@@ -281,7 +305,7 @@
                         and handling issues during the <span style="color: #F0E67F !important;">as.Date</span> conversion.
                     </p>
                     <p>
-                        <p><small>Dataset:</small></p>
+                        <p><small style="color: #8AA1C0 !important;">Dataset:</small></p>
                         <pre>
                             ## # A tibble: 2,587 x 3
                             ##    governor_full_name     took_office       left_office      
@@ -300,7 +324,7 @@
                         </pre>
                     </p>
                     <p>
-                        <p><small>Code:</small></p>
+                        <p><small style="color: #8AA1C0 !important;">Code:</small></p>
                         <pre>
                             #................ convert & save .............................
                             StateGov_df %>%
@@ -317,7 +341,7 @@
                         </pre>
                     </p>
                     <p>
-                        <p><small>Result:</small></p>
+                        <p><small style="color: #8AA1C0 !important;">Result:</small></p>
                         <pre>
                             ## # A tibble: 3 x 3
                             ##   governor_full_name took_office left_office
@@ -356,6 +380,16 @@
                         <span style="color: #F0E67F !important;">left_office</span> columns. Cross-referencing with NGA.org and employing meticulous error checking ensures a
                         comprehensive and error-free dataset. The result is a refined dataset without any remaining NAs,
                         marking the successful completion of the EDA project.
+                    </p>
+                    <p>
+                        <pre>
+                            ## # A tibble: 1 x 8
+                            ##   state_full_name state_abbrev governor_seat_order governor_full_na~ took_office
+                            ##             int        int               int             int       int
+                            ## 1               0            0                   0                 0           0
+                            ## # ... with 3 more variables: left_office <int>, party_affiliation <int>,
+                            ## #   party_abbrev <int>
+                        </pre>
                     </p>
                 </article>
                 <!--Blog article-1 end-->
