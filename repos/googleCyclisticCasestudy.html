@@ -264,13 +264,14 @@
           <br>
           <h3>Roadmap</h3>
           <br>
-          <h6><span style="color: #6F4196 !important; margin-left: 40px;">1. Phase:</span> Ask</h6>
+          <h6><span style="color: #B696D1 !important; margin-left: 40px;">1. Phase:</span> Ask</h6>
           <p style="margin-left: 40px;">
             The primary goal is to convert casual riders into annual members without launching a new marketing campaign.
             Key stakeholders include Lily Moreno (Director of Marketing), the Marketing analytics team, and the
             Executive Team. SMART questions guide the analysis, focusing on understanding user behavior and preferences.
           </p>
-          <dl style="margin-left: 160px;">
+          <hr style="width: 92%; margin-left: 40px;">
+          <dl style="margin-left: 40px;">
             <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
             <dd>[X] Identify the business task.</dd>
             <dd>[X] Consider key stakeholders.</dd>
@@ -279,7 +280,7 @@
           </dl>
           <br>
           <br>
-          <h6><span style="color: #6F4196 !important; margin-left: 40px;">2. Phase:</span> Prepare </h6>
+          <h6><span style="color: #B696D1 !important; margin-left: 40px;">2. Phase:</span> Prepare </h6>
           <p style="margin-left: 40px;">
             Cyclistic's historical trip data, sourced from Divvy Bikes, is stored securely. The data is comprehensive,
             reliable, and does not compromise user privacy. It offers insights into bike types, usage frequency, and
@@ -288,40 +289,41 @@
           </p>
           <p>
             <p style="color: #C4C032 !important; margin-left: 40px;">Imported six months data</p>
-            <pre>
-              # April 2021 dataset.
-              # tripApr_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Apr-divvy-tripdata.csv",
-              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
-              #                                           ended_time = col_time(format = "%H:%M:%S"),
-              #                                           ride_length = col_time(format = "%H:%M:%S")))
-              # # May 2021 dataset.
-              # tripMay_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021May-divvy-tripdata.csv",
-              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
-              #                                           ended_time = col_time(format = "%H:%M:%S"),
-              #                                           ride_length = col_time(format = "%H:%M:%S")))
-              # # June 2021 dataset.
-              # tripJun_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Jun-divvy-tripdata.csv",
-              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
-              #                                           ended_time = col_time(format = "%H:%M:%S"),
-              #                                           ride_length = col_time(format = "%H:%M:%S")))
-              # # July 2021 dataset.
-              # tripJul_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Jul-divvy-tripdata.csv",
-              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
-              #                                           ended_time = col_time(format = "%H:%M:%S"),
-              #                                           ride_length = col_time(format = "%H:%M:%S")))
-              # # August 2021 dataset.
-              # tripAug_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Aug-divvy-tripdata.csv",
-              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
-              #                                           ended_time = col_time(format = "%H:%M:%S"),
-              #                                           ride_length = col_time(format = "%H:%M:%S")))
-              # # September 2021 dataset.
-              # tripSep_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Sep-divvy-tripdata.csv",
-              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
-              #                                           ended_time = col_time(format = "%H:%M:%S"),
-              #                                           ride_length = col_time(format = "%H:%M:%S")))
+            <pre style="margin: 0 1em 0; margin-left: 2.5em;">
+# April 2021 dataset.
+# tripApr_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Apr-divvy-tripdata.csv",
+#                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+#                                           ended_time = col_time(format = "%H:%M:%S"),
+#                                           ride_length = col_time(format = "%H:%M:%S")))
+# # May 2021 dataset.
+# tripMay_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021May-divvy-tripdata.csv",
+#                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+#                                           ended_time = col_time(format = "%H:%M:%S"),
+#                                           ride_length = col_time(format = "%H:%M:%S")))
+# # June 2021 dataset.
+# tripJun_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Jun-divvy-tripdata.csv",
+#                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+#                                           ended_time = col_time(format = "%H:%M:%S"),
+#                                           ride_length = col_time(format = "%H:%M:%S")))
+# # July 2021 dataset.
+# tripJul_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Jul-divvy-tripdata.csv",
+#                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+#                                           ended_time = col_time(format = "%H:%M:%S"),
+#                                           ride_length = col_time(format = "%H:%M:%S")))
+# # August 2021 dataset.
+# tripAug_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Aug-divvy-tripdata.csv",
+#                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+#                                           ended_time = col_time(format = "%H:%M:%S"),
+#                                           ride_length = col_time(format = "%H:%M:%S")))
+# # September 2021 dataset.
+# tripSep_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Sep-divvy-tripdata.csv",
+#                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+#                                           ended_time = col_time(format = "%H:%M:%S"),
+#                                           ride_length = col_time(format = "%H:%M:%S")))
             </pre>
           </p>
-          <dl style="margin-left: 160px;">
+          <hr style="width: 92%; margin-left: 40px;">
+          <dl style="margin-left: 40px;">
             <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
             <dd>[X] Download data and store it appropriately.</dd>
             <dd>[X] Identify how it’s organized.</dd>
@@ -332,7 +334,7 @@
           </dl>
           <br>
           <br>
-          <h6><span style="color: #6F4196 !important; margin-left: 40px;">3. Phase:</span> Process </h6>
+          <h6><span style="color: #B696D1 !important; margin-left: 40px;">3. Phase:</span> Process </h6>
           <p style="margin-left: 40px;">
             The data is processed using Excel for formatting, R-Studio for cleaning and calculations, and Tableau for
             visualizations. The cleaning process involves trimming, renaming, filtering, sorting, and merging data
@@ -340,24 +342,25 @@
           </p>
           <p>
             <p style="color: #C4C032 !important; margin-left: 40px;">Output</p>
-            <pre>
-              ## tibble [3,981,367 x 13] (S3: tbl_df/tbl/data.frame)
-              ##  $ ride_id           : chr [1:3981367] "6C992BD37A98A63F" "1E0145613A209000" "E498E15508A80BAD" "1887262AD101C604" ...
-              ##  $ rideable_type     : chr [1:3981367] "classic  bike" "docked  bike" "docked  bike" "classic  bike" ...
-              ##  $ started_at        : chr [1:3981367] "4/12/2021" "4/27/2021" "4/3/2021" "4/17/2021" ...
-              ##  $ started_time      : chr [1:3981367] "6:25:00" "5:27:00" "12:42:00" "9:17:00" ...
-              ##  $ ended_at          : chr [1:3981367] "4/12/2021" "4/27/2021" "4/7/2021" "4/17/2021" ...
-              ##  $ ended_time        : chr [1:3981367] "6:56:00" "6:31:00" "11:40:00" "9:42:00" ...
-              ##  $ start_station_name: chr [1:3981367] "State St & Pearson St" "Dorchester Ave & 49th St" "Loomis Blvd & 84th St" "Honore St & Division St" ...
-              ##  $ start_station_id  : chr [1:3981367] "TA1307000061" "KA1503000069" "20121" "TA1305000034" ...
-              ##  $ end_station_name  : chr [1:3981367] "Southport Ave & Waveland Ave" "Dorchester Ave & 49th St" "Loomis Blvd & 84th St" "Southport Ave & Waveland Ave" ...
-              ##  $ end_station_id    : chr [1:3981367] "13235" "KA1503000069" "20121" "13235" ...
-              ##  $ ride_length       : chr [1:3981367] "0:31:00" "1:04:00" "94:58:00" "0:25:00" ...
-              ##  $ day_of_week       : int [1:3981367] 2 3 7 7 7 1 7 3 2 7 ...
-              ##  $ member_casual     : chr [1:3981367] "member" "casual" "casual" "member" ...
+            <pre style="margin: 0 1em 0; margin-left: 2.5em;">
+## tibble [3,981,367 x 13] (S3: tbl_df/tbl/data.frame)
+##  $ ride_id           : chr [1:3981367] "6C992BD37A98A63F" "1E0145613A209000" "E498E15508A80BAD" "1887262AD101C604" ...
+##  $ rideable_type     : chr [1:3981367] "classic  bike" "docked  bike" "docked  bike" "classic  bike" ...
+##  $ started_at        : chr [1:3981367] "4/12/2021" "4/27/2021" "4/3/2021" "4/17/2021" ...
+##  $ started_time      : chr [1:3981367] "6:25:00" "5:27:00" "12:42:00" "9:17:00" ...
+##  $ ended_at          : chr [1:3981367] "4/12/2021" "4/27/2021" "4/7/2021" "4/17/2021" ...
+##  $ ended_time        : chr [1:3981367] "6:56:00" "6:31:00" "11:40:00" "9:42:00" ...
+##  $ start_station_name: chr [1:3981367] "State St & Pearson St" "Dorchester Ave & 49th St" "Loomis Blvd & 84th St" "Honore St & Division St" ...
+##  $ start_station_id  : chr [1:3981367] "TA1307000061" "KA1503000069" "20121" "TA1305000034" ...
+##  $ end_station_name  : chr [1:3981367] "Southport Ave & Waveland Ave" "Dorchester Ave & 49th St" "Loomis Blvd & 84th St" "Southport Ave & Waveland Ave" ...
+##  $ end_station_id    : chr [1:3981367] "13235" "KA1503000069" "20121" "13235" ...
+##  $ ride_length       : chr [1:3981367] "0:31:00" "1:04:00" "94:58:00" "0:25:00" ...
+##  $ day_of_week       : int [1:3981367] 2 3 7 7 7 1 7 3 2 7 ...
+##  $ member_casual     : chr [1:3981367] "member" "casual" "casual" "member" ...
             </pre>
           </p>
-          <dl style="margin-left: 160px;">
+          <hr style="width: 92%; margin-left: 40px;">
+          <dl style="margin-left: 40px;">
             <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
             <dd>[X] Check the data for errors.</dd>
             <dd>[X] Choose your tools.</dd>
@@ -368,13 +371,29 @@
           </dl>
           <br>
           <br>
-          <h6><span style="color: #6F4196 !important; margin-left: 40px;">4. Phase:</span> Analyze </h6>
+          <h6><span style="color: #B696D1 !important; margin-left: 40px;">4. Phase:</span> Analyze </h6>
           <p style="margin-left: 40px;">
             The organized data reveals surprising insights, such as casual riders having longer ride lengths and more
             docked bikes. Key trends, like the higher number of members and their fewer ride times, help tell the story
             of Cyclistic's two rider types, uncovering reasons why casual riders aren't becoming annual subscribers.
           </p>
-          <dl style="margin-left: 160px;">
+          <p>
+            <div style="max-width: 848px; margin: auto 40px;">
+              <img src="../assets/img/google-cyclistic/dataSummary.JPG" style="width: 100%;" />
+            </div>
+          </p>
+          <p>
+            <div style="max-width: 848px; margin: auto 40px;">
+              <img src="../assets/img/google-cyclistic/variableType.JPG" style="width: 100%;" />
+            </div>
+          </p>
+          <p>
+            <div style="max-width: 848px; margin: auto 40px;">
+              <img src="../assets/img/google-cyclistic/variableType2.JPG" style="width: 100%;" />
+            </div>
+          </p>
+          <hr style="width: 92%; margin-left: 40px;">
+          <dl style="margin-left: 40px;">
             <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
             <dd>[X] Aggregate your data so it’s useful and accessible.</dd>
             <dd>[X] Organize and format your data.</dd>
@@ -385,14 +404,29 @@
           </dl>
           <br>
           <br>
-          <h6><span style="color: #6F4196 !important; margin-left: 40px;">5. Phase:</span> Share </h6>
+          <h6><span style="color: #B696D1 !important; margin-left: 40px;">5. Phase:</span> Share </h6>
           <p style="margin-left: 40px;">
             Insights are shared through data visualization, answering questions about how casual riders differ from
             annual members. Weekend preferences for casual riders and weekday use for members highlight distinctions in
             user purposes. The audience, including the marketing director and analytics team, benefits from a PowerPoint
             presentation summarizing findings and recommendations.
           </p>
-          <dl style="margin-left: 160px;">
+          <p>
+            <pre style="margin: 0 1em 0; margin-left: 2.5em;">
+# Rider Type Totals by Bike
+ggplot(tripDatacleaned_v2, aes(rideable_type, fill=member_casual)) + 
+  geom_bar() + 
+  labs(x="Type of Bike", title="Rider Type Totals by Bike") + 
+  coord_flip()
+            </pre>
+          </p>
+          <p>
+            <div style="max-width: 848px; margin: auto 40px;">
+              <img src="../assets/img/google-cyclistic/viz2.JPG" style="width: 100%;" />
+            </div>
+          </p>
+          <hr style="width: 92%; margin-left: 40px;">
+          <dl style="margin-left: 40px;">
             <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
             <dd>[X] Determine the best way to share your findings.</dd>
             <dd>[X] Create effective data visualizations.</dd>
@@ -403,14 +437,15 @@
           </dl>
           <br>
           <br>
-          <h6><span style="color: #6F4196 !important; margin-left: 40px;">6. Phase:</span> Act </h6>
+          <h6><span style="color: #B696D1 !important; margin-left: 40px;">6. Phase:</span> Act </h6>
           <p style="margin-left: 40px;">
             The conclusion emphasizes that casual riders prefer classic bikes on weekends, while members use them
             steadily throughout the week. Recommendations include focus groups for casual riders and a referral-based
             rewards program. Further steps involve gathering additional data and conducting in-depth analyses, such as
             surveys on docking station preferences and user demographics.
           </p>
-          <dl style="margin-left: 160px;">
+          <hr style="width: 92%; margin-left: 40px;">
+          <dl style="margin-left: 40px;">
             <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
             <dd>[X] Create your portfolio.</dd>
             <dd>[X] Add your case study.</dd>
@@ -423,7 +458,7 @@
           <br>
           <p>
             This analysis provides Cyclistic's executive team with actionable insights to enhance their strategies and
-            better cater to the needs of both casual riders and annual subscribers.
+            better cater to the needs of both casual riders and annual subscribers. Well I hope you've enjoyed the read and thanks for stopping by!
           </p>
         </article>
         <!--Blog article-1 end-->
@@ -444,7 +479,7 @@
                   <div class="col-lg-8">
                     <img src="../assets/img/us-governors/rstudioLogo.jpg" alt="Flask logo" width="100%" height="52"
                       class="bd-placeholder-img" aria-hidden="true" />
-                    <small class="text-body-secondary">I used R-Studio from Posit as my IDE.</small>
+                    <small class="text-body-secondary">I used R-Studio from Posit as my IDE and to export the html page.</small>
                   </div>
                 </a>
               </li>
