@@ -1,469 +1,457 @@
 <!--Google Cyclistic-->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script src="../assets/js/color-modes.js"></script>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta
-      name="author"
-      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
-    />
-    <meta name="generator" content="Hugo 0.118.2" />
-    <title>Marcella Harris · DataPortfolio</title>
+<head>
+  <script src="../assets/js/color-modes.js"></script>
 
-    <link
-      rel="canonical"
-      href="https://getbootstrap.com/docs/5.3/examples/blog/"
-    />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+  <meta name="generator" content="Hugo 0.118.2" />
+  <title>Marcella Harris · DataPortfolio</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
-    />
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/blog/" />
 
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
 
-    <!-- Favicons -->
-    <link
-      rel="apple-touch-icon"
-      href="../assets/img/favicons/apple-touch-icon.png"
-      sizes="180x180"
-    />
-    <link
-      rel="icon"
-      href="../assets/img/favicons/favicon-32x32.png"
-      sizes="32x32"
-      type="image/png"
-    />
-    <link
-      rel="icon"
-      href="../assets/img/favicons/favicon-16x16.png"
-      sizes="16x16"
-      type="image/png"
-    />
-    <link
-      rel="manifest"
-      href="../assets/img/favicons/android-chrome-192x192.png"
-    />
-    <link
-      rel="mask-icon"
-      href="../assets/img/favicons/safari-pinned-tab.svg"
-      color="#712cf9"
-    />
-    <link rel="icon" href="../assets/img/favicons/favicon.ico" />
-    <meta name="theme-color" content="#712cf9" />
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="../assets/img/favicons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="../assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="../assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
+  <link rel="manifest" href="../assets/img/favicons/android-chrome-192x192.png" />
+  <link rel="mask-icon" href="../assets/img/favicons/safari-pinned-tab.svg" color="#712cf9" />
+  <link rel="icon" href="../assets/img/favicons/favicon.ico" />
+  <meta name="theme-color" content="#712cf9" />
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
       }
+    }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, 0.1);
+      border: solid rgba(0, 0, 0, 0.15);
+      border-width: 1px 0;
+      box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+        inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+    }
 
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, 0.1);
-        border: solid rgba(0, 0, 0, 0.15);
-        border-width: 1px 0;
-        box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
-          inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
-      }
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
 
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
+    .bi {
+      vertical-align: -0.125em;
+      fill: currentColor;
+    }
 
-      .bi {
-        vertical-align: -0.125em;
-        fill: currentColor;
-      }
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
 
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
 
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
+    .btn-bd-primary {
+      --bd-violet-bg: #712cf9;
+      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
 
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+      --bs-btn-font-weight: 600;
+      --bs-btn-color: var(--bs-white);
+      --bs-btn-bg: var(--bd-violet-bg);
+      --bs-btn-border-color: var(--bd-violet-bg);
+      --bs-btn-hover-color: var(--bs-white);
+      --bs-btn-hover-bg: #6528e0;
+      --bs-btn-hover-border-color: #6528e0;
+      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+      --bs-btn-active-color: var(--bs-btn-hover-color);
+      --bs-btn-active-bg: #5a23c8;
+      --bs-btn-active-border-color: #5a23c8;
+    }
 
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
 
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
+    .bd-mode-toggle .dropdown-menu .active .bi {
+      display: block !important;
+    }
+  </style>
 
-      .bd-mode-toggle .dropdown-menu .active .bi {
-        display: block !important;
-      }
-    </style>
+  <!-- Custom styles for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="../assets/css/blog.css" rel="stylesheet" />
+</head>
 
-    <!-- Custom styles for this template -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap"
-      rel="stylesheet"
-    />
-    <!-- Custom styles for this template -->
-    <link href="../assets/css/blog.css" rel="stylesheet" />
-  </head>
-  <body>
-    <!--Bootstrap colormode and interactive settings begin-->
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-      <symbol id="check2" viewBox="0 0 16 16">
-        <path
-          d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
-        ></path>
-      </symbol>
-      <symbol id="circle-half" viewBox="0 0 16 16">
-        <path
-          d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
-        ></path>
-      </symbol>
-      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path
-          d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"
-        ></path>
-        <path
-          d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"
-        ></path>
-      </symbol>
-      <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path
-          d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
-        ></path>
-      </symbol>
-    </svg>
-    <div
-      class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle"
-    >
-      <button
-        class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
-        id="bd-theme"
-        type="button"
-        aria-expanded="false"
-        data-bs-toggle="dropdown"
-        aria-label="Toggle theme (dark)"
-      >
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
-          <use href="#moon-stars-fill"></use>
-        </svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-      </button>
-      <ul
-        class="dropdown-menu dropdown-menu-end shadow"
-        aria-labelledby="bd-theme-text"
-      >
-        <li>
-          <button
-            type="button"
-            class="dropdown-item d-flex align-items-center"
-            data-bs-theme-value="light"
-            aria-pressed="false"
-          >
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-              <use href="#sun-fill"></use>
-            </svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em">
-              <use href="#check2"></use>
-            </svg>
-          </button>
-        </li>
-        <li>
-          <button
-            type="button"
-            class="dropdown-item d-flex align-items-center active"
-            data-bs-theme-value="dark"
-            aria-pressed="true"
-          >
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-              <use href="#moon-stars-fill"></use>
-            </svg>
-            Dark
-            <svg class="bi ms-auto d-none" width="1em" height="1em">
-              <use href="#check2"></use>
-            </svg>
-          </button>
-        </li>
-        <li>
-          <button
-            type="button"
-            class="dropdown-item d-flex align-items-center"
-            data-bs-theme-value="auto"
-            aria-pressed="false"
-          >
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-              <use href="#circle-half"></use>
-            </svg>
-            Auto
-            <svg class="bi ms-auto d-none" width="1em" height="1em">
-              <use href="#check2"></use>
-            </svg>
-          </button>
-        </li>
-      </ul>
-    </div>
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-      <symbol
-        id="aperture"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        viewBox="0 0 24 24"
-      >
-        <circle cx="12" cy="12" r="10"></circle>
-        <path
-          d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"
-        ></path>
-      </symbol>
-      <symbol id="cart" viewBox="0 0 16 16">
-        <path
-          d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-        ></path>
-      </symbol>
-      <symbol id="chevron-right" viewBox="0 0 16 16">
-        <path
-          fill-rule="evenodd"
-          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-        ></path>
-      </symbol>
-    </svg>
-    <!--Bootstrap colormode and interactive settings end-->
-    <div class="container">
-      <!--Header text logo begin-->
-      <header class="border-bottom lh-1 py-3">
-        <div class="row flex-nowrap justify-content-center align-items-center">
-          <div class="col-4 text-center">
-            <a
-              class="blog-header-logo text-body-emphasis text-decoration-none"
-              href="#"
-              >Marcella Harris</a
-            >
-          </div>
+<body>
+  <!--Bootstrap colormode and interactive settings begin-->
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check2" viewBox="0 0 16 16">
+      <path
+        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z">
+      </path>
+    </symbol>
+    <symbol id="circle-half" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+    </symbol>
+    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+      <path
+        d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+      </path>
+      <path
+        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+      </path>
+    </symbol>
+    <symbol id="sun-fill" viewBox="0 0 16 16">
+      <path
+        d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+      </path>
+    </symbol>
+  </svg>
+  <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
+      aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (dark)">
+      <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+        <use href="#moon-stars-fill"></use>
+      </svg>
+      <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
+          aria-pressed="false">
+          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+            <use href="#sun-fill"></use>
+          </svg>
+          Light
+          <svg class="bi ms-auto d-none" width="1em" height="1em">
+            <use href="#check2"></use>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark"
+          aria-pressed="true">
+          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+            <use href="#moon-stars-fill"></use>
+          </svg>
+          Dark
+          <svg class="bi ms-auto d-none" width="1em" height="1em">
+            <use href="#check2"></use>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto"
+          aria-pressed="false">
+          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+            <use href="#circle-half"></use>
+          </svg>
+          Auto
+          <svg class="bi ms-auto d-none" width="1em" height="1em">
+            <use href="#check2"></use>
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="aperture" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+      stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94">
+      </path>
+    </symbol>
+    <symbol id="cart" viewBox="0 0 16 16">
+      <path
+        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+      </path>
+    </symbol>
+    <symbol id="chevron-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd"
+        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+      </path>
+    </symbol>
+  </svg>
+  <!--Bootstrap colormode and interactive settings end-->
+  <div class="container">
+    <!--Header text logo begin-->
+    <header class="border-bottom lh-1 py-3">
+      <div class="row flex-nowrap justify-content-center align-items-center">
+        <div class="col-4 text-center">
+          <a class="blog-header-logo text-body-emphasis text-decoration-none" href="#">Marcella Harris</a>
         </div>
-      </header>
-      <!--Header text logo end-->
-      <!--Navlink texts begin-->
-      <div class="nav-scroller py-1 mb-3 border-bottom">
-        <nav class="nav nav-underline justify-content-between">
-          <a
-            class="nav-item nav-link link-body-emphasis"
-            href="https://marcellaharr.github.io"
-            >Home</a
-          >
-          <a
-            class="nav-item nav-link link-body-emphasis"
-            href="https://github.com/MarcellaHarr"
-            target="_blank"
-            >GitHub Profile</a
-          >
-          <a class="nav-item nav-link link-body-emphasis active" href="./r-studio.html"
-            >R-Studio repo</a
-          >
-          <a class="nav-item nav-link link-body-emphasis" href="./excel.html"
-            >Excel repo</a
-          >
-          <a class="nav-item nav-link link-body-emphasis" href="./web-dev.html"
-            >Web Dev repo</a
-          >
-          <a class="nav-item nav-link link-body-emphasis" href="./sql-repo.html"
-            >SQL repo</a
-          >
-          <a class="nav-item nav-link link-body-emphasis" href="./jupyter.html"
-            >Jupyter repo</a
-          >
-          <a class="nav-item nav-link link-body-emphasis" href="#"
-            >Education repo</a
-          >
-          <a
-            class="nav-item nav-link link-body-emphasis"
-            href="./follow-along.html"
-            >Follow-Along repo</a
-          >
-        </nav>
       </div>
-      <!--Navlink texts end-->
+    </header>
+    <!--Header text logo end-->
+    <!--Navlink texts begin-->
+    <div class="nav-scroller py-1 mb-3 border-bottom">
+      <nav class="nav nav-underline justify-content-between">
+        <a class="nav-item nav-link link-body-emphasis" href="https://marcellaharr.github.io">Home</a>
+        <a class="nav-item nav-link link-body-emphasis" href="https://github.com/MarcellaHarr" target="_blank">GitHub
+          Profile</a>
+        <a class="nav-item nav-link link-body-emphasis active" style="color: #FFFFC0 !important;"
+          href="./r-studio.html">R-Studio repo</a>
+        <a class="nav-item nav-link link-body-emphasis" href="./excel.html">Excel repo</a>
+        <a class="nav-item nav-link link-body-emphasis" href="./web-dev.html">Web Dev repo</a>
+        <a class="nav-item nav-link link-body-emphasis" href="./sql-repo.html">SQL repo</a>
+        <a class="nav-item nav-link link-body-emphasis" href="./jupyter.html">Jupyter repo</a>
+        <a class="nav-item nav-link link-body-emphasis" href="#">Education repo</a>
+        <a class="nav-item nav-link link-body-emphasis" href="./follow-along.html">Follow-Along repo</a>
+      </nav>
     </div>
-    <!--header buttons end-->
-    <main class="container">
-      <div class="row g-5">
-        <!--Far left-side panel begin-->
-        <div class="col-md-8">
-          <!--Blog article-1 begin-->
-          <article class="blog-post">
-            <h2 class="display-5 link-body-emphasis mb-1">Sample post title</h2>
-            <p class="blog-post-meta">
-              January 1, 2021 by <a href="#">Marcella</a>
-            </p>
-            <p>
-              This blog post shows a few different types of content that’s
-              supported and styled with Bootstrap. Basic typography, lists,
-              tables, images, code, and more are all supported as expected.
-            </p>
-            <p>
-              This is some additional paragraph placeholder content. It has been
-              written to fill the available space and show how a longer snippet
-              of text affects the surrounding content. We'll repeat it often to
-              keep the demonstration flowing, so be on the lookout for this
-              exact same string of text.
-            </p>
-          </article>
-          <!--Blog article-1 end-->
-        </div>
-        <!--Far left-side panel end-->
-        <!--Far right-side panel begin-->
-        <div class="col-md-4">
-          <div class="position-sticky" style="top: 2rem">
-            <!--Recent posts begin-->
-            <div>
-              <h4 class="fst-italic">Resources used</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a
-                    class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                    href="#"
-                  >
-                    <!--Thumbnail size 117.35 x 96-->
-                    <img
-                      src="../assets/img/recent-posts-thumbnail.gif"
-                      alt="Your GIF Alt Text"
-                      width="100%"
-                      height="32"
-                      class="bd-placeholder-img"
-                      aria-hidden="true"
-                      style="object-fit: cover;"
-                    />
-                    <div class="col-lg-8">
-                      <h6 class="mb-0">Resource post title</h6>
-                      <small class="text-body-secondary"
-                        >January 15, 2023</small
-                      >
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                    href="#"
-                  >
-                    <!--Thumbnail size 117.35 x 96-->
-                    <img
-                      src="../assets/img/recent-posts-thumbnail.gif"
-                      alt="Your GIF Alt Text"
-                      width="100%"
-                      height="32"
-                      class="bd-placeholder-img"
-                      aria-hidden="true"
-                      style="object-fit: cover;"
-                    />
-                    <div class="col-lg-8">
-                      <h6 class="mb-0">This is another resource post title</h6>
-                      <small class="text-body-secondary"
-                        >January 14, 2023</small
-                      >
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                    href="#"
-                  >
-                    <!--Thumbnail size 117.35 x 96-->
-                    <img
-                      src="../assets/img/recent-posts-thumbnail.gif"
-                      alt="Your GIF Alt Text"
-                      width="100%"
-                      height="32"
-                      class="bd-placeholder-img"
-                      aria-hidden="true"
-                      style="object-fit: cover;"
-                    />
-                    <div class="col-lg-8">
-                      <h6 class="mb-0">
-                        Longer resource post title: This one has multiple lines!
-                      </h6>
-                      <small class="text-body-secondary"
-                        >January 13, 2023</small
-                      >
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!--Recent posts end-->
-            <!--Elsewhere links begin-->
-            <div class="p-4">
-              <h4 class="fst-italic">Elsewhere</h4>
-              <ol class="list-unstyled">
-                <li>
-                  <a href="www.linkedin.com/in/marcellalharris">LinkedIn</a>
-                </li>
-                <li><a href="https://github.com/MarcellaHarr">GitHub</a></li>
-                <li>
-                  <a href="https://twitter.com/MarcellaDaANLST">Twitter</a>
-                </li>
-                <li><a href="mailto:marlorraineharr@gmail.com">Email</a></li>
-              </ol>
-            </div>
-            <!--Elsewhere links end-->
-          </div>
-        </div>
-        <!--Far right-side panel end-->
+    <!--Navlink texts end-->
+  </div>
+  <!--header buttons end-->
+  <main class="container">
+    <div class="row g-5">
+      <!--Far left-side panel begin-->
+      <div class="col-md-8">
+        <!--Blog article-1 begin-->
+        <article class="blog-post">
+          <br>
+          <h2 class="display-5 link-body-emphasis mb-1" style="color: #6F4196 !important;">Google Capstone: <span
+              style="color: #FFFB88 !important;">Cyclistic</span>
+          </h2>
+          <p class="blog-post-meta">
+            October 21st, 2021 by <a href="#" style="color: #777 !important;">Marcella</a>
+          </p>
+          <br>
+          <p>
+            This case study, part of the Google Data Analytics Certificate, delves into the historical trip data of
+            Cyclistic, a Chicago-based bike-share company. With over 5,824 bicycles and 692 docking stations, including
+            inclusive options for people with disabilities, Cyclistic aims to convert casual riders into annual
+            subscription members. The analysis focuses on providing insights into user preferences, habits, and goals to
+            enhance the marketing team's strategies.
+          </p>
+          <br>
+          <h3>Projet <span style="color: #6F4196 !important;">Details</span></h3>
+          <p>
+            Utilizing third-party public data sets from the city of Chicago's Divvy system and Motivate International
+            Inc., I aim to uncover trends crucial for the marketing team's decision-making. The roadmap follows Google's
+            data analysis process, encompassing six phases: Ask, Prepare, Process, Analyze, Share, and Act.
+          </p>
+          <br>
+          <h3>Roadmap</h3>
+          <br>
+          <h6><span style="color: #6F4196 !important; margin-left: 40px;">1. Phase:</span> Ask</h6>
+          <p style="margin-left: 40px;">
+            The primary goal is to convert casual riders into annual members without launching a new marketing campaign.
+            Key stakeholders include Lily Moreno (Director of Marketing), the Marketing analytics team, and the
+            Executive Team. SMART questions guide the analysis, focusing on understanding user behavior and preferences.
+          </p>
+          <dl style="margin-left: 160px;">
+            <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
+            <dd>[X] Identify the business task.</dd>
+            <dd>[X] Consider key stakeholders.</dd>
+            <dt><span style="color: #388E7D !important;">Deliverable</span></dt>
+            <dd>[X] A clear statement of the business task.</dd>
+          </dl>
+          <br>
+          <h6><span style="color: #6F4196 !important; margin-left: 40px;">2. Phase:</span> Prepare </h6>
+          <p style="margin-left: 40px;">
+            Cyclistic's historical trip data, sourced from Divvy Bikes, is stored securely. The data is comprehensive,
+            reliable, and does not compromise user privacy. It offers insights into bike types, usage frequency, and
+            trip duration. Despite some formatting issues, the data's integrity is validated, laying the foundation for
+            meaningful analysis.
+          </p>
+          <dl style="margin-left: 160px;">
+            <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
+            <dd>[X] Download data and store it appropriately.</dd>
+            <dd>[X] Identify how it’s organized.</dd>
+            <dd>[X] Sort and filter the data.</dd>
+            <dd>[X] Determine the credibility of the data.</dd>
+            <dt><span style="color: #388E7D !important;">Deliverable</span></dt>
+            <dd>[X] A description of all data sources used.</dd>
+          </dl>
+          <br>
+          <h6><span style="color: #6F4196 !important; margin-left: 40px;">3. Phase:</span> Process </h6>
+          <p style="margin-left: 40px;">
+            The data is processed using Excel for formatting, R-Studio for cleaning and calculations, and Tableau for
+            visualizations. The cleaning process involves trimming, renaming, filtering, sorting, and merging data
+            frames. While facing some formatting challenges, the focus remains on maintaining data integrity.
+          </p>
+          <dl style="margin-left: 160px;">
+            <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
+            <dd>[X] Check the data for errors.</dd>
+            <dd>[X] Choose your tools.</dd>
+            <dd>[X] Transform the data so you can work with it effectively.</dd>
+            <dd>[X] Document the cleaning process.</dd>
+            <dt><span style="color: #388E7D !important;">Deliverable</span></dt>
+            <dd>[X] Documentation of any cleaning or manipulation of data.</dd>
+          </dl>
+          <br>
+          <h6><span style="color: #6F4196 !important; margin-left: 40px;">4. Phase:</span> Analyze </h6>
+          <p style="margin-left: 40px;">
+            The organized data reveals surprising insights, such as casual riders having longer ride lengths and more
+            docked bikes. Key trends, like the higher number of members and their fewer ride times, help tell the story
+            of Cyclistic's two rider types, uncovering reasons why casual riders aren't becoming annual subscribers.
+          </p>
+          <dl style="margin-left: 160px;">
+            <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
+            <dd>[X] Aggregate your data so it’s useful and accessible.</dd>
+            <dd>[X] Organize and format your data.</dd>
+            <dd>[X] Perform calculations.</dd>
+            <dd>[X] Identify trends and relationships.</dd>
+            <dt><span style="color: #388E7D !important;">Deliverable</span></dt>
+            <dd>[X] A summary of your analysis.</dd>
+          </dl>
+          <br>
+          <h6><span style="color: #6F4196 !important; margin-left: 40px;">5. Phase:</span> Share </h6>
+          <p style="margin-left: 40px;">
+            Insights are shared through data visualization, answering questions about how casual riders differ from
+            annual members. Weekend preferences for casual riders and weekday use for members highlight distinctions in
+            user purposes. The audience, including the marketing director and analytics team, benefits from a PowerPoint
+            presentation summarizing findings and recommendations.
+          </p>
+          <dl style="margin-left: 160px;">
+            <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
+            <dd>[X] Determine the best way to share your findings.</dd>
+            <dd>[X] Create effective data visualizations.</dd>
+            <dd>[X] Present your findings.</dd>
+            <dd>[X] Ensure your work is accessible.</dd>
+            <dt><span style="color: #388E7D !important;">Deliverable</span></dt>
+            <dd>[X] Supporting visualizations and key findings.</dd>
+          </dl>
+          <br>
+          <h6><span style="color: #6F4196 !important; margin-left: 40px;">6. Phase:</span> Act </h6>
+          <p style="margin-left: 40px;">
+            The conclusion emphasizes that casual riders prefer classic bikes on weekends, while members use them
+            steadily throughout the week. Recommendations include focus groups for casual riders and a referral-based
+            rewards program. Further steps involve gathering additional data and conducting in-depth analyses, such as
+            surveys on docking station preferences and user demographics.
+          </p>
+          <dl style="margin-left: 160px;">
+            <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
+            <dd>[X] Create your portfolio.</dd>
+            <dd>[X] Add your case study.</dd>
+            <dd>[X] Practice presenting your case study to a friend or family member.</dd>
+            <dt><span style="color: #388E7D !important;">Deliverable</span></dt>
+            <dd>[X] Your top high-level insights based on your analysis.</dd>
+            <dd>[X] Based on what you discover, a list of additional deliverables you think would be helpful to include for further exploration.</dd>
+          </dl>
+          <br>
+          <br>
+          <p>
+            This analysis provides Cyclistic's executive team with actionable insights to enhance their strategies and
+            better cater to the needs of both casual riders and annual subscribers.
+          </p>
+        </article>
+        <!--Blog article-1 end-->
       </div>
-    </main>
-    <!--Footer begin-->
-    <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
-      <p>
-        Blog template forked from
-        <a href="https://getbootstrap.com/">Bootstrap</a> by
-        <a href="https://twitter.com/mdo">@mdo</a>.
-      </p>
-      <p class="mb-0">
-        <a href="#">Back to top</a>
-      </p>
-    </footer>
-    <!--Footer end-->
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
-  </body>
+      <!--Far left-side panel end-->
+      <!--Far right-side panel begin-->
+      <div class="col-md-4">
+        <div class="position-sticky" style="top: 2rem">
+          <!--Recent posts begin-->
+          <div>
+            <h4 class="fst-italic">Resources used</h4>
+            <ul class="list-unstyled">
+              <li>
+                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                  href="#">
+                  <!--Thumbnail size 117.35 x 96-->
+                  <h6 class="mb-0">R-Studio</h6>
+                  <div class="col-lg-8">
+                    <img src="../assets/img/us-governors/rstudioLogo.jpg" alt="Flask logo" width="100%" height="52"
+                      class="bd-placeholder-img" aria-hidden="true" />
+                    <small class="text-body-secondary">I used R-Studio from Posit as my IDE.</small>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                  href="#">
+                  <!--Thumbnail size 117.35 x 96-->
+                  <h6 class="mb-0">Project Temaplate</h6>
+                  <div class="col-lg-8">
+                    <img src="../assets/img/us-governors/projectTemplateLogo.JPG" alt="Python Anywhere logo"
+                      width="100%" height="32" class="bd-placeholder-img" aria-hidden="true"
+                      style="object-fit: cover" />
+                    <small class="text-body-secondary">This was used to automate my project.</small>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                  href="#">
+                  <!--Thumbnail size 117.35 x 96-->
+                  <h6 class="mb-0">Session Info</h6>
+                  <div class="col-lg-8">
+                    <img src="../assets/img/us-governors/sessioninfoLogo.JPG" alt="Python Anywhere logo" width="100%"
+                      height="32" class="bd-placeholder-img" aria-hidden="true" style="object-fit: cover" />
+                    <small class="text-body-secondary">This was used to document my R session.</small>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!--Recent posts end-->
+          <!--Elsewhere links begin-->
+          <div class="p-4">
+            <h4 class="fst-italic">Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li>
+                <a href="www.linkedin.com/in/marcellalharris" style="color: #777 !important;">LinkedIn</a>
+              </li>
+              <li><a href="https://github.com/MarcellaHarr" style="color: #777 !important;">GitHub</a>
+              </li>
+              <li>
+                <a href="https://twitter.com/MarcellaDaANLST" style="color: #777 !important;">Twitter</a>
+              </li>
+              <li><a href="mailto:marlorraineharr@gmail.com" style="color: #777 !important;">Email Me</a>
+              </li>
+            </ol>
+          </div>
+          <!--Elsewhere links end-->
+        </div>
+      </div>
+      <!--Far right-side panel end-->
+    </div>
+  </main>
+  <!--Footer begin-->
+  <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
+    <p>
+      Blog template forked from
+      <a href="https://getbootstrap.com/">Bootstrap</a> by
+      <a href="https://twitter.com/mdo">@mdo</a>.
+    </p>
+    <p class="mb-0">
+      <a href="#">Back to top</a>
+    </p>
+  </footer>
+  <!--Footer end-->
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>
