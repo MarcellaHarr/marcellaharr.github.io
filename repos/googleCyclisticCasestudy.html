@@ -278,12 +278,48 @@
             <dd>[X] A clear statement of the business task.</dd>
           </dl>
           <br>
+          <br>
           <h6><span style="color: #6F4196 !important; margin-left: 40px;">2. Phase:</span> Prepare </h6>
           <p style="margin-left: 40px;">
             Cyclistic's historical trip data, sourced from Divvy Bikes, is stored securely. The data is comprehensive,
             reliable, and does not compromise user privacy. It offers insights into bike types, usage frequency, and
             trip duration. Despite some formatting issues, the data's integrity is validated, laying the foundation for
             meaningful analysis.
+          </p>
+          <p>
+            <p style="color: #C4C032 !important; margin-left: 40px;">Imported six months data</p>
+            <pre>
+              # April 2021 dataset.
+              # tripApr_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Apr-divvy-tripdata.csv",
+              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+              #                                           ended_time = col_time(format = "%H:%M:%S"),
+              #                                           ride_length = col_time(format = "%H:%M:%S")))
+              # # May 2021 dataset.
+              # tripMay_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021May-divvy-tripdata.csv",
+              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+              #                                           ended_time = col_time(format = "%H:%M:%S"),
+              #                                           ride_length = col_time(format = "%H:%M:%S")))
+              # # June 2021 dataset.
+              # tripJun_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Jun-divvy-tripdata.csv",
+              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+              #                                           ended_time = col_time(format = "%H:%M:%S"),
+              #                                           ride_length = col_time(format = "%H:%M:%S")))
+              # # July 2021 dataset.
+              # tripJul_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Jul-divvy-tripdata.csv",
+              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+              #                                           ended_time = col_time(format = "%H:%M:%S"),
+              #                                           ride_length = col_time(format = "%H:%M:%S")))
+              # # August 2021 dataset.
+              # tripAug_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Aug-divvy-tripdata.csv",
+              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+              #                                           ended_time = col_time(format = "%H:%M:%S"),
+              #                                           ride_length = col_time(format = "%H:%M:%S")))
+              # # September 2021 dataset.
+              # tripSep_2021 <- read_csv("~/R/Git_HUB/casestudy_repos/Google Capstone/marcella-s_portfolio/marcellaharris.github.io/Google Capstone Project/2021Sep-divvy-tripdata.csv",
+              #                          col_types = cols(started_time = col_time(format = "%H:%M:%S"),
+              #                                           ended_time = col_time(format = "%H:%M:%S"),
+              #                                           ride_length = col_time(format = "%H:%M:%S")))
+            </pre>
           </p>
           <dl style="margin-left: 160px;">
             <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
@@ -295,11 +331,31 @@
             <dd>[X] A description of all data sources used.</dd>
           </dl>
           <br>
+          <br>
           <h6><span style="color: #6F4196 !important; margin-left: 40px;">3. Phase:</span> Process </h6>
           <p style="margin-left: 40px;">
             The data is processed using Excel for formatting, R-Studio for cleaning and calculations, and Tableau for
             visualizations. The cleaning process involves trimming, renaming, filtering, sorting, and merging data
             frames. While facing some formatting challenges, the focus remains on maintaining data integrity.
+          </p>
+          <p>
+            <p style="color: #C4C032 !important; margin-left: 40px;">Output</p>
+            <pre>
+              ## tibble [3,981,367 x 13] (S3: tbl_df/tbl/data.frame)
+              ##  $ ride_id           : chr [1:3981367] "6C992BD37A98A63F" "1E0145613A209000" "E498E15508A80BAD" "1887262AD101C604" ...
+              ##  $ rideable_type     : chr [1:3981367] "classic  bike" "docked  bike" "docked  bike" "classic  bike" ...
+              ##  $ started_at        : chr [1:3981367] "4/12/2021" "4/27/2021" "4/3/2021" "4/17/2021" ...
+              ##  $ started_time      : chr [1:3981367] "6:25:00" "5:27:00" "12:42:00" "9:17:00" ...
+              ##  $ ended_at          : chr [1:3981367] "4/12/2021" "4/27/2021" "4/7/2021" "4/17/2021" ...
+              ##  $ ended_time        : chr [1:3981367] "6:56:00" "6:31:00" "11:40:00" "9:42:00" ...
+              ##  $ start_station_name: chr [1:3981367] "State St & Pearson St" "Dorchester Ave & 49th St" "Loomis Blvd & 84th St" "Honore St & Division St" ...
+              ##  $ start_station_id  : chr [1:3981367] "TA1307000061" "KA1503000069" "20121" "TA1305000034" ...
+              ##  $ end_station_name  : chr [1:3981367] "Southport Ave & Waveland Ave" "Dorchester Ave & 49th St" "Loomis Blvd & 84th St" "Southport Ave & Waveland Ave" ...
+              ##  $ end_station_id    : chr [1:3981367] "13235" "KA1503000069" "20121" "13235" ...
+              ##  $ ride_length       : chr [1:3981367] "0:31:00" "1:04:00" "94:58:00" "0:25:00" ...
+              ##  $ day_of_week       : int [1:3981367] 2 3 7 7 7 1 7 3 2 7 ...
+              ##  $ member_casual     : chr [1:3981367] "member" "casual" "casual" "member" ...
+            </pre>
           </p>
           <dl style="margin-left: 160px;">
             <dt><span style="color: #388E7D !important;">Key Tasks</span></dt>
@@ -310,6 +366,7 @@
             <dt><span style="color: #388E7D !important;">Deliverable</span></dt>
             <dd>[X] Documentation of any cleaning or manipulation of data.</dd>
           </dl>
+          <br>
           <br>
           <h6><span style="color: #6F4196 !important; margin-left: 40px;">4. Phase:</span> Analyze </h6>
           <p style="margin-left: 40px;">
@@ -327,6 +384,7 @@
             <dd>[X] A summary of your analysis.</dd>
           </dl>
           <br>
+          <br>
           <h6><span style="color: #6F4196 !important; margin-left: 40px;">5. Phase:</span> Share </h6>
           <p style="margin-left: 40px;">
             Insights are shared through data visualization, answering questions about how casual riders differ from
@@ -343,6 +401,7 @@
             <dt><span style="color: #388E7D !important;">Deliverable</span></dt>
             <dd>[X] Supporting visualizations and key findings.</dd>
           </dl>
+          <br>
           <br>
           <h6><span style="color: #6F4196 !important; margin-left: 40px;">6. Phase:</span> Act </h6>
           <p style="margin-left: 40px;">
