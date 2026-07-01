@@ -1,0 +1,22 @@
+# meta.yml — Fill this in before running build.py
+# Copy this file into your _projects/<project-name>/ folder
+
+title: Initial Test Project Title
+date: July 1, 2026
+category: Markdown · Testing Automation
+description: This is to test the automation of the project template. It is a test project to ensure that the build.py script works correctly and generates the expected output.
+github_url: https://github.com/MarcellaHarr/test-automation-project
+
+# List the resources, datasets, or tools you referenced.
+# These appear in the "Resources used" panel on the right side of the page.
+# Add or remove entries as needed.
+resources:
+  - title: Claude
+    url: https://claude.ai
+    date: January 15, 2024
+  - title: GitHub
+    url: https://github.com
+    date: March 1, 2020
+  - title: Mack Collier
+    url: https://mackcollier.com
+    date: April 2, 2016

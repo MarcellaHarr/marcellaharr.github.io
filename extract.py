@@ -79,12 +79,17 @@ def main():
     for file_path in sorted(project_dir.iterdir()):
         if file_path.name in SKIP_FILES:
             continue
+        if file_path.name.startswith('._'):  # skip macOS resource fork files
+            continue
         if file_path.suffix.lower() in IMAGE_EXTENSIONS:
             images.append(file_path.name)
             continue
-        text = extract_from_file(file_path)
-        if text and text.strip():
-            extracted[file_path.name] = text.strip()
+        try:
+            text = extract_from_file(file_path)
+            if text and text.strip():
+                extracted[file_path.name] = text.strip()
+        except Exception as e:
+            print(f'  Warning: could not read {file_path.name} ({e.__class__.__name__}: {e})')
 
     if not extracted and not images:
         print('No supported files found in the project folder.')

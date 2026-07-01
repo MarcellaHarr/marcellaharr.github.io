@@ -137,5 +137,8 @@ dist
 .pnp.*
 .gitportfolio-venv/
 
+# macOS resource fork files (created automatically on external drives)
+._*
+
 # Auto-generated extraction reference files
 _projects/**/reference.md
