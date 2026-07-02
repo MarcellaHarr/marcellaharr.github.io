@@ -1,22 +1,19 @@
 # meta.yml — Fill this in before running build.py
 # Copy this file into your _projects/<project-name>/ folder
 
-title: Your Project Title
-date: January 1, 2024
-category: Python · Data Analysis
-description: One sentence describing what this project is about.
-github_url: https://github.com/MarcellaHarr/your-repo-name
+title: Favorita Store Sales EDA
+date: December 25, 2024
+category: SQL · Exploratory Data Analysis
+description: An exploratory data analysis of Favorita Store sales data.
+github_url: https://github.com/MarcellaHarr/favorita-store-sales
 
 # List the resources, datasets, or tools you referenced.
 # These appear in the "Resources used" panel on the right side of the page.
 # Add or remove entries as needed.
 resources:
-  - title: Resource or dataset name
-    url: https://example.com
-    date: January 15, 2024
-  - title: Another resource
-    url: https://example.com
-    date: January 14, 2024
-  - title: Third resource
-    url: https://example.com
-    date: January 13, 2024
+  - title: SQL Server
+    url: https://www.microsoft.com/en-us/sql-server/
+    date: December 25, 2024
+  - title: Power BI
+    url: https://www.microsoft.com/en-us/power-platform/products/power-bi
+    date: December 25, 2024
