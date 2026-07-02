@@ -93,5 +93,15 @@ npx eslint assets/js/      # Lint JavaScript files
 - ALWAYS: Mirror nav changes across all root-level and `repos/` HTML files.
 
 
+## Content Drafting Workflow
+When helping write `content.md` for a project (after `extract.py` has generated `reference.md`), default to a **section-by-section Q&A** approach rather than writing a full draft unprompted or waiting for the user to write it alone:
+- Go one heading at a time: Overview → Analysis → Results → Conclusion (or whatever headings the project uses).
+- For each section, ask 2-3 targeted questions drawing on `reference.md` to surface the actual reasoning, decisions, and personal takeaways behind the project — don't just paraphrase the extracted README/PDF text back.
+- Draft the section from those answers, in first person, then show it for confirmation or edits before moving to the next section.
+- Flag any numbers or specifics pulled from `reference.md` that look uncertain (e.g. garbled PDF table extraction) and ask for verification before they go in the final draft.
+- If a chart/image is referenced for supporting data (e.g. a dashboard screenshot), verify the actual filename exists in the project folder, and embed it with standard markdown image syntax pointing to `../assets/img/<project-name>/<filename>` — `build.py` copies images there automatically.
+- Once all sections are confirmed, write the finalized content directly into `content.md` (replacing `[DRAFT]` placeholders), and note that running `python build.py <project-name>` is still a manual step to take.
+
+
 ## Applied Learning
 The first Python environment for this project was initialized on macOS using UV (`uv init` + `uv venv .gitportfolio-venv`), migrating from a previous Windows setup.
