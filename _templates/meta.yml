@@ -7,6 +7,16 @@ category: Python · Data Analysis
 description: One sentence describing what this project is about.
 github_url: https://github.com/MarcellaHarr/your-repo-name
 
+# Which repo landing page should get a card for this project?
+# One of: r-studio.html, excel.html, web-dev.html, sql-repo.html, jupyter.html
+# (follow-along.html isn't wired up yet — leave projects off it for now)
+repo_page: sql-repo.html
+
+# Filename of an image already in this project's folder to use as the card
+# thumbnail (build.py copies it to assets/img/<project-name>/ for you).
+# Leave blank/remove this line to fall back to a generic placeholder image.
+thumbnail: your-image.jpg
+
 # List the resources, datasets, or tools you referenced.
 # These appear in the "Resources used" panel on the right side of the page.
 # Add or remove entries as needed.

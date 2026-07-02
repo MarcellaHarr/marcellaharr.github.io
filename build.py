@@ -16,6 +16,18 @@ PROJECTS_DIR   = Path('_projects')
 OUTPUT_DIR     = Path('repos')
 ASSETS_IMG_DIR = Path('assets') / 'img'
 
+# Accent color per repo landing page (matches each page's existing card styling).
+# follow-along.html is intentionally left out — it has no card layout built yet.
+REPO_PAGE_ACCENTS = {
+    'r-studio.html':  '#CD8827',
+    'excel.html':     '#CD8827',
+    'web-dev.html':   '#B6401E',
+    'sql-repo.html':  '#CD8827',
+    'jupyter.html':   '#CD8827',
+}
+
+CARD_INSERT_MARKER = '<!--BUILD:INSERT-->'
+
 
 # --- Content parser ---
 
@@ -72,6 +84,103 @@ def copy_images(project_dir, project_name):
             shutil.copy2(file_path, dest_dir / file_path.name)
             copied.append(file_path.name)
     return copied
+
+
+# --- Landing page card builder ---
+
+def build_card_html(project_name, title, description, thumbnail_src, accent_color):
+    marker = f'<!--BUILD:CARD:{project_name}-->'
+    return (
+        f'      {marker}\n'
+        f'      <div class="col-md-6">\n'
+        f'        <div class="row g-0 card border-light rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">\n'
+        f'          <div class="col p-4 d-flex flex-column position-static">\n'
+        f'            <h3 class="mb-0">{title}</h3>\n'
+        f'            <div class="mb-1 text-body-secondary">\n'
+        f'              <hr />\n'
+        f'            </div>\n'
+        f'            <p class="card-text mb-auto">\n'
+        f'              {description}\n'
+        f'            </p>\n'
+        f'            <a\n'
+        f'              href="./repos/{project_name}.html"\n'
+        f'              class="icon-link gap-1 icon-link-hover stretched-link"\n'
+        f'              style="color: {accent_color} !important; text-decoration:underline !important;"\n'
+        f'            >\n'
+        f'              Continue reading\n'
+        f'              <svg class="bi">\n'
+        f'                <use xlink:href="#chevron-right"></use>\n'
+        f'              </svg>\n'
+        f'            </a>\n'
+        f'          </div>\n'
+        f'          <div class="col-auto d-none d-lg-block">\n'
+        f'            <div class="col-auto d-none d-lg-block">\n'
+        f'              <img\n'
+        f'                src="{thumbnail_src}"\n'
+        f'                alt="{title}"\n'
+        f'                width="200"\n'
+        f'                height="250"\n'
+        f'                class="bd-placeholder-img"\n'
+        f'                aria-label="Placeholder: Thumbnail"\n'
+        f'                title="{title}"\n'
+        f'              />\n'
+        f'            </div>\n'
+        f'          </div>\n'
+        f'        </div>\n'
+        f'      </div>\n'
+        f'      {marker}'
+    )
+
+
+def update_landing_page(project_name, meta, copied_images):
+    repo_page = meta.get('repo_page')
+    if not repo_page:
+        print('  Note: no repo_page set in meta.yml — skipping landing page card.')
+        return
+
+    repo_page_path = Path(repo_page)
+    if repo_page not in REPO_PAGE_ACCENTS:
+        print(f"  Warning: '{repo_page}' isn't a recognized/ready repo landing page. "
+              f"Skipping card insert. Known pages: {', '.join(REPO_PAGE_ACCENTS)}")
+        return
+    if not repo_page_path.exists():
+        print(f"  Warning: '{repo_page}' not found. Skipping card insert.")
+        return
+
+    thumbnail = meta.get('thumbnail')
+    if thumbnail and thumbnail in copied_images:
+        thumbnail_src = f'./assets/img/{project_name}/{thumbnail}'
+    else:
+        if thumbnail:
+            print(f"  Warning: thumbnail '{thumbnail}' not found among copied images. Using placeholder.")
+        thumbnail_src = 'https://placehold.co/200x250'
+
+    card_html = build_card_html(
+        project_name,
+        meta.get('title', 'Untitled Project'),
+        meta.get('description', ''),
+        thumbnail_src,
+        REPO_PAGE_ACCENTS[repo_page],
+    )
+
+    page_html = repo_page_path.read_text(encoding='utf-8')
+    card_marker = f'<!--BUILD:CARD:{project_name}-->'
+    existing_block = re.search(
+        re.escape(card_marker) + r'.*?' + re.escape(card_marker),
+        page_html, re.DOTALL
+    )
+
+    if existing_block:
+        page_html = page_html[:existing_block.start()] + card_html + page_html[existing_block.end():]
+        print(f'  Updated existing card on {repo_page}')
+    elif CARD_INSERT_MARKER in page_html:
+        page_html = page_html.replace(CARD_INSERT_MARKER, CARD_INSERT_MARKER + '\n' + card_html, 1)
+        print(f'  Card added to {repo_page}')
+    else:
+        print(f"  Warning: '{CARD_INSERT_MARKER}' not found in {repo_page}. Skipping card insert.")
+        return
+
+    repo_page_path.write_text(page_html, encoding='utf-8')
 
 
 # --- Main ---
@@ -151,6 +260,9 @@ def main():
     output_path.write_text(html, encoding='utf-8')
 
     print(f'  Page built: repos/{project_name}.html')
+
+    update_landing_page(project_name, meta, copied_images)
+
     print(f'\nDone! Open repos/{project_name}.html in VS Code Live Server to preview.')
 
 
