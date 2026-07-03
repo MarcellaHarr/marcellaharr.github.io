@@ -17,13 +17,13 @@ OUTPUT_DIR     = Path('repos')
 ASSETS_IMG_DIR = Path('assets') / 'img'
 
 # Accent color per repo landing page (matches each page's existing card styling).
-# follow-along.html is intentionally left out — it has no card layout built yet.
 REPO_PAGE_ACCENTS = {
-    'r-studio.html':  '#CD8827',
-    'excel.html':     '#CD8827',
-    'web-dev.html':   '#B6401E',
-    'sql-repo.html':  '#CD8827',
-    'jupyter.html':   '#CD8827',
+    'r-studio.html':     '#CD8827',
+    'excel.html':        '#CD8827',
+    'web-dev.html':      '#B6401E',
+    'sql-repo.html':     '#CD8827',
+    'jupyter.html':      '#CD8827',
+    'follow-along.html': '#CD8827',
 }
 
 CARD_INSERT_MARKER = '<!--BUILD:INSERT-->'
