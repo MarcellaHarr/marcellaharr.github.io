@@ -61,6 +61,8 @@ npx eslint assets/js/      # Lint JavaScript files
 ## Maintenance
 - The project lives on an exFAT-formatted external drive, so macOS scatters `._*` AppleDouble sidecar files throughout the tree (Finder/VS Code writes them since exFAT can't store extended attributes natively). They're harmless and already covered by `.gitignore` (`._*`), but clutter the file explorer.
 - When the user says **"Run dot_clean"**, run: `dot_clean -m "<project root>"` — this merges the AppleDouble metadata back and deletes the sidecar files. Only do this when asked; it's not something to run automatically or proactively.
+- These sidecar files can also leak into `.git/` internals (pack files, refs, logs) whenever git repacks — e.g. `.git/objects/pack/._pack-*.idx`, `.git/refs/heads/._main`. When that happens, git commands fail with errors like `non-monotonic index` or `badRefName`. Fix by deleting the stray `._*` files directly with `find .git -name "._*" -delete` (do NOT run `dot_clean` inside `.git/` — it merges metadata into the target file, which can corrupt a binary pack file), then confirm with `git fsck --full`.
+- As of 2026-07-21 the project is being relocated to an APFS-formatted drive (`/Volumes/externalSamsung/externalHome/venvs/`) specifically to eliminate this class of issue at the source.
 
 
 ## Code Standards
