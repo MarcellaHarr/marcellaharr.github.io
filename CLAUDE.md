@@ -58,6 +58,11 @@ npx eslint assets/js/      # Lint JavaScript files
 > There is no build step — all HTML files are served as-is by GitHub Pages.
 
 
+## Maintenance
+- The project lives on an exFAT-formatted external drive, so macOS scatters `._*` AppleDouble sidecar files throughout the tree (Finder/VS Code writes them since exFAT can't store extended attributes natively). They're harmless and already covered by `.gitignore` (`._*`), but clutter the file explorer.
+- When the user says **"Run dot_clean"**, run: `dot_clean -m "<project root>"` — this merges the AppleDouble metadata back and deletes the sidecar files. Only do this when asked; it's not something to run automatically or proactively.
+
+
 ## Code Standards
 - Follow ESLint rules (config in `package.json` / `.eslintrc` if added)
 - Use Bootstrap 5.3 utility classes and grid system — do not introduce a second CSS framework
