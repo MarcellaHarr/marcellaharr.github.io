@@ -120,6 +120,14 @@ uv run --active build.py <project-name>     # -> repos/<project-name>.html + lan
 - ALWAYS: Mirror nav changes across all root-level and `repos/` HTML files.
 
 
+## Collaboration Workflow
+- At the start of every new session, review this CLAUDE.md file in full before starting work.
+- Explain the step(s)/fix(es)/modification(s) required — tutor-style, walking through the reasoning — before making them, then get explicit approval before proceeding.
+- Pair that explanation with a scaffolding approach: give the underlying structure/pattern to build on, not just the finished result, so the method is transferable to future tasks.
+- Never run `git commit` (or `git add`/`git push`) on the user's behalf — always stop short and hand back a ready-to-use commit message so the user commits themselves.
+- When a turn covers multiple independent/unrelated changes, provide a separate commit message per independent change, update, or task — don't bundle everything into one — so the user can commit incrementally.
+
+
 ## Content Drafting Workflow
 When helping write `content.md` for a project (after `extract.py` has generated `reference.md`), default to a **section-by-section Q&A** approach rather than writing a full draft unprompted or waiting for the user to write it alone:
 - Go one heading at a time: Overview → Analysis → Results → Conclusion (or whatever headings the project uses).
