@@ -1,8 +1,17 @@
 # .gitattributes for an R project
 
-* text=auto
+* text=auto eol=lf
 *.Rmd linguist-language=R
 *.R linguist-language=R
 *.qmd linguist-language=R
 *.html linguist-language=HTML
 *.css linguist-language=CSS
+
+# Binary assets — never touch line endings
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.JPG binary
+*.gif binary
+*.ico binary
+*.pdf binary
