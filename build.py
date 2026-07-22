@@ -23,6 +23,7 @@ REPO_PAGE_ACCENTS = {
     'web-dev.html':      '#B6401E',
     'sql-repo.html':     '#CD8827',
     'jupyter.html':      '#CD8827',
+    'education.html':    '#CD8827',
     'follow-along.html': '#CD8827',
 }
 

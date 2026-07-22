@@ -9,7 +9,7 @@ github_url: https://github.com/MarcellaHarr/your-repo-name
 
 # Which repo landing page should get a card for this project?
 # One of: r-studio.html, excel.html, web-dev.html, sql-repo.html, jupyter.html,
-# follow-along.html
+# education.html, follow-along.html
 repo_page: sql-repo.html
 
 # Filename of an image already in this project's folder to use as the card
