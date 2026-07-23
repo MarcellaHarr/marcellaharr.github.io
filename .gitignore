@@ -140,5 +140,8 @@ dist
 # macOS resource fork files (created automatically on external drives)
 ._*
 
-# Auto-generated extraction reference files
-_projects/**/reference.md
+# Raw project source materials are private — only the curated meta.yml/content.md
+# write-ups get committed. Also covers auto-generated reference.md.
+_projects/*/*
+!_projects/*/meta.yml
+!_projects/*/content.md
