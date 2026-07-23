@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="../assets/js/color-modes.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A Python app that gathers five-year historical weather data for a user-chosen location and date, storing and querying it with SQLite via SQLAlchemy." />
+    <meta name="author" content="Marcella Harris" />
+    <title>Marcella Harris · DataPortfolio</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="../assets/img/favicons/apple-touch-icon.png" sizes="180x180" />
+    <link rel="icon" href="../assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="../assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="manifest" href="../assets/img/favicons/android-chrome-192x192.png" />
+    <link rel="mask-icon" href="../assets/img/favicons/safari-pinned-tab.svg" color="#712cf9" />
+    <link rel="icon" href="../assets/img/favicons/favicon.ico" />
+    <meta name="theme-color" content="#712cf9" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg { font-size: 3.5rem; }
+      }
+      .bi { vertical-align: -0.125em; fill: currentColor; }
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      .bd-mode-toggle { z-index: 1500; }
+      .bd-mode-toggle .dropdown-menu .active .bi { display: block !important; }
+    </style>
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap" rel="stylesheet" />
+    <link href="../assets/css/blog.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!--Bootstrap colormode and interactive settings begin-->
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+      </symbol>
+    </svg>
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+        id="bd-theme" type="button" aria-expanded="false"
+        data-bs-toggle="dropdown" aria-label="Toggle theme (dark)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+          <use href="#moon-stars-fill"></use>
+        </svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark" aria-pressed="true">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <!--Bootstrap colormode and interactive settings end-->
+
+    <div class="container">
+      <!--Header-->
+      <header class="border-bottom lh-1 py-3">
+        <div class="row flex-nowrap justify-content-center align-items-center">
+          <div class="col-4 text-center">
+            <a class="blog-header-logo text-body-emphasis text-decoration-none" href="https://marcellaharr.github.io">Marcella Harris</a>
+          </div>
+        </div>
+      </header>
+      <!--Nav-->
+      <div class="nav-scroller py-1 mb-3 border-bottom">
+        <nav class="nav nav-underline justify-content-between">
+          <a class="nav-item nav-link link-body-emphasis" href="https://marcellaharr.github.io">Home</a>
+          <a class="nav-item nav-link link-body-emphasis" href="https://github.com/MarcellaHarr" target="_blank">GitHub Profile</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../r-studio.html">R-Studio repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../excel.html">Excel repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../web-dev.html">Web Dev repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../sql-repo.html">SQL repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../jupyter.html">Jupyter repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../education.html">Education repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../follow-along.html">Follow-Along repo</a>
+        </nav>
+      </div>
+    </div>
+
+    <main class="container">
+      <div class="row g-5">
+
+        <!--Left panel — article content-->
+        <div class="col-md-8">
+          <article class="blog-post">
+            <h2 class="display-5 link-body-emphasis mb-1">Historical Weather API</h2>
+            <p class="blog-post-meta">
+              December 9, 2025 &nbsp;&middot;&nbsp; Python · API & Database by <a href="#" style="color: #E0E0E0 !important;">Marcella</a>
+            </p>
+            
+            <h2>Overview</h2>
+<p>This project is a Performance Assessment for WGU's D493 course, Scripting and Programming – Applications. The assignment scenario cast me as a data analyst at an event-planning company needing historical weather data to help choose the right coverings, such as tents, canopies, and other temporary shelters, for outdoor events. Rather than hard-coding a location, I built the program around user input: whoever runs it enters their own latitude/longitude coordinates and a target date, and the app pulls and aggregates the previous five years of weather data, including average, minimum, and maximum temperature, wind speed, and precipitation, for that specific date and location.</p>
+<p>My goal was less about the event-planning framing itself and more about the underlying skills: building something a user could actually engage with end to end, from raw coordinate/date input, through API retrieval and database storage, and back out as a formatted, queryable result.</p>
+<h2>Analysis</h2>
+<p>The rubric's task breakdown, parts C1 through C6 plus the unit tests in D, drove most of the structural decisions in this project. I mostly followed that scaffolding rather than designing the workflow myself. I started with a class holding the instance variables for location and date: latitude, longitude, month, day, and year, plus fields for the five-year aggregated temperature, wind speed, and precipitation (average, minimum, and maximum for each). From there, I wrote a set of methods that call the Weather API to pull mean temperature (°F), maximum wind speed (mph), and precipitation sum (inches) for the chosen location and date across the most recent five years. <code>main.py</code> ties it together by creating an instance of that first class and calling those methods directly.</p>
+<p>The second class mirrors the same fields but as a SQLAlchemy ORM model, creating a table in SQLite so the data could be stored, then queried back and printed in a formatted view for the chosen coordinates and date.</p>
+<p>One of the bigger headaches was project structure and imports. I split <code>c1_wapi_config.py</code> and <code>c2_wapi_route.py</code> into their own folder to keep things modular, but that created import problems, especially inside <code>test.py</code>, which kept throwing <code>ModuleError</code> no matter how I tried to alias the imports. I ended up importing from the full path (<code>from Task.Modules import ...</code>) rather than aliasing, which resolved it without needing to configure a setup-tools file.</p>
+<p>The trickiest part by far, though, was the five-year aggregation logic. I originally had <code>start_date</code> and <code>end_date</code> both pointing to the same <code>complete_date</code> variable, which meant every "five-year" aggregation was silently pulling the same single day's value five times instead of averaging across five distinct years. The fix was to hard-code the month and day and leave only the year as a variable, so each of the five iterations pulled a different year's data for the same calendar day, which also had the side benefit of making the year range dynamic based on whatever date the user entered. From talking to classmates, this tripped up a lot of other people in the course too, so it seems like a fairly common gotcha in how the task is worded versus how the aggregation actually needs to work.</p>
+<h2>Results</h2>
+<p>Running the program end-to-end for the coordinates 40.70, 74.12 and the date November 25, 2025, produced the following record after being stored in and queried back from the SQLite database:</p>
+<table>
+<thead>
+<tr>
+<th>latitude</th>
+<th>longitude</th>
+<th>month</th>
+<th>day</th>
+<th>year</th>
+<th>avg_tmp</th>
+<th>min_tmp</th>
+<th>max_tmp</th>
+<th>avg_wind</th>
+<th>min_wind</th>
+<th>max_wind</th>
+<th>tot_precip</th>
+<th>min_precip</th>
+<th>max_precip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>40.7</td>
+<td>74.12</td>
+<td>11</td>
+<td>25</td>
+<td>2025</td>
+<td>41.32</td>
+<td>33.81</td>
+<td>50.45</td>
+<td>12.56</td>
+<td>5.25</td>
+<td>20.7</td>
+<td>2.15</td>
+<td>0</td>
+<td>1.56</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Formatted database query output" src="../assets/img/scripting-and-programming-applications/Task_C-6.jpg" /></p>
+<p>The unit test file (<code>test.py</code>) runs three automated tests: one validating the user's coordinate and date input, one confirming a weather data record was added successfully and isn't <code>None</code>, and one checking that the aggregated lists contain five records each, one per year, for temperature, wind speed, and precipitation. All three passed:</p>
+<p><img alt="Unit tests passing" src="../assets/img/scripting-and-programming-applications/Task_D.jpg" /></p>
+<p>That same terminal output shows the underlying five-year pull the tests were validating against: the app found between 357 and 358 daily records per year across 2021 through 2025, then computed the mean, minimum, and maximum temperature, wind speed, and total precipitation for each year before rolling those into the single stored record above.</p>
+<p>Finally, the GitLab repository graph confirms the incremental commit history across parts C1 through C6, with a message and comments logged for each completed part:</p>
+<p><img alt="GitLab repository graph, view 1" src="../assets/img/scripting-and-programming-applications/repo_Graph-1.jpg" />
+<img alt="GitLab repository graph, view 2" src="../assets/img/scripting-and-programming-applications/repo_Graph-2.jpg" />
+<img alt="GitLab repository graph, view 3" src="../assets/img/scripting-and-programming-applications/repo_Graph-3.jpg" />
+<img alt="GitLab repository graph, view 4" src="../assets/img/scripting-and-programming-applications/repo_Graph-4.jpg" /></p>
+<h2>Conclusion</h2>
+<p>Building this weather API application was a rewarding project, and one I'd like to keep building on. Adding a city and state lookup for the entered coordinates, so the app can display an actual place name instead of just latitude and longitude, is still on my list to add someday.</p>
+<p>The biggest takeaway for me, though, was around testing. I used to feel intimidated by the testing portion of projects like this, but writing the unit tests for this app, validating user input, confirming records were stored correctly, and checking that five years of data were aggregated properly, changed that. Seeing all three tests pass gave me a much clearer sense of how simple, and how necessary, testing actually is. I also came away more comfortable with the automation side of the workflow, from committing progress through each task to running the test suite as part of verifying the program worked as expected.</p>
+          </article>
+        </div>
+
+        <!--Right panel — resources + elsewhere-->
+        <div class="col-md-4">
+          <div class="position-sticky" style="top: 2rem">
+            <div>
+              <h4 class="fst-italic">Resources used</h4>
+              <ul class="list-unstyled">
+                                <li>
+                  <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                     href="https://open-meteo.com/en/docs/historical-weather-api" target="_blank">
+                    <img src="../assets/img/recent-posts-thumbnail.gif" alt="" width="100%" height="32"
+                         class="bd-placeholder-img" aria-hidden="true" style="object-fit: cover;" />
+                    <div class="col-lg-8">
+                      <h6 class="mb-0">Open-Meteo Historical Weather API</h6>
+                      <small class="text-body-secondary">December 9, 2025</small>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <h4 class="fst-italic">Elsewhere</h4>
+              <ol class="list-unstyled">
+                <li><a href="https://www.linkedin.com/in/marcellalharris" style="color: #E0E0E0 !important;">LinkedIn</a></li>
+                <li><a href="https://github.com/MarcellaHarr" style="color: #E0E0E0 !important;">GitHub</a></li>
+                <li><a href="https://twitter.com/MarcellaDaANLST" style="color: #E0E0E0 !important;">Twitter</a></li>
+                <li><a href="mailto:marlorraineharr@gmail.com" style="color: #E0E0E0 !important;">Email</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
+      <p>Blog template forked from <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p class="mb-0"><a href="#">Back to top</a></p>
+    </footer>
+
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

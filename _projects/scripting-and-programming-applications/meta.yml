@@ -1,0 +1,13 @@
+title: Historical Weather API
+date: December 9, 2025
+category: Python · API & Database
+description: A Python app that gathers five-year historical weather data for a user-chosen location and date, storing and querying it with SQLite via SQLAlchemy.
+
+repo_page: education.html
+
+thumbnail: scriptingandprogrammingLogo.jpg
+
+resources:
+  - title: Open-Meteo Historical Weather API
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    date: December 9, 2025
