@@ -128,8 +128,22 @@ uv run --active build.py <project-name>     # -> repos/<project-name>.html + lan
 - At the start of every new session, review this CLAUDE.md file in full before starting work.
 - Explain the step(s)/fix(es)/modification(s) required — tutor-style, walking through the reasoning — before making them, then get explicit approval before proceeding.
 - Pair that explanation with a scaffolding approach: give the underlying structure/pattern to build on, not just the finished result, so the method is transferable to future tasks.
-- Never run `git commit` (or `git add`/`git push`) on the user's behalf — always stop short and hand back a ready-to-use commit message so the user commits themselves.
+- Never run `git commit` (or `git add`/`git push`/`git tag`) on the user's behalf — always stop short and hand back a ready-to-use commit message (and tag command, if warranted) so the user runs them themselves.
 - When a turn covers multiple independent/unrelated changes, provide a separate commit message per independent change, update, or task — don't bundle everything into one — so the user can commit incrementally.
+- Tags mark a completed, live/user-facing milestone (e.g. a project detail page actually retrofitted or newly published) — not infrastructure-only commits (e.g. a pipeline/template change with no page using it yet). If unsure whether a change counts as a milestone, ask before suggesting a tag.
+- Tag names follow `vX.Y-short-descriptive-slug` (e.g. `v1.2-usa-govs`) — not a bare `vX.Y`. Bump Y for each tagged milestone; only bump X on the user's explicit call.
+- The user's own commit → tag → push → verify sequence (reference this exact order/commands when suggesting next steps):
+  ```
+  git status                                   # confirm what's modified
+  git add <specific-file(s)>                   # stage by name, not -A/.
+  git commit -m "<short one-line message>"
+  git tag -a vX.Y-slug -m "<keyword>: <short message>"
+  git push origin main
+  git push origin vX.Y-slug                    # tags don't push with `git push`, do this separately
+  git tag -l -n9                                # verify tag + message locally
+  git ls-remote --tags origin                   # verify tag landed on remote
+  git log --oneline --decorate                  # verify commit/tag sit on HEAD as expected
+  ```
 
 
 ## Content Drafting Workflow
