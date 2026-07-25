@@ -104,6 +104,30 @@
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important;
         }
+
+        /* Theme-aware colors for this page's hand-authored content. Same hue as the
+           original one-off palette; lightness nudged per-theme so every color meets
+           WCAG 4.5:1 contrast against Bootstrap's actual light (#fff) / dark (#212529)
+           backgrounds instead of a single hardcoded value that only worked in one theme. */
+        [data-bs-theme="light"] {
+            --ug-title1: #24446F;
+            --ug-title2: #800F0C;
+            --ug-subtitle: #5A759E;
+            --ug-accent: #A82E2B;
+            --ug-small: #5878A3;
+            --ug-highlight: #82780F;
+            --ug-code: #80750C;
+        }
+
+        [data-bs-theme="dark"] {
+            --ug-title1: #5F8DCB;
+            --ug-title2: #EF5652;
+            --ug-subtitle: #758DB1;
+            --ug-accent: #D86966;
+            --ug-small: #8AA1C0;
+            --ug-highlight: #F0E67F;
+            --ug-code: #9A8C0E;
+        }
     </style>
 
     <!-- Custom styles for this template -->
@@ -239,8 +263,8 @@
             <div class="col-md-8">
                 <!--Blog article-1 begin-->
                 <article class="blog-post">
-                    <h2 class="display-5 link-body-emphasis mb-1" style="color: #24446F !important;">Governors of the
-                        <span style="color: #800F0C !important;">United States</span>
+                    <h2 class="display-5 link-body-emphasis mb-1" style="color: var(--ug-title1) !important;">Governors of the
+                        <span style="color: var(--ug-title2) !important;">United States</span>
                     </h2>
                     <p class="blog-post-meta">
                         February 12th, 2022 by <a href="#" style="color: #777 !important;">Marcella</a>
@@ -253,13 +277,13 @@
                     </p>
                     <br>
                     <h3>
-                        <strong style="color: #5A759E !important;">The Data</strong>
+                        <strong style="color: var(--ug-subtitle) !important;">The Data</strong>
                     </h3>
                     <p>
                         Sourced from Kaggle, the dataset contains information about U.S. governors, excluding
                         territories and specific states from the Thirteen Colonies with a presidential office. With
                         eight columns in CSV format, it covers crucial details like:
-                    <pre style="color: #80750C !important;">
+                    <pre style="color: var(--ug-code) !important;">
                             StateFull, 
                             StateAbbrev,
                             GovernorNumber, 
@@ -274,38 +298,38 @@
                     </p>
                     <br>
                     <h3>
-                        <strong style="color: #5A759E !important;">Some Questions & Answers</strong>
+                        <strong style="color: var(--ug-subtitle) !important;">Some Questions & Answers</strong>
                     </h3>
                     <p>
                         <ol>
                             <li>
-                                <strong style="color: #A82E2B !important;">Show governors that share the same seat number.</strong>
+                                <strong style="color: var(--ug-accent) !important;">Show governors that share the same seat number.</strong>
                             </li>
                             <p>The lower the seat number the more governors served.</p>
                             <li>
-                                <strong style="color: #A82E2B !important;">What is the earliest inaugural date?</strong>
+                                <strong style="color: var(--ug-accent) !important;">What is the earliest inaugural date?</strong>
                             </li>
                             <p>January 10, 1769 is the earliest inaugural date.</p>
                             <li>
-                                <strong style="color: #A82E2B !important;">How many distinct party_affiliations are there?</strong>
+                                <strong style="color: var(--ug-accent) !important;">How many distinct party_affiliations are there?</strong>
                             </li>
                             <p>There are 34 distinct affiliations combined. Interestingly, Rhode Island has the most affiliations with 11.</p>
                             <li>
-                                <strong style="color: #A82E2B !important;">Which state has the most governors so far?</strong>
+                                <strong style="color: var(--ug-accent) !important;">Which state has the most governors so far?</strong>
                             </li>
                             <p>South Carolina has the most governors served with 91 governors.</p>
                         </ol>
                     </p>
                     <br>
-                    <h2 style="color: #5A759E !important;">Tidying the Data</h2>
+                    <h2 style="color: var(--ug-subtitle) !important;">Tidying the Data</h2>
                     <p>
                         Various tidying steps enhance the dataset, including converting date columns, standardizing
                         naming conventions, and addressing inaccuracies such as correcting a date error in November.
                         This meticulous process involves replacing problematic dates, ensuring consistent formatting,
-                        and handling issues during the <span style="color: #F0E67F !important;">as.Date</span> conversion.
+                        and handling issues during the <span style="color: var(--ug-highlight) !important;">as.Date</span> conversion.
                     </p>
                     <p>
-                        <p><small style="color: #8AA1C0 !important;">Dataset:</small></p>
+                        <p><small style="color: var(--ug-small) !important;">Dataset:</small></p>
                         <pre>
                             ## # A tibble: 2,587 x 3
                             ##    governor_full_name     took_office       left_office      
@@ -324,7 +348,7 @@
                         </pre>
                     </p>
                     <p>
-                        <p><small style="color: #8AA1C0 !important;">Code:</small></p>
+                        <p><small style="color: var(--ug-small) !important;">Code:</small></p>
                         <pre>
                             #................ convert & save .............................
                             StateGov_df %>%
@@ -341,7 +365,7 @@
                         </pre>
                     </p>
                     <p>
-                        <p><small style="color: #8AA1C0 !important;">Result:</small></p>
+                        <p><small style="color: var(--ug-small) !important;">Result:</small></p>
                         <pre>
                             ## # A tibble: 3 x 3
                             ##   governor_full_name took_office left_office
@@ -351,7 +375,7 @@
                             ## 3 Israel Pickens     1821-11-09  1825-11-25
                         </pre>
                     </p>
-                    <h5 style="color: #5A759E !important;">Revisiting the Imported Dataframe</h5>
+                    <h5 style="color: var(--ug-subtitle) !important;">Revisiting the Imported Dataframe</h5>
                     <p>
                         During the review, challenges related to duplicate governor seat numbers leading to NAs are
                         encountered. Despite warnings and potential syntax complexities, I persist in refining the
@@ -368,16 +392,16 @@
                         </div>
                         </p>
                     <br>
-                    <h2 style="color: #5A759E !important;">Tackling NAs</h2>
+                    <h2 style="color: var(--ug-subtitle) !important;">Tackling NAs</h2>
                     <p>
-                        Identifying 21 values resulting in NAs during the <span style="color: #F0E67F !important;">as.Date</span> conversion prompts a deeper
+                        Identifying 21 values resulting in NAs during the <span style="color: var(--ug-highlight) !important;">as.Date</span> conversion prompts a deeper
                         investigation. I systematically address this by replacing, converting, and saving the data,
                         prioritizing accuracy and completeness.
                     </p>
-                    <h5 style="color: #5A759E !important;">Replace NAs</h5>
+                    <h5 style="color: var(--ug-subtitle) !important;">Replace NAs</h5>
                     <p>
-                        The final step involves replacing problematic dates impacting the <span style="color: #F0E67F !important;">took_office</span> and
-                        <span style="color: #F0E67F !important;">left_office</span> columns. Cross-referencing with NGA.org and employing meticulous error checking ensures a
+                        The final step involves replacing problematic dates impacting the <span style="color: var(--ug-highlight) !important;">took_office</span> and
+                        <span style="color: var(--ug-highlight) !important;">left_office</span> columns. Cross-referencing with NGA.org and employing meticulous error checking ensures a
                         comprehensive and error-free dataset. The result is a refined dataset without any remaining NAs,
                         marking the successful completion of the EDA project.
                     </p>
@@ -403,42 +427,43 @@
                         <h4 class="fst-italic">Resources used</h4>
                         <ul class="list-unstyled">
                             <li>
-                                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                                    href="#">
-                                    <!--Thumbnail size 117.35 x 96-->
-                                    <h6 class="mb-0">R-Studio</h6>
-                                    <div class="col-lg-8">
-                                        <img src="../assets/img/us-governors/rstudioLogo.jpg" alt="Flask logo"
-                                        width="100%" height="52" class="bd-placeholder-img" aria-hidden="true" />
-                                        <small class="text-body-secondary">I used R-Studio from Posit as my IDE.</small>
+                                <div class="resource-row border-top">
+                                    <div class="resource-name">
+                                        <a href="#" class="link-body-emphasis text-decoration-none">R-Studio</a>
                                     </div>
-                                </a>
+                                    <div class="resource-media">
+                                        <span class="resource-image-card">
+                                            <img src="../assets/img/us-governors/rstudioLogo.jpg" alt="R-Studio logo" />
+                                        </span>
+                                        <small class="resource-caption text-body-secondary">I used R-Studio from Posit as my IDE.</small>
+                                    </div>
+                                </div>
                             </li>
                             <li>
-                                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                                    href="#">
-                                    <!--Thumbnail size 117.35 x 96-->
-                                    <h6 class="mb-0">Project Temaplate</h6>
-                                    <div class="col-lg-8">
-                                        <img src="../assets/img/us-governors/projectTemplateLogo.JPG"
-                                        alt="Python Anywhere logo" width="100%" height="32" class="bd-placeholder-img"
-                                        aria-hidden="true" style="object-fit: cover" />
-                                        <small class="text-body-secondary">This was used to automate my project.</small>
+                                <div class="resource-row border-top">
+                                    <div class="resource-name">
+                                        <a href="#" class="link-body-emphasis text-decoration-none">Project Template</a>
                                     </div>
-                                </a>
+                                    <div class="resource-media">
+                                        <span class="resource-image-card">
+                                            <img src="../assets/img/us-governors/projectTemplateLogo.JPG" alt="Project Template logo" />
+                                        </span>
+                                        <small class="resource-caption text-body-secondary">This was used to automate my project.</small>
+                                    </div>
+                                </div>
                             </li>
                             <li>
-                                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                                    href="#">
-                                    <!--Thumbnail size 117.35 x 96-->
-                                    <h6 class="mb-0">Session Info</h6>
-                                    <div class="col-lg-8">
-                                        <img src="../assets/img/us-governors/sessioninfoLogo.JPG"
-                                        alt="Python Anywhere logo" width="100%" height="32" class="bd-placeholder-img"
-                                        aria-hidden="true" style="object-fit: cover" />
-                                        <small class="text-body-secondary">This was used to document my R session.</small>
+                                <div class="resource-row border-top">
+                                    <div class="resource-name">
+                                        <a href="#" class="link-body-emphasis text-decoration-none">Session Info</a>
                                     </div>
-                                </a>
+                                    <div class="resource-media">
+                                        <span class="resource-image-card">
+                                            <img src="../assets/img/us-governors/sessioninfoLogo.JPG" alt="sessioninfo logo" />
+                                        </span>
+                                        <small class="resource-caption text-body-secondary">This was used to document my R session.</small>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>
