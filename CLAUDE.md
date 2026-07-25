@@ -97,6 +97,8 @@ uv run --active build.py <project-name>     # -> repos/<project-name>.html + lan
 - New repo landing pages follow the pattern of existing root-level HTML files — copy structure from `web-dev.html`
 - New project detail pages are generated via the pipeline: create `_projects/<project-name>/`, run `extract.py`, fill in `content.md`/`meta.yml`, run `build.py` — this writes `repos/<project-name>.html` from `_templates/page.html` and inserts the card on the landing page named in `meta.yml`'s `repo_page` field. `articleSkeleton.html` is a legacy manual template from before this pipeline existed — only fall back to hand-copying it if a project can't go through `build.py` for some reason.
 - `meta.yml`'s `repo_page` must be one of the accents registered in `build.py`'s `REPO_PAGE_ACCENTS` dict (currently: r-studio.html, excel.html, web-dev.html, sql-repo.html, jupyter.html, education.html, follow-along.html)
+- `meta.yml`'s `colors:` block sets the project's title/heading/bold-text colors, one hex per theme (light/dark) per role: `heading` colors the article title only (`h2.display-5`), `subtitle` colors every other heading in the body regardless of level (h2-h6), `accent` colors `strong`/`b` text. See Content Drafting Workflow above for how to pick and contrast-check these with the user — never hand-guess them.
+- `meta.yml`'s `resources:` entries render as a two-column row (name+link on the left, image+caption on the right) and need `title`, `role`, `date`, `caption`, `image`, `url` — `image` must be a filename already in the project's `_projects/<project-name>/` folder so `build.py`'s `copy_images()` picks it up. The caption line renders as `{role}/ {date} | {caption}`.
 - Raw source files dropped into `_projects/<project-name>/` (PDFs, docx, screenshots, etc.) are gitignored by default — only `meta.yml` and `content.md` get committed. Some project materials aren't public-shareable, and the pipeline scripts only need the raw files locally, never at push time.
 - Project images go in a new `assets/img/<project-name>/` subfolder, not the root or `images/` (legacy, gitignored) — `build.py` copies them there automatically from `_projects/<project-name>/` when you run it
 - The `bootstrap/` folder is a gitignored submodule — do not edit files inside it
@@ -138,6 +140,13 @@ When helping write `content.md` for a project (after `extract.py` has generated 
 - Flag any numbers or specifics pulled from `reference.md` that look uncertain (e.g. garbled PDF table extraction) and ask for verification before they go in the final draft.
 - If a chart/image is referenced for supporting data (e.g. a dashboard screenshot), verify the actual filename exists in the project folder, and embed it with standard markdown image syntax pointing to `../assets/img/<project-name>/<filename>` — `build.py` copies images there automatically.
 - Once all sections are confirmed, write the finalized content directly into `content.md` (replacing `[DRAFT]` placeholders), and note that running `python build.py <project-name>` is still a manual step to take.
+
+### Picking the project's colors block (meta.yml)
+`meta.yml`'s `colors:` block (heading/subtitle/accent, each with a `light` and `dark` hex) drives the color of the article title, body headings, and bold text on the generated page — see Project-Specific Rules below for what each role controls. Never hand-guess these values. Instead:
+- Ask the user for the 3 colors they see as most prominent across the project's images (most → `heading`, 2nd → `subtitle`, 3rd → `accent`).
+- Check each color's contrast against Bootstrap's actual backgrounds — white `#fff` for light theme, `#212529` for dark theme — targeting WCAG's 4.5:1 "normal text" ratio (not the looser 3:1 large-text ratio) so headings stay legible for low-vision readers too.
+- If a color fails contrast on one side, adjust its *lightness only* (keep the hue) until it passes, and show the user the before/after hex before it goes into `meta.yml`. Don't touch saturation/hue — the point is the color still reads as "their purple," just tuned for legibility.
+- Fill in both the `light` and `dark` hex per role — a color that passes on white will usually fail on near-black and vice versa, so don't reuse one value for both.
 
 
 ## Applied Learning

@@ -30,6 +30,65 @@
     margin: 1rem 0;
   }
 
+  /* Per-project heading/subtitle/accent colors — set as CSS vars per theme in page.html.
+     The article title (h2.display-5) is the "heading" role; every other heading in the
+     body, regardless of level, is the "subtitle" role; bold text is the "accent" role. */
+  .blog-post h2.display-5 {
+    color: var(--proj-heading-color, inherit);
+  }
+  .blog-post h2:not(.display-5),
+  .blog-post h3,
+  .blog-post h4,
+  .blog-post h5,
+  .blog-post h6 {
+    color: var(--proj-subtitle-color, inherit);
+  }
+  .blog-post strong,
+  .blog-post b {
+    color: var(--proj-accent-color, inherit);
+  }
+
+  /* Resources used — two-column row: name/link on the left, image + caption on the right */
+  .resource-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 0;
+  }
+
+  .resource-name {
+    font-weight: 600;
+  }
+
+  .resource-media {
+    text-align: center;
+  }
+
+  /* Light neutral card behind every resource image so transparent PNG logos
+     (light or dark) stay legible regardless of the active site theme */
+  .resource-image-card {
+    display: inline-block;
+    max-width: 100%;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .resource-image-card img {
+    max-width: 100%;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+    margin: 0;
+    display: block;
+  }
+
+  .resource-caption {
+    display: block;
+    margin-top: 0.375rem;
+  }
+
   /* Tables embedded via content.md scroll horizontally instead of overflowing into the sidebar */
   .blog-post table {
     display: block;

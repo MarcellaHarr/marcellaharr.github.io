@@ -17,16 +17,39 @@ repo_page: sql-repo.html
 # Leave blank/remove this line to fall back to a generic placeholder image.
 thumbnail: your-image.jpg
 
+# The 3 most prominent colors shared across this project's images, one hex
+# value per theme so headings stay legible in both. See CLAUDE.md's Content
+# Drafting Workflow for how these get picked/contrast-checked before filling
+# this in — don't hand-write guesses here.
+#   heading  -> the article title (most prominent color)
+#   subtitle -> every other heading in the body, h2-h6 (2nd most prominent)
+#   accent   -> strong/bold text (3rd most prominent)
+colors:
+  heading:  { light: "#712cf9", dark: "#712cf9" }
+  subtitle: { light: "#712cf9", dark: "#712cf9" }
+  accent:   { light: "#712cf9", dark: "#712cf9" }
+
 # List the resources, datasets, or tools you referenced.
-# These appear in the "Resources used" panel on the right side of the page.
+# These appear in the "Resources used" panel on the right side of the page,
+# as a two-column row: name (linked to url) on the left, image + caption on
+# the right. caption line renders as "role / date | caption".
 # Add or remove entries as needed.
 resources:
   - title: Resource or dataset name
-    url: https://example.com
+    role: Short descriptor, e.g. IDE or CFO
     date: January 15, 2024
+    caption: Short caption, e.g. what it was used for
+    image: resource-image.png
+    url: https://example.com
   - title: Another resource
-    url: https://example.com
+    role: Short descriptor
     date: January 14, 2024
-  - title: Third resource
+    caption: Short caption
+    image: resource-image-2.png
     url: https://example.com
+  - title: Third resource
+    role: Short descriptor
     date: January 13, 2024
+    caption: Short caption
+    image: resource-image-3.png
+    url: https://example.com

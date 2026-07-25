@@ -47,25 +47,52 @@ def parse_content(content_md):
 
 # --- Resources panel builder ---
 
-def build_resources_html(resources):
+def build_caption_line(r):
+    role    = r.get('role', '')
+    date    = r.get('date', '')
+    caption = r.get('caption', '')
+
+    parts = []
+    if role:
+        parts.append(f'{role}/ {date}' if date else role)
+    elif date:
+        parts.append(date)
+    if caption:
+        parts.append(caption)
+    return ' | '.join(parts)
+
+
+def build_resources_html(resources, project_name, copied_images):
     if not resources:
         return '<li><p class="text-body-secondary fst-italic">No resources listed.</p></li>'
     items = []
     for r in resources:
         title = r.get('title', 'Resource')
         url   = r.get('url', '#')
-        date  = r.get('date', '')
+        image = r.get('image')
+
+        if image and image in copied_images:
+            image_src = f'../assets/img/{project_name}/{image}'
+        else:
+            if image:
+                print(f"  Warning: resource image '{image}' not found among copied images. Using placeholder.")
+            image_src = '../assets/img/recent-posts-thumbnail.gif'
+
+        caption_line = build_caption_line(r)
+
         items.append(
             f'                <li>\n'
-            f'                  <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"\n'
-            f'                     href="{url}" target="_blank">\n'
-            f'                    <img src="../assets/img/recent-posts-thumbnail.gif" alt="" width="100%" height="32"\n'
-            f'                         class="bd-placeholder-img" aria-hidden="true" style="object-fit: cover;" />\n'
-            f'                    <div class="col-lg-8">\n'
-            f'                      <h6 class="mb-0">{title}</h6>\n'
-            f'                      <small class="text-body-secondary">{date}</small>\n'
+            f'                  <div class="resource-row border-top">\n'
+            f'                    <div class="resource-name">\n'
+            f'                      <a href="{url}" target="_blank" class="link-body-emphasis text-decoration-none">{title}</a>\n'
             f'                    </div>\n'
-            f'                  </a>\n'
+            f'                    <div class="resource-media">\n'
+            f'                      <span class="resource-image-card">\n'
+            f'                        <img src="{image_src}" alt="{title}" />\n'
+            f'                      </span>\n'
+            f'                      <small class="resource-caption text-body-secondary">{caption_line}</small>\n'
+            f'                    </div>\n'
+            f'                  </div>\n'
             f'                </li>'
         )
     return '\n'.join(items)
@@ -222,13 +249,19 @@ def main():
 
     # Build each HTML piece
     content_html   = parse_content(content_md)
-    resources_html = build_resources_html(meta.get('resources', []))
+    resources_html = build_resources_html(meta.get('resources', []), project_name, copied_images)
 
     title       = meta.get('title', 'Untitled Project')
     date        = meta.get('date', '')
     category    = meta.get('category', '')
     description = meta.get('description', '')
     github_url  = meta.get('github_url', '')
+
+    default_color = {'light': '#712cf9', 'dark': '#712cf9'}
+    colors = meta.get('colors', {})
+    color_heading  = colors.get('heading', default_color)
+    color_subtitle = colors.get('subtitle', default_color)
+    color_accent   = colors.get('accent', default_color)
 
     date_line = str(date)
     if category:
@@ -253,6 +286,12 @@ def main():
         .replace('{{BUILD_CONTENT}}',       content_html)
         .replace('{{BUILD_GITHUB}}',        github_link)
         .replace('{{BUILD_RESOURCES}}',     resources_html)
+        .replace('{{BUILD_COLOR_HEADING_LIGHT}}',  color_heading['light'])
+        .replace('{{BUILD_COLOR_HEADING_DARK}}',   color_heading['dark'])
+        .replace('{{BUILD_COLOR_SUBTITLE_LIGHT}}', color_subtitle['light'])
+        .replace('{{BUILD_COLOR_SUBTITLE_DARK}}',  color_subtitle['dark'])
+        .replace('{{BUILD_COLOR_ACCENT_LIGHT}}',   color_accent['light'])
+        .replace('{{BUILD_COLOR_ACCENT_DARK}}',    color_accent['dark'])
     )
 
     # Write output file
