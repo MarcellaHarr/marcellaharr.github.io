@@ -133,6 +133,24 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+
+      /* Theme-aware colors for this page's hand-authored content, drawn from
+         SQL Server's signature red since the project runs entirely through SQL
+         Server Management Studio. Each shade meets WCAG 4.5:1 contrast against
+         Bootstrap's actual light (#fff) / dark (#212529) backgrounds. */
+      [data-bs-theme="light"] {
+        --nh-title: #7A0000;
+        --nh-subtitle: #990000;
+        --nh-accent: #B80000;
+        --nh-small: #6E6E6E;
+      }
+
+      [data-bs-theme="dark"] {
+        --nh-title: #FF6161;
+        --nh-subtitle: #FF5252;
+        --nh-accent: #FF4D4D;
+        --nh-small: #9B9B9B;
+      }
     </style>
 
     <!-- Custom styles for this template -->
@@ -332,29 +350,120 @@
         <div class="col-md-8">
           <!--Blog article-1 begin-->
           <article class="blog-post">
-            <h2 class="display-5 link-body-emphasis mb-1">Cleaned Nashville Hosuing Dataset</h2>
+            <h2 class="display-5 link-body-emphasis mb-1" style="color: var(--nh-title) !important;">Cleaned Nashville Housing Dataset</h2>
             <p class="blog-post-meta">
-              June 21, 2022 by <a href="#" style="color: #E0E0E0 !important;">Marcella</a>
+              June 21, 2022 by <a href="#" style="color: var(--nh-small) !important;">Marcella</a>
+            </p>
+            <h2 style="color: var(--nh-subtitle) !important;">Overview</h2>
+            <p>
+              This project was my hands-on practice ground for SQL data cleaning. The goal was simply to work through
+              a real, messy dataset using SQL queries until I could see the improvement in structure and performance
+              for myself. At the time, SQL Server Management Studio 2018 was brand new to me, so this project doubled
+              as my introduction to the tool.
             </p>
             <p>
-              This project not only aimed to enhance the dataset's performance but also involved a comprehensive process of
-              cleaning, restructuring, organization, and normalization. The dataset, originally sourced from AlexTheAnalyst on
-              GitHub as part of a Data Analyst Portfolio Project, underwent a thorough transformation using SQL queries in SQL
-              Server Management Studio 2018.
+              I followed AlexTheAnalyst's Data Analyst Portfolio Project tutorial on GitHub step by step, treating it
+              like a sponge: soaking up every technique he demonstrated and reproducing it to the letter. "Done," for
+              me, meant successfully applying every cleaning method from his walkthrough until my results matched what
+              the tutorial produced.
             </p>
+            <h2 style="color: var(--nh-subtitle) !important;">The Original Dataset</h2>
             <p>
-              Initially organized in Microsoft Excel with 18 general columns and 1 date column, the dataset posed challenges such as
-              columns in all capital letters and month names in title case. With 19 columns and 56,477 rows, the dataset exhibited
-              varied responses in the "SoldAsVacant" column, including No, N, Yes, or Y. Notably, numerous columns contained
-              significant null values, such as OwnerName, OwnerAddress, Acreage, TaxDistrict, LandValue, BuildingValue, TotalValue,
+              When it arrived, the dataset lived entirely in Microsoft Excel: 18 general columns plus 1 date column,
+              with all the column headers in ALL CAPS and month names in title case. After importing into SQL Server,
+              it grew to 19 columns and 56,477 rows. The "SoldAsVacant" column alone had four different ways of saying
+              the same two things: No, N, Yes, and Y. Beyond that, a long list of columns carried significant null
+              values, including OwnerName, OwnerAddress, Acreage, TaxDistrict, LandValue, BuildingValue, TotalValue,
               YearBuilt, Bedrooms, FullBath, and HalfBath.
             </p>
             <p>
-              During the transition to SQL Server, despite the absence of recorded initial data types, total nulls, and distinct
-              values, the dataset underwent a holistic transformation through multiple queries, each categorized for specific tasks.
-              The result is a cleaned dataset featuring 21 columns, 56,477 rows (excluding the header), and a total of 26 query
-              statements. This meticulous approach aimed not only at optimizing performance but also at ensuring the dataset's
-              cleanliness, structure, organization, and normalization for improved analytical insights.
+              I chose this dataset specifically because it was "dirty." Working through real inconsistencies like
+              these, rather than a tidy sample dataset, was the whole point.
+            </p>
+            <p>
+              The part that actually slowed me down wasn't the volume of nulls, it was the logic. This was my first
+              time writing a CTE (Common Table Expression), and my first time chaining multiple SQL functions
+              together, like using <code>PARSENAME()</code> and <code>REPLACE()</code> in the same statement to split
+              a single <code>PropertyAddress</code> column into separate street and city columns.
+            </p>
+            <p><small style="color: var(--nh-small) !important;">Finding duplicates with a CTE:</small></p>
+            <pre>
+-- View duplicates &amp; create a CTE
+with RowNumCTE as (
+    select *,
+        row_number() over(partition by
+                            ParcelID,
+                            PropertyAddress,
+                            SalePrice,
+                            SaleDate,
+                            LegalReference
+                        order by UniqueID) row_num
+    from nashville_housing.dbo.nash_data
+)
+select *
+from RowNumCTE
+where row_num &gt; 1;
+            </pre>
+            <p><small style="color: var(--nh-small) !important;">Splitting PropertyAddress into street and city:</small></p>
+            <pre>
+-- Separating 'PropertyAddress' col
+select parsename(replace(PropertyAddress, ',', '.'), 2) as PropertyStreet,
+        parsename(replace(PropertyAddress, ',', '.'), 1) as PropertyCity
+from nashville_housing.dbo.nash_data;
+            </pre>
+            <h2 style="color: var(--nh-subtitle) !important;">The Cleaning Process</h2>
+            <p>
+              Beyond the CTE and the <code>PARSENAME(REPLACE())</code> address split, the rest of the cleaning fell
+              into a few categories: converting the date column into a real SQL date type, and replacing, renaming,
+              and joining null values back together.
+            </p>
+            <p>
+              The <code>SaleDate</code> column arrived as a full datetime value, so I converted it with
+              <code>CONVERT(Date, SaleDate)</code>, added a new <code>SaleDates</code> column to hold the result, and
+              updated the table to populate it.
+            </p>
+            <p>
+              For null values, my approach depended on the column. For <code>PropertyAddress</code>, I used
+              <code>ParcelID</code> as an anchor, since it's unique to each property, and joined the table to itself:
+              comparing rows with the same <code>ParcelID</code> but a different <code>UniqueID</code>, then filling
+              in any null <code>PropertyAddress</code> with the address from its matching row using
+              <code>ISNULL()</code>. <code>OwnerAddress</code> couldn't use the same trick since I didn't have a
+              column tying it back to the property the same way, so I set that one aside to revisit later.
+            </p>
+            <p>
+              The moment I'm proudest of from this stretch is creating the CTE for the first time. I had to trust the
+              process and work through the logic without knowing for sure it would work, and it did.
+            </p>
+            <p><small style="color: var(--nh-small) !important;">Converting SaleDate to a real date type:</small></p>
+            <pre>
+-- Change 'SaleDate' col
+select SaleDate,
+        convert(Date, SaleDate)
+from nashville_housing.dbo.nash_data;
+
+-- Update 'SaleDate' col
+    -- create a new column first
+alter table nash_data
+add SaleDates date;
+
+update nash_data
+set SaleDates = convert(Date, SaleDate);
+            </pre>
+            <p><small style="color: var(--nh-small) !important;">Filling null PropertyAddress by joining the table to itself:</small></p>
+            <pre>
+-- ParcelID is a good anchor because it's unique to the property
+update nash1
+set PropertyAddress = isnull(nash1.PropertyAddress,
+                                nash2.PropertyAddress)
+from nashville_housing.dbo.nash_data nash1
+join nashville_housing.dbo.nash_data nash2
+    on nash1.ParcelID = nash2.ParcelID
+    and nash1.[UniqueID ] &lt;&gt; nash2.[UniqueID ]
+where nash1.PropertyAddress is null;
+            </pre>
+            <h2 style="color: var(--nh-subtitle) !important;">Results</h2>
+            <p>
+              The final dataset ended up with 21 columns and 56,477 rows, built through a total of 26 queries.
             </p>
           </article>
           <!--Blog article-1 end-->
@@ -368,75 +477,56 @@
               <h4 class="fst-italic">Resources used</h4>
               <ul class="list-unstyled">
                 <li>
-                  <a
-                    class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                    href="#"
-                  >
-                    <!--Thumbnail size 117.35 x 96-->
-                    <img
-                      src="../assets/img/recent-posts-thumbnail.gif"
-                      alt="Your GIF Alt Text"
-                      width="100%"
-                      height="32"
-                      class="bd-placeholder-img"
-                      aria-hidden="true"
-                      style="object-fit: cover;"
-                    />
-                    <div class="col-lg-8">
-                      <h6 class="mb-0">Resource post title</h6>
-                      <small class="text-body-secondary"
-                        >January 15, 2023</small
-                      >
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.youtube.com/playlist?list=PLUaB-1hjhk8H48Pj32z4GZgGWyylqv85f" class="link-body-emphasis text-decoration-none" target="_blank" rel="noopener">Data Analyst Portfolio Projects</a>
                     </div>
-                  </a>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/nashville-housing/alexportrait.png" alt="AlexTheAnalyst portrait" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Tutorial/ May 4th, 2021 | AlexTheAnalyst</small>
+                    </div>
+                  </div>
                 </li>
                 <li>
-                  <a
-                    class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                    href="#"
-                  >
-                    <!--Thumbnail size 117.35 x 96-->
-                    <img
-                      src="../assets/img/recent-posts-thumbnail.gif"
-                      alt="Your GIF Alt Text"
-                      width="100%"
-                      height="32"
-                      class="bd-placeholder-img"
-                      aria-hidden="true"
-                      style="object-fit: cover;"
-                    />
-                    <div class="col-lg-8">
-                      <h6 class="mb-0">This is another resource post title</h6>
-                      <small class="text-body-secondary"
-                        >January 14, 2023</small
-                      >
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://github.com/AlexTheAnalyst/PortfolioProjects/blob/main/Nashville%20Housing%20Data%20for%20Data%20Cleaning.xlsx" class="link-body-emphasis text-decoration-none" target="_blank" rel="noopener">Nashville Housing Data</a>
                     </div>
-                  </a>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/nashville-housing/dataset_image.png" alt="Nashville Housing dataset preview" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Dataset/ May 4th, 2021 | Nashville Housing Data</small>
+                    </div>
+                  </div>
                 </li>
                 <li>
-                  <a
-                    class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                    href="#"
-                  >
-                    <!--Thumbnail size 117.35 x 96-->
-                    <img
-                      src="../assets/img/recent-posts-thumbnail.gif"
-                      alt="Your GIF Alt Text"
-                      width="100%"
-                      height="32"
-                      class="bd-placeholder-img"
-                      aria-hidden="true"
-                      style="object-fit: cover;"
-                    />
-                    <div class="col-lg-8">
-                      <h6 class="mb-0">
-                        Longer resource post title: This one has multiple lines!
-                      </h6>
-                      <small class="text-body-secondary"
-                        >January 13, 2023</small
-                      >
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.microsoft.com/en-us/sql-server" class="link-body-emphasis text-decoration-none" target="_blank" rel="noopener">Microsoft SQL Server</a>
                     </div>
-                  </a>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/nashville-housing/sqlserver.png" alt="Microsoft SQL Server logo" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">IDE/ May 4th, 2021 | Microsoft SQL Server</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.microsoft.com/en-us/microsoft-365/excel" class="link-body-emphasis text-decoration-none" target="_blank" rel="noopener">Microsoft Excel</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/nashville-housing/microsoft_excel.png" alt="Microsoft Excel logo" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Spreadsheet/ May 4th, 2021 | Microsoft Excel</small>
+                    </div>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -446,13 +536,13 @@
               <h4 class="fst-italic">Elsewhere</h4>
               <ol class="list-unstyled">
                 <li>
-                  <a href="www.linkedin.com/in/marcellalharris">LinkedIn</a>
+                  <a href="www.linkedin.com/in/marcellalharris" style="color: var(--nh-small) !important;">LinkedIn</a>
                 </li>
-                <li><a href="https://github.com/MarcellaHarr">GitHub</a></li>
+                <li><a href="https://github.com/MarcellaHarr" style="color: var(--nh-small) !important;">GitHub</a></li>
                 <li>
-                  <a href="https://twitter.com/MarcellaDaANLST">Twitter</a>
+                  <a href="https://twitter.com/MarcellaDaANLST" style="color: var(--nh-small) !important;">Twitter</a>
                 </li>
-                <li><a href="mailto:marlorraineharr@gmail.com">Email</a></li>
+                <li><a href="mailto:marlorraineharr@gmail.com" style="color: var(--nh-small) !important;">Email</a></li>
               </ol>
             </div>
             <!--Elsewhere links end-->
