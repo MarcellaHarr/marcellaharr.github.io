@@ -10,6 +10,7 @@ A static GitHub Pages portfolio site showcasing Marcella's data analytics projec
 - `_projects/<project-name>/` is the source folder per project: drop in raw files (PDFs, notebooks, docx, images), then run `extract.py` and `build.py` against it (see Development + Content Drafting Workflow below)
 - `_templates/` holds the starter templates (`meta.yml`, `content.md`, `page.html`) that `build.py` fills in to generate a project's `repos/<name>.html` page
 - `assets/img/` stores project visuals, organized into subdirectories by project name (e.g. `ny-street-trees/`, `sprightly-homeschool/`) — `build.py` copies images here automatically from `_projects/<name>/`
+- `assets/img/shared-logos/` holds reused brand/tool logos (R-Studio, Excel, Tableau, etc.) referenced by more than one project's "Resources used" sidebar — a logo used across multiple project pages belongs here, not duplicated into each project's own subfolder
 - `_config.yml` configures the Jekyll theme fallback for GitHub Pages
 
 
@@ -100,7 +101,7 @@ uv run --active build.py <project-name>     # -> repos/<project-name>.html + lan
 - `meta.yml`'s `colors:` block sets the project's title/heading/bold-text colors, one hex per theme (light/dark) per role: `heading` colors the article title only (`h2.display-5`), `subtitle` colors every other heading in the body regardless of level (h2-h6), `accent` colors `strong`/`b` text. See Content Drafting Workflow above for how to pick and contrast-check these with the user — never hand-guess them.
 - `meta.yml`'s `resources:` entries render as a two-column row (name+link on the left, image+caption on the right) and need `title`, `role`, `date`, `caption`, `image`, `url` — `image` must be a filename already in the project's `_projects/<project-name>/` folder so `build.py`'s `copy_images()` picks it up. The caption line renders as `{role}/ {date} | {caption}`.
 - Raw source files dropped into `_projects/<project-name>/` (PDFs, docx, screenshots, etc.) are gitignored by default — only `meta.yml` and `content.md` get committed. Some project materials aren't public-shareable, and the pipeline scripts only need the raw files locally, never at push time.
-- Project images go in a new `assets/img/<project-name>/` subfolder, not the root or `images/` (legacy, gitignored) — `build.py` copies them there automatically from `_projects/<project-name>/` when you run it
+- Project images go in a new `assets/img/<project-name>/` subfolder, not the root or `images/` (legacy, gitignored) — `build.py` copies them there automatically from `_projects/<project-name>/` when you run it. Exception: a brand/tool logo reused across more than one project's Resources sidebar (R-Studio, Excel, Tableau, etc.) goes in `assets/img/shared-logos/` instead of being duplicated per project
 - The `bootstrap/` folder is a gitignored submodule — do not edit files inside it
 - Nav links appear identically across every page — update all pages when a nav item changes
 
@@ -128,6 +129,7 @@ uv run --active build.py <project-name>     # -> repos/<project-name>.html + lan
 - At the start of every new session, review this CLAUDE.md file in full before starting work.
 - Explain the step(s)/fix(es)/modification(s) required — tutor-style, walking through the reasoning — before making them, then get explicit approval before proceeding.
 - Pair that explanation with a scaffolding approach: give the underlying structure/pattern to build on, not just the finished result, so the method is transferable to future tasks.
+- NEVER launch applications (browsers, dev servers, headless screenshot tools, etc.) to visually verify a page. The user reviews visual changes themselves via VS Code's Live Preview / Show Preview and will paste in a screenshot when something needs checking. Verify changes by reading the code (HTML/CSS diffs, contrast math) instead.
 - Never run `git commit` (or `git add`/`git push`/`git tag`) on the user's behalf — always stop short and hand back a ready-to-use commit message (and tag command, if warranted) so the user runs them themselves.
 - When a turn covers multiple independent/unrelated changes, provide a separate commit message per independent change, update, or task — don't bundle everything into one — so the user can commit incrementally.
 - Tags mark a completed, live/user-facing milestone (e.g. a project detail page actually retrofitted or newly published) — not infrastructure-only commits (e.g. a pipeline/template change with no page using it yet). If unsure whether a change counts as a milestone, ask before suggesting a tag.
