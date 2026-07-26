@@ -139,6 +139,7 @@ dist
 
 # macOS resource fork files (created automatically on external drives)
 ._*
+.DS_Store
 
 # Raw project source materials are private — only the curated meta.yml/content.md
 # write-ups get committed. Also covers auto-generated reference.md.
