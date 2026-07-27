@@ -65,6 +65,21 @@
       }
       .bd-mode-toggle { z-index: 1500; }
       .bd-mode-toggle .dropdown-menu .active .bi { display: block !important; }
+
+      /* Per-project heading/subtitle/accent colors, picked from this project's
+         images and contrast-checked per theme (see meta.yml's colors: block). */
+      [data-bs-theme="light"] {
+        --proj-heading-color: #712cf9;
+        --proj-subtitle-color: #712cf9;
+        --proj-accent-color: #712cf9;
+        --proj-small-color: #6E6E6E;
+      }
+      [data-bs-theme="dark"] {
+        --proj-heading-color: #712cf9;
+        --proj-subtitle-color: #712cf9;
+        --proj-accent-color: #712cf9;
+        --proj-small-color: #E0E0E0;
+      }
     </style>
 
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap" rel="stylesheet" />
@@ -155,7 +170,7 @@
           <article class="blog-post">
             <h2 class="display-5 link-body-emphasis mb-1">Favorita Store Sales EDA</h2>
             <p class="blog-post-meta">
-              December 25, 2024 &nbsp;&middot;&nbsp; SQL · Exploratory Data Analysis by <a href="#" style="color: #E0E0E0 !important;">Marcella</a>
+              December 25, 2024 &nbsp;&middot;&nbsp; SQL · Exploratory Data Analysis by <a href="#" style="color: var(--proj-small-color) !important;">Marcella</a>
             </p>
             <p><a href="https://github.com/MarcellaHarr/favorita-store-sales" target="_blank" style="color: #FFFFC0 !important;">View on GitHub &rarr;</a></p>
             <h2>Overview</h2>
@@ -219,36 +234,40 @@
               <h4 class="fst-italic">Resources used</h4>
               <ul class="list-unstyled">
                                 <li>
-                  <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                     href="https://www.microsoft.com/en-us/sql-server/" target="_blank">
-                    <img src="../assets/img/recent-posts-thumbnail.gif" alt="" width="100%" height="32"
-                         class="bd-placeholder-img" aria-hidden="true" style="object-fit: cover;" />
-                    <div class="col-lg-8">
-                      <h6 class="mb-0">SQL Server</h6>
-                      <small class="text-body-secondary">December 25, 2024</small>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.microsoft.com/en-us/sql-server/" target="_blank" class="link-body-emphasis text-decoration-none">SQL Server</a>
                     </div>
-                  </a>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/recent-posts-thumbnail.gif" alt="SQL Server" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">December 25, 2024</small>
+                    </div>
+                  </div>
                 </li>
                 <li>
-                  <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                     href="https://www.microsoft.com/en-us/power-platform/products/power-bi" target="_blank">
-                    <img src="../assets/img/recent-posts-thumbnail.gif" alt="" width="100%" height="32"
-                         class="bd-placeholder-img" aria-hidden="true" style="object-fit: cover;" />
-                    <div class="col-lg-8">
-                      <h6 class="mb-0">Power BI</h6>
-                      <small class="text-body-secondary">December 25, 2024</small>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.microsoft.com/en-us/power-platform/products/power-bi" target="_blank" class="link-body-emphasis text-decoration-none">Power BI</a>
                     </div>
-                  </a>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/recent-posts-thumbnail.gif" alt="Power BI" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">December 25, 2024</small>
+                    </div>
+                  </div>
                 </li>
               </ul>
             </div>
             <div class="p-4">
               <h4 class="fst-italic">Elsewhere</h4>
               <ol class="list-unstyled">
-                <li><a href="https://www.linkedin.com/in/marcellalharris" style="color: #E0E0E0 !important;">LinkedIn</a></li>
-                <li><a href="https://github.com/MarcellaHarr" style="color: #E0E0E0 !important;">GitHub</a></li>
-                <li><a href="https://twitter.com/MarcellaDaANLST" style="color: #E0E0E0 !important;">Twitter</a></li>
-                <li><a href="mailto:marlorraineharr@gmail.com" style="color: #E0E0E0 !important;">Email</a></li>
+                <li><a href="https://www.linkedin.com/in/marcellalharris" style="color: var(--proj-small-color) !important;">LinkedIn</a></li>
+                <li><a href="https://github.com/MarcellaHarr" style="color: var(--proj-small-color) !important;">GitHub</a></li>
+                <li><a href="https://twitter.com/MarcellaDaANLST" style="color: var(--proj-small-color) !important;">Twitter</a></li>
+                <li><a href="mailto:marlorraineharr@gmail.com" style="color: var(--proj-small-color) !important;">Email</a></li>
               </ol>
             </div>
           </div>

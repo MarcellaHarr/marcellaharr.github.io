@@ -54,7 +54,7 @@ def build_caption_line(r):
 
     parts = []
     if role:
-        parts.append(f'{role}/ {date}' if date else role)
+        parts.append(f'{role}: {date}' if date else role)
     elif date:
         parts.append(date)
     if caption:

@@ -32,7 +32,7 @@ colors:
 # List the resources, datasets, or tools you referenced.
 # These appear in the "Resources used" panel on the right side of the page,
 # as a two-column row: name (linked to url) on the left, image + caption on
-# the right. caption line renders as "role / date | caption".
+# the right. caption line renders as "role: date | caption".
 # Add or remove entries as needed.
 resources:
   - title: Resource or dataset name
