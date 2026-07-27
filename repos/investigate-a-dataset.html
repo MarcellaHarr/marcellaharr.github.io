@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="../assets/js/color-modes.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="An exploratory analysis of Brazilian medical appointment no-shows, examining how the Bolsa Família scholarship, neighborhood, age, and gender relate to whether patients attend their appointments." />
+    <meta name="author" content="Marcella Harris" />
+    <title>Marcella Harris · DataPortfolio</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="../assets/img/favicons/apple-touch-icon.png" sizes="180x180" />
+    <link rel="icon" href="../assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="../assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="manifest" href="../assets/img/favicons/android-chrome-192x192.png" />
+    <link rel="mask-icon" href="../assets/img/favicons/safari-pinned-tab.svg" color="#712cf9" />
+    <link rel="icon" href="../assets/img/favicons/favicon.ico" />
+    <meta name="theme-color" content="#712cf9" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg { font-size: 3.5rem; }
+      }
+      .bi { vertical-align: -0.125em; fill: currentColor; }
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      .bd-mode-toggle { z-index: 1500; }
+      .bd-mode-toggle .dropdown-menu .active .bi { display: block !important; }
+
+      /* Per-project heading/subtitle/accent colors, picked from this project's
+         images and contrast-checked per theme (see meta.yml's colors: block). */
+      [data-bs-theme="light"] {
+        --proj-heading-color: #2C436A;
+        --proj-subtitle-color: #577570;
+        --proj-accent-color: #9B633B;
+        --proj-small-color: #6E6E6E;
+      }
+      [data-bs-theme="dark"] {
+        --proj-heading-color: #7694C6;
+        --proj-subtitle-color: #739691;
+        --proj-accent-color: #CD9D7B;
+        --proj-small-color: #E0E0E0;
+      }
+    </style>
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap" rel="stylesheet" />
+    <link href="../assets/css/blog.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!--Bootstrap colormode and interactive settings begin-->
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+      </symbol>
+    </svg>
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+        id="bd-theme" type="button" aria-expanded="false"
+        data-bs-toggle="dropdown" aria-label="Toggle theme (dark)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+          <use href="#moon-stars-fill"></use>
+        </svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark" aria-pressed="true">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <!--Bootstrap colormode and interactive settings end-->
+
+    <div class="container">
+      <!--Header-->
+      <header class="border-bottom lh-1 py-3">
+        <div class="row flex-nowrap justify-content-center align-items-center">
+          <div class="col-4 text-center">
+            <a class="blog-header-logo text-body-emphasis text-decoration-none" href="https://marcellaharr.github.io">Marcella Harris</a>
+          </div>
+        </div>
+      </header>
+      <!--Nav-->
+      <div class="nav-scroller py-1 mb-3 border-bottom">
+        <nav class="nav nav-underline justify-content-between">
+          <a class="nav-item nav-link link-body-emphasis" href="https://marcellaharr.github.io">Home</a>
+          <a class="nav-item nav-link link-body-emphasis" href="https://github.com/MarcellaHarr" target="_blank">GitHub Profile</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../r-studio.html">R-Studio repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../excel.html">Excel repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../web-dev.html">Web Dev repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../sql-repo.html">SQL repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../jupyter.html">Jupyter repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../education.html">Education repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../follow-along.html">Follow-Along repo</a>
+        </nav>
+      </div>
+    </div>
+
+    <main class="container">
+      <div class="row g-5">
+
+        <!--Left panel — article content-->
+        <div class="col-md-8">
+          <article class="blog-post">
+            <h2 class="display-5 link-body-emphasis mb-1">Investigate a Dataset</h2>
+            <p class="blog-post-meta">
+              February 10, 2026 &nbsp;&middot;&nbsp; Python · Data Analysis by <a href="#" style="color: var(--proj-small-color) !important;">Marcella</a>
+            </p>
+            
+            <h2>Overview</h2>
+<p>This project was the first of two required assessments for my WGU "Introduction to Data Analysis" course, run in partnership with Udacity. I chose the "No-Show Appointments" dataset from Kaggle: about 100,000 medical appointment records from Brazil, tracking whether patients actually attended their scheduled appointments.</p>
+<p>Rather than reach for the more obvious columns, I wanted to explore questions rooted in the relationships between people, the possible or hidden "why" behind their actions. That pointed me toward <code>Age</code>, <code>Gender</code>, <code>Neighborhood</code>, and <code>Scholarship</code> (Brazil's Bolsa Família welfare program) as my independent variables against <code>No-Show</code> as the dependent variable. I also suspected most of my classmates would gravitate toward the more generic columns, so this felt like a chance to dig into something more interpersonal.</p>
+<p>From there, I posed two research questions:</p>
+<ul>
+<li>How does the Bolsa Família Scholarship influence No-Show rates, and does this relationship vary across different Neighborhoods?</li>
+<li>How does a patient's Age correlate with No-Show rates, and does this trend differ between Genders?</li>
+</ul>
+<h2>Data Wrangling</h2>
+<p>I loaded the dataset and took a first look at its structure before doing anything else.</p>
+<pre><code class="language-python"># View first five rows of the dataset
+(noshow_uncleaned_DF.head())
+</code></pre>
+<pre><code>      PatientId  AppointmentID Gender          ScheduledDay  \
+0  2.987250e+13        5642903      F  2016-04-29T18:38:08Z   
+1  5.589978e+14        5642503      M  2016-04-29T16:08:27Z   
+2  4.262962e+12        5642549      F  2016-04-29T16:19:04Z   
+3  8.679512e+11        5642828      F  2016-04-29T17:29:31Z   
+4  8.841186e+12        5642494      F  2016-04-29T16:07:23Z   
+
+        AppointmentDay  Age      Neighbourhood  Scholarship  Hipertension  \
+0  2016-04-29T00:00:00Z   62    JARDIM DA PENHA            0             1   
+1  2016-04-29T00:00:00Z   56    JARDIM DA PENHA            0             0   
+2  2016-04-29T00:00:00Z   62      MATA DA PRAIA            0             0   
+3  2016-04-29T00:00:00Z    8  PONTAL DE CAMBURI            0             0   
+4  2016-04-29T00:00:00Z   56    JARDIM DA PENHA            0             1   
+
+   Diabetes  Alcoholism  Handcap  SMS_received No-show  
+0         0           0        0             0      No  
+1         0           0        0             0      No  
+2         0           0        0             0      No  
+3         0           0        0             0      No  
+4         1           0        0             0      No
+</code></pre>
+<p>Right away, the <code>PatientId</code> column stood out. The very first row alone reads <code>2.987250e+13</code>, a patient ID written in scientific notation, and I couldn't find any documentation explaining why the IDs were structured this way or why they were so large. That, combined with the <code>ScheduledDay</code> and <code>AppointmentDay</code> columns storing full timestamps that needed splitting, and the <code>Neighbourhood</code> column being written in all caps with a typo in its own column name, set my cleaning agenda:</p>
+<ol>
+<li>Check for missing (NaN/Null) values, of which there were none.</li>
+<li>Check for duplicate rows, of which there were also none.</li>
+<li>Convert <code>Gender</code>, <code>Neighbourhood</code>, and <code>No-show</code> to category types, and <code>ScheduledDay</code>/<code>AppointmentDay</code> to datetime, to cut down on memory usage.</li>
+<li>Downsize the numeric columns (<code>PatientId</code> to int64, <code>Age</code> and the binary flag columns to int8).</li>
+<li>Rename columns to fix typos (<code>Hipertension</code> to <code>Hypertension</code>, <code>Handcap</code> to <code>Handicap</code>) and standardize casing (<code>Neighbourhood</code> to <code>Neighborhood</code>).</li>
+<li>Normalize <code>Neighborhood</code> text from all-caps to title case.</li>
+<li>Parse <code>ScheduledDay</code> and <code>AppointmentDay</code> into four separate date/time columns, then drop the two original timestamp columns.</li>
+</ol>
+<p>By the end, the cleaned dataset (<code>noshow_DF</code>) still held all 110,527 original rows, now spread across 16 columns instead of 14, and its memory footprint dropped substantially, from 39.8 MB down to 14.1 MB.</p>
+<h2>Exploratory Data Analysis</h2>
+<p>Before digging into either research question, I looked at <code>No-Show</code> on its own to establish a baseline. About 80% of patients showed up for their appointments, while roughly 20% missed them.</p>
+<p><img alt="Pie chart showing 80% of appointments were showed and 20% missed" src="../assets/img/investigate-a-dataset/medical_appointment_status_rate_plot.png" /></p>
+<h3>Research Question 1: Scholarship, No-Show, and Neighborhood</h3>
+<p>I started by looking at the <code>Scholarship</code> variable independently. Only about 9.8% of patients in the dataset were active Bolsa Família recipients, a much smaller share than I expected given the program's purpose of supporting low-income families.</p>
+<p><img alt="Pie chart showing 90.2% non-recipients and 9.8% recipients of the Bolsa Familia Scholarship" src="../assets/img/investigate-a-dataset/bosilia_famalia_scholarship_rate_plot.png" /></p>
+<p><code>Neighborhood</code> told a similar story of concentration. Jardim Camburi accounted for far more appointments than any other location, and it also had one of the lower missed-appointment rates at 19%, while Itararé had a noticeably higher missed rate of 26.3% despite far fewer total appointments. This was my first hint that location itself might be a stronger predictor of attendance behavior than I'd assumed going in.</p>
+<p><img alt="Bar chart of attendance status per neighborhood, ranked top 20" src="../assets/img/investigate-a-dataset/attendance_status_per_neighborhood_plot.png" /></p>
+<p>When I combined <code>Neighborhood</code> and <code>Scholarship</code> status directly, the pattern got clearer, and more complicated. Scholarship recipients had a higher overall missed-appointment rate (11.6%) than non-recipients (9.4%), but that relationship wasn't consistent from one neighborhood to the next. In Jardim Camburi and Santa Martha, recipients missed appointments noticeably more often than non-recipients, but in Jardim Da Penha the pattern flipped, with recipients missing appointments less often.</p>
+<p><img alt="Bar chart comparing missing attendance rates between scholarship recipients and non-recipients across neighborhoods" src="../assets/img/investigate-a-dataset/missing_attendance_rates_per_neighborhoods_plot.png" /></p>
+<p>My takeaway: the Bolsa Família Scholarship does influence a patient's likelihood of missing an appointment, but that influence isn't uniform. It interacts with where a patient lives in ways a single overall percentage can't capture.</p>
+<h3>Research Question 2: Age, Gender, and No-Show</h3>
+<p><code>Age</code> turned out to be a genuinely useful predictor. The distribution was right-skewed, with the largest concentration of patients between 0 and 10 years old, over 17,500 records in that single age bin alone.</p>
+<p><img alt="Histogram of patient age distribution, right-skewed with a peak at 0-10 years" src="../assets/img/investigate-a-dataset/patient_age_distribution_plot.png" /></p>
+<p>When I split <code>Age</code> by attendance status, patients who missed their appointments had a lower median age (33) than those who showed up (38), suggesting younger patients were somewhat more likely to skip appointments.</p>
+<p><img alt="Boxplot comparing patient age distribution between showed and missed appointment statuses" src="../assets/img/investigate-a-dataset/age_distribution_by_attendance.png" /></p>
+<p><code>Gender</code> was a different story. Female patients made up 65% of the dataset compared to 35% male, a meaningful imbalance on its own.</p>
+<p><img alt="Pie chart showing 65% female and 35% male patients" src="../assets/img/investigate-a-dataset/gender_rates_plot.png" /></p>
+<p>But when I compared missed-appointment rates between the two groups, they came out nearly identical (both hovering around 20%), which told me <code>Gender</code> alone wasn't doing much explanatory work. Layering <code>Age</code> back in confirmed this: across both genders, the youngest patients (0-20) missed appointments the most, around 25%, and the oldest patients (60-80) missed the least, around 15%. The two gender lines tracked almost on top of each other the whole way through, meaning <code>Age</code>, not <code>Gender</code>, was driving the trend.</p>
+<p><img alt="Line chart of missed attendance trend by age decade and gender" src="../assets/img/investigate-a-dataset/missed_attendance_trend_plot.png" /></p>
+<p>My takeaway: a patient's <code>Age</code> does correlate meaningfully with their <code>No-Show</code> rate, but that relationship doesn't meaningfully differ between <code>Genders</code>.</p>
+<h2>Conclusion</h2>
+<p>Across both research questions, I found genuine relationships hiding beneath the surface of this dataset. The Bolsa Família Scholarship does influence whether a patient misses their appointment, but that influence isn't consistent, it shifts depending on the neighborhood a patient lives in. And a patient's <code>Age</code> does correlate with their <code>No-Show</code> rate, with younger patients missing appointments more often, though that pattern holds steady regardless of <code>Gender</code>.</p>
+<p>One limitation I ran into throughout this project was the lack of a true data dictionary for the dataset. Understanding what each column actually represented was largely left up to interpretation. For example, when I needed clarity on who qualified as a Scholarship recipient, I had to rely on a Wikipedia article rather than an authoritative source describing the Bolsa Família program's actual eligibility criteria. That's a meaningful gap, since any conclusions I've drawn about the <code>Scholarship</code> variable are only as solid as my own outside research into what that variable represents.</p>
+<p>Overall, this was a genuinely fun dataset to dig into, and I came away with a better understanding of how Brazilian patients engage with medical appointments and the Bolsa Família Scholarship program specifically.</p>
+          </article>
+        </div>
+
+        <!--Right panel — resources + elsewhere-->
+        <div class="col-md-4">
+          <div class="position-sticky" style="top: 2rem">
+            <div>
+              <h4 class="fst-italic">Resources used</h4>
+              <ul class="list-unstyled">
+                                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.kaggle.com/datasets/joniarroba/noshowappointments" target="_blank" class="link-body-emphasis text-decoration-none">Medical Appointment No Shows (Kaggle)</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/investigate-a-dataset/kaggle.png" alt="Medical Appointment No Shows (Kaggle)" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Dataset: January 1, 2026 | Source dataset of ~100K Brazilian medical appointment records.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://jupyter.org" target="_blank" class="link-body-emphasis text-decoration-none">Jupyter</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/investigate-a-dataset/jupyter.png" alt="Jupyter" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Notebook: January 1, 2026 | Used to write and run the analysis notebook.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.python.org" target="_blank" class="link-body-emphasis text-decoration-none">Python</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/investigate-a-dataset/python.png" alt="Python" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Language: January 1, 2026 | Used for data cleaning, analysis, and visualization.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.udacity.com" target="_blank" class="link-body-emphasis text-decoration-none">Udacity</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/investigate-a-dataset/udacity.png" alt="Udacity" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Course Platform: January 1, 2026 | Delivered the WGU Introduction to Data Analysis coursework.</small>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <h4 class="fst-italic">Elsewhere</h4>
+              <ol class="list-unstyled">
+                <li><a href="https://www.linkedin.com/in/marcellalharris" style="color: var(--proj-small-color) !important;">LinkedIn</a></li>
+                <li><a href="https://github.com/MarcellaHarr" style="color: var(--proj-small-color) !important;">GitHub</a></li>
+                <li><a href="https://twitter.com/MarcellaDaANLST" style="color: var(--proj-small-color) !important;">Twitter</a></li>
+                <li><a href="mailto:marlorraineharr@gmail.com" style="color: var(--proj-small-color) !important;">Email</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
+      <p>Blog template forked from <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p class="mb-0"><a href="#">Back to top</a></p>
+    </footer>
+
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

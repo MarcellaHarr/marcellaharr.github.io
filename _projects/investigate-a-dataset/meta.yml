@@ -1,0 +1,40 @@
+title: Investigate a Dataset
+date: February 10, 2026
+category: Python · Data Analysis
+description: An exploratory analysis of Brazilian medical appointment no-shows, examining how the Bolsa Família scholarship, neighborhood, age, and gender relate to whether patients attend their appointments.
+github_url:
+
+repo_page: education.html
+
+thumbnail: investigatedataLogo.jpg
+
+colors:
+  heading:  { light: "#2C436A", dark: "#7694C6" }
+  subtitle: { light: "#577570", dark: "#739691" }
+  accent:   { light: "#9B633B", dark: "#CD9D7B" }
+
+resources:
+  - title: Medical Appointment No Shows (Kaggle)
+    role: Dataset
+    date: January 1, 2026
+    caption: Source dataset of ~100K Brazilian medical appointment records.
+    image: kaggle.png
+    url: https://www.kaggle.com/datasets/joniarroba/noshowappointments
+  - title: Jupyter
+    role: Notebook
+    date: January 1, 2026
+    caption: Used to write and run the analysis notebook.
+    image: jupyter.png
+    url: https://jupyter.org
+  - title: Python
+    role: Language
+    date: January 1, 2026
+    caption: Used for data cleaning, analysis, and visualization.
+    image: python.png
+    url: https://www.python.org
+  - title: Udacity
+    role: Course Platform
+    date: January 1, 2026
+    caption: Delivered the WGU Introduction to Data Analysis coursework.
+    image: udacity.png
+    url: https://www.udacity.com
