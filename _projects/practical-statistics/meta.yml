@@ -1,0 +1,45 @@
+title: Practical Statistics
+date: February 11 – March 1, 2026
+category: Python · Statistics & A/B Testing
+description: An A/B test and logistic regression analysis of website conversion rates, examining whether a new page design and user country significantly affect conversion.
+
+repo_page: education.html
+
+thumbnail: practicalstatisticsLogo.jpg
+
+colors:
+  heading:  { light: "#0C083B", dark: "#8A81EE" }
+  subtitle: { light: "#1E0439", dark: "#B170F5" }
+  accent:   { light: "#041D37", dark: "#338FF0" }
+
+resources:
+  - title: Statistics for Data Analysis Nanodegree (Udacity)
+    role: Course Platform
+    date: February 11, 2026
+    caption: Delivered the WGU Introduction to Data Science coursework, including the provided ab_data.csv dataset.
+    image: udacity.png
+    url: https://www.udacity.com/course/statistics-for-data-analysis-nanodegree--nd588
+  - title: Jupyter
+    role: Notebook
+    date: February 11, 2026
+    caption: Used to write and run the analysis notebook.
+    image: jupyter.png
+    url: https://jupyter.org
+  - title: Python
+    role: Language
+    date: February 11, 2026
+    caption: Used for data cleaning, statistical analysis, and visualization.
+    image: python.png
+    url: https://www.python.org
+  - title: NumPy
+    role: Library
+    date: February 11, 2026
+    caption: Used for numerical computation underlying the analysis.
+    image: numpyLogo.png
+    url: https://numpy.org
+  - title: pandas
+    role: Library
+    date: February 11, 2026
+    caption: Used to load, clean, and manipulate the dataset.
+    image: pandasLogo.png
+    url: https://pandas.pydata.org
