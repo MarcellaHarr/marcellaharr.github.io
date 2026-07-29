@@ -134,6 +134,7 @@ uv run --active build.py <project-name>     # -> repos/<project-name>.html + lan
 - When a turn covers multiple independent/unrelated changes, provide a separate commit message per independent change, update, or task — don't bundle everything into one — so the user can commit incrementally.
 - Tags mark a completed, live/user-facing milestone (e.g. a project detail page actually retrofitted or newly published) — not infrastructure-only commits (e.g. a pipeline/template change with no page using it yet). If unsure whether a change counts as a milestone, ask before suggesting a tag.
 - Tag names follow `vX.Y-short-descriptive-slug` (e.g. `v1.2-usa-govs`) — not a bare `vX.Y`. Bump Y for each tagged milestone; only bump X on the user's explicit call.
+- Before suggesting the next tag number, always run `git tag -l -n1 --sort=-v:refname` (or `git tag -l`) to find the actual highest existing `vX.Y`, and bump Y from that — never bump from a number recalled out of conversation context/memory. Y must stay strictly increasing across the whole tag history, not just within a session.
 - The user's own commit → tag → push → verify sequence (reference this exact order/commands when suggesting next steps):
   ```
   git status                                   # confirm what's modified
