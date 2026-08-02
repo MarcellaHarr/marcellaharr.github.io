@@ -1,0 +1,100 @@
+title: Real World Data Wrangling
+date: February 8 – April 6, 2026
+category: Python · Data Wrangling
+description: A data-wrangling project that gathers, assesses, and cleans four disparate datasets, law enforcement locations, homicide records, weather data, and geographic references, to explore how homicide rates relate to policing presence, weather, and victim demographics.
+github_url: https://github.com/MarcellaHarr/real-world_data_wrangling
+
+repo_page: education.html
+
+thumbnail: datawranglingLogo.jpg
+
+colors:
+  heading:  { light: "#BF5622", dark: "#E08050" }
+  subtitle: { light: "#2B8282", dark: "#339999" }
+  accent:   { light: "#A3663D", dark: "#BE7C51" }
+
+resources:
+  - title: HIFLD Law Enforcement Locations
+    role: Dataset
+    date: February 8, 2026
+    caption: Source of local law enforcement location and staffing data.
+    image: datalumosLogo.png
+    url: https://www.datalumos.org/datalumos/project/239493/version/V1/view?path=/datalumos/239493/fcr:versions/V1
+  - title: Murder Accountability Project
+    role: Dataset
+    date: February 8, 2026
+    caption: Source of the Supplementary Homicide Report records.
+    image: murderprojectLogo.png
+    url: https://www.murderdata.org/p/data-docs.html
+  - title: US State & Territory Lat/Long (Kaggle)
+    role: Dataset
+    date: February 8, 2026
+    caption: Geographic reference data merged with the weather dataset.
+    image: kaggleLogo.png
+    url: https://www.kaggle.com/datasets/marcellaharris/us-state-and-territory-latitudelongitude
+  - title: Open-Meteo
+    role: API
+    date: February 8, 2026
+    caption: Provided historical weather data linked to homicide records.
+    image: openmeteoLogo.webp
+    url: https://open-meteo.com
+  - title: GitHub
+    role: Data Storage
+    date: February 8, 2026
+    caption: Stored and reloaded cleaned datasets via the GitHub API mid-notebook.
+    image: githubLogo.png
+    url: https://github.com
+  - title: Udacity
+    role: Course Platform
+    date: February 8, 2026
+    caption: Delivered the Advanced Data Wrangling and Data Modeling coursework.
+    image: udacity.png
+    url: https://www.udacity.com
+  - title: Jupyter
+    role: Notebook
+    date: February 8, 2026
+    caption: Used to write and run the analysis notebook.
+    image: jupyter.png
+    url: https://jupyter.org
+  - title: Python
+    role: Language
+    date: February 8, 2026
+    caption: Used for data gathering, cleaning, and analysis.
+    image: python.png
+    url: https://www.python.org
+  - title: pandas
+    role: Library
+    date: February 8, 2026
+    caption: Used to load, clean, and manipulate the datasets.
+    image: pandasLogo.png
+    url: https://pandas.pydata.org
+  - title: NumPy
+    role: Library
+    date: February 8, 2026
+    caption: Used for numerical computation underlying the analysis.
+    image: numpyLogo.png
+    url: https://numpy.org
+  - title: seaborn
+    role: Library
+    date: February 8, 2026
+    caption: Used to build the research-question visualizations.
+    image: seabornLogo.png
+    url: https://seaborn.pydata.org
+  - title: matplotlib
+    role: Library
+    date: February 8, 2026
+    caption: Used for supporting plot customization.
+    image: matplotlibLogo.png
+    url: https://matplotlib.org
+  - title: geopandas
+    role: Library
+    date: February 8, 2026
+    caption: Used for geospatial handling of the law enforcement data.
+    image: geopandasLogo.png
+    url: https://geopandas.org
+  - title: plotnine
+    role: Library
+    date: February 8, 2026
+    caption: Used for early grammar-of-graphics visualizations.
+    image: plotnineLogo.png
+    url: https://plotnine.org

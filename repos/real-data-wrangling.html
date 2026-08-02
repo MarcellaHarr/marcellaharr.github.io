@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="../assets/js/color-modes.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A data-wrangling project that gathers, assesses, and cleans four disparate datasets, law enforcement locations, homicide records, weather data, and geographic references, to explore how homicide rates relate to policing presence, weather, and victim demographics." />
+    <meta name="author" content="Marcella Harris" />
+    <title>Marcella Harris · DataPortfolio</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="../assets/img/favicons/apple-touch-icon.png" sizes="180x180" />
+    <link rel="icon" href="../assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="../assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="manifest" href="../assets/img/favicons/android-chrome-192x192.png" />
+    <link rel="mask-icon" href="../assets/img/favicons/safari-pinned-tab.svg" color="#712cf9" />
+    <link rel="icon" href="../assets/img/favicons/favicon.ico" />
+    <meta name="theme-color" content="#712cf9" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg { font-size: 3.5rem; }
+      }
+      .bi { vertical-align: -0.125em; fill: currentColor; }
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      .bd-mode-toggle { z-index: 1500; }
+      .bd-mode-toggle .dropdown-menu .active .bi { display: block !important; }
+
+      /* Per-project heading/subtitle/accent colors, picked from this project's
+         images and contrast-checked per theme (see meta.yml's colors: block). */
+      [data-bs-theme="light"] {
+        --proj-heading-color: #BF5622;
+        --proj-subtitle-color: #2B8282;
+        --proj-accent-color: #A3663D;
+        --proj-small-color: #6E6E6E;
+      }
+      [data-bs-theme="dark"] {
+        --proj-heading-color: #E08050;
+        --proj-subtitle-color: #339999;
+        --proj-accent-color: #BE7C51;
+        --proj-small-color: #E0E0E0;
+      }
+    </style>
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap" rel="stylesheet" />
+    <link href="../assets/css/blog.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!--Bootstrap colormode and interactive settings begin-->
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+      </symbol>
+    </svg>
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+        id="bd-theme" type="button" aria-expanded="false"
+        data-bs-toggle="dropdown" aria-label="Toggle theme (dark)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+          <use href="#moon-stars-fill"></use>
+        </svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark" aria-pressed="true">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <!--Bootstrap colormode and interactive settings end-->
+
+    <div class="container">
+      <!--Header-->
+      <header class="border-bottom lh-1 py-3">
+        <div class="row flex-nowrap justify-content-center align-items-center">
+          <div class="col-4 text-center">
+            <a class="blog-header-logo text-body-emphasis text-decoration-none" href="https://marcellaharr.github.io">Marcella Harris</a>
+          </div>
+        </div>
+      </header>
+      <!--Nav-->
+      <div class="nav-scroller py-1 mb-3 border-bottom">
+        <nav class="nav nav-underline justify-content-between">
+          <a class="nav-item nav-link link-body-emphasis" href="https://marcellaharr.github.io">Home</a>
+          <a class="nav-item nav-link link-body-emphasis" href="https://github.com/MarcellaHarr" target="_blank">GitHub Profile</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../r-studio.html">R-Studio repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../excel.html">Excel repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../web-dev.html">Web Dev repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../sql-repo.html">SQL repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../jupyter.html">Jupyter repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../education.html">Education repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../follow-along.html">Follow-Along repo</a>
+        </nav>
+      </div>
+    </div>
+
+    <main class="container">
+      <div class="row g-5">
+
+        <!--Left panel — article content-->
+        <div class="col-md-8">
+          <article class="blog-post">
+            <h2 class="display-5 link-body-emphasis mb-1">Real World Data Wrangling</h2>
+            <p class="blog-post-meta">
+              February 8 – April 6, 2026 &nbsp;&middot;&nbsp; Python · Data Wrangling by <a href="#" style="color: var(--proj-small-color) !important;">Marcella</a>
+            </p>
+            <p><a href="https://github.com/MarcellaHarr/real-world_data_wrangling" target="_blank" style="color: #FFFFC0 !important;">View on GitHub &rarr;</a></p>
+            <h2>Overview</h2>
+<p>This was the first project in WGU's Advanced Data Wrangling and Data Modeling course, and it walked me through the full data wrangling process from start to finish. First I gathered the data, then I assessed it for issues, and finally I cleaned it up enough to actually answer a research question with it.</p>
+<p>I got curious about how homicide rates related to where police agencies are physically located, and I wanted to see if weather and victim demographics played into that pattern too. That curiosity turned into my research question: how do homicide rates vary across areas with different law enforcement facilities, and what patterns show up when you link those incidents to weather conditions and victim demographics? To answer it, I pulled together four datasets, each one gathered for its own reason.</p>
+<ol>
+<li>HIFLD's law enforcement locations data gave me a look at the physical presence and staffing levels of police agencies, since I wanted to explore whether having more law enforcement nearby related to crime rates.</li>
+<li>The Murder Accountability Project's Supplementary Homicide Report gave me my main outcome to explain, the actual homicide records themselves.</li>
+<li>Kaggle's US state and territory latitude and longitude data became the geographic reference I needed to merge everything together at the state level.</li>
+<li>Open-Meteo's historical weather API let me bring in environmental conditions, so I could see if there was any connection between the weather and when and where these incidents happened.</li>
+</ol>
+<p>I gathered the first three datasets by manually downloading the source file, uploading it to a GitHub repository, and then loading it back into the notebook through the GitHub API. The weather data came in differently, pulled directly from the Open-Meteo API. Between the manual downloads and the two different APIs, that covered the assignment's requirement to use at least two different gathering methods.</p>
+<p>The hardest part of the whole project was the API work, both Open-Meteo and GitHub. I had never built an actual API pipeline before this, so it took a lot of trial and error to get right. I also had to keep going back to the rubric along the way, because it was easy to accidentally veer off from what was actually being asked for.</p>
+<h2>Gathering Data</h2>
+<p>Before I could load anything, I had to set up the libraries the project needed. I installed plotnine and geopandas for visualization and geospatial work, pyarrow for reading and writing parquet files, and nbconvert for exporting the finished notebook. Once those were installed and imported, I wrote a small reusable function to talk to the GitHub API. Instead of writing separate fetch code every time I needed a file from my own repository, I built one function that could look through the repository's contents, find any file ending in .geojson, .csv, .zip, or .parquet, and hand back its download link. I used that same function again later on, when I needed to reload the cleaned versions of my datasets after storing them back in the repository.</p>
+<p>For the law enforcement, homicide, and state lat/long datasets, the process was the same each time. I downloaded the source file manually, uploaded it to my GitHub repository, and then used my fetch function to pull it back into the notebook through the GitHub API. After loading each one, I ran through the same round of checks. I looked at the column list, counted how many unique values showed up in each column, and checked for missing or null values, so I had a clear picture of what I was working with before moving on to the next dataset.</p>
+<p>The weather data from Open-Meteo came together differently, and it was where I ran into my first real API problem. My first attempt tried to request three years of daily weather history for all 61 states and territories in a single call with no pause between anything, and Open-Meteo threw a 429 error because it was too much data at once. To fix it, I split the request into six smaller batches of about ten locations each and added a 30-second pause between every request, so the API had time to recover before the next call came in. I also wrapped the whole thing in error handling for HTTP errors, timeouts, and general request failures, so if something did go wrong I would get a clear message telling me what happened instead of the notebook just crashing.</p>
+<p>Once I had all four datasets loaded, I saved the raw data locally so I would not have to re-run the API calls or GitHub fetches every time I reopened the notebook, and I generated downloadable links for each file so I always had a way to double check them.</p>
+<h2>Assessing Data</h2>
+<p>Once all four datasets were loaded, the next step was figuring out exactly what was wrong with them before I could clean anything. The course breaks assessment into two categories, quality issues and tidiness issues. Quality issues are about the values themselves, things like inconsistent naming, incorrect data types, or missing information. Tidiness issues are about the structure of the table itself, things like a single column holding more than one piece of information, or a table stuffed with columns that do not belong to the same observation.</p>
+<p>On the quality side, the clearest example showed up in the law enforcement dataset. All 37 of its columns used all capital letters with no separation between words, things like NAME and FTSWORN, which is inconsistent with the lowercase, underscore-separated naming convention that makes columns easier to read and type in code. I renamed each one to something clearer, so NAME became agency_name and FTSWORN became ft_sworn, along with similar fixes across the rest of the columns.</p>
+<p>The tidiness issues were more about structure than naming. In that same law enforcement dataset, the VAL_DATE column packed the day of the week, the date, and a timestamp all into one string, something like "Mon, 30 Jun 2008 00:00:00 GMT." Following the rule that each column should hold exactly one variable, I split that single string into separate day, month, and year columns. The homicide dataset had a similar problem, with its CNTYFIPS column combining the county and state into one value instead of two. On top of that, the law enforcement dataset only needed 10 of its 37 columns for this analysis. The other 28 were administrative metadata that had nothing to do with law enforcement strength, so tidy data principles said they should not be sitting in the same table as the data I actually needed, and I dropped them.</p>
+<p>I ran through those same two checks, cleanliness of the values and structure of the table, for all three datasets, and that is what let me trust the data enough to move into cleaning it.</p>
+<h2>Cleaning Data</h2>
+<p>Before touching anything, I made copies of all three assessed datasets, the law enforcement data, the homicide data, and the weather data, so the original raw versions stayed untouched no matter what went wrong during cleaning.</p>
+<p>The first fix carried straight over from assessment, renaming every column to the same lowercase, underscore-separated style across all three tables so the keys would line up cleanly whenever I needed to merge them later. From there, I converted repetitive text columns, things like agency type, victim race, and weapon used, into pandas' category dtype, and downcast oversized numeric columns like latitude, longitude, and age into smaller number types. The payoff was a big drop in memory usage. The law enforcement dataset dropped from 4.1 MB down to 1.8 MB, the homicide dataset went from a bloated 242.8 MB down to a lean 15.4 MB, and the weather and state dataset went from 6.5 MB down to 2.8 MB.</p>
+<p>With the data types cleaned up, I moved on to the structural fixes. The VAL_DATE column that had been packing a day of the week, a date, and a timestamp into one string got split into separate day, month, and year columns, and the homicide dataset's combined county-and-state column got split the same way into its own city and state columns. Once every table only held the columns relevant to the analysis, I filtered each dataset down to just those columns and to the 2017 through 2020 date range the project focused on.</p>
+<p>The last step was combining everything into one dataset. I merged the homicide data with the weather data on state, month, and year, then merged that result with the law enforcement location data on city, state, and year. Since each table had already been cleaned and typed consistently, actually joining them together was fairly straightforward. After dropping any duplicate rows that came out of the merge, I saved the final combined table as a single parquet file, weather_homicide_nationalagency_df.parquet, since parquet keeps each column's data type intact instead of flattening everything back down to text the way a csv would. From there, I uploaded the cleaned file back to my GitHub repository so it was ready to be reloaded for the analysis.</p>
+<h2>Answering the Research Question</h2>
+<p>After all that gathering, assessing, and cleaning, I finally had one clean dataset to work with, and I could return to the question I started with. How do homicide rates vary across areas with different law enforcement facilities, and what patterns show up when you connect those incidents to weather conditions and victim demographics? Here is what the data actually showed.</p>
+<ol>
+<li>Homicides mostly happen close to law enforcement, not far from it. I split the homicide records into two groups, cases that fell inside an agency's immediate jurisdiction and cases that fell in the surrounding areas, then compared the counts. Over 82,000 homicides happened inside a jurisdiction compared to roughly 67,000 in the surrounding areas, and that pattern held whether the case was solved or not. That told me direct law enforcement presence carries most of the homicide volume, which goes against the assumption that most incidents are spread out across the wider region around a police agency.</li>
+</ol>
+<p><img alt="Homicide volume by solved status" src="../assets/img/real-data-wrangling/Homicide_Volume_by_Solved_Status_Table_and_Plot.jpg" /></p>
+<ol>
+<li>Temperature does not predict whether a case gets solved. Comparing the average monthly temperature during solved and unsolved cases showed almost identical, overlapping ranges, with unsolved cases running only about one degree warmer on average. Weather might set the backdrop for when a crime happens, but it is not doing anything to explain why some cases get closed and others do not.</li>
+</ol>
+<p><img alt="Average temperature by jurisdiction and homicide status" src="../assets/img/real-data-wrangling/Average_Temp_by_Jurisdiction_and_Homicides_Table_and_Plot.jpg" /></p>
+<ol>
+<li>The weather surrounding a homicide changes depending on the victim's racial background. Tracking average temperature, humidity, rainfall, and snowfall by victim race from 2017 through 2020 showed that incidents involving Black and Native Hawaiian victims tended to happen in warmer, wetter conditions, while incidents involving American Indian victims tended to happen in colder, snowier conditions. That points to certain groups being more frequently affected under distinct and shifting weather patterns rather than one uniform climate applying evenly across the board.</li>
+</ol>
+<p><img alt="Victim race constructs and weather conditions over time" src="../assets/img/real-data-wrangling/Victim_Race_Constructs_and_Weather_Conditions_plot.jpg" /></p>
+<ol>
+<li>Male victims make up most of the deaths, but female victims are more likely to die in multi-victim incidents. Looking at the raw totals, male victims accounted for the overwhelming majority of homicides, reaching into the tens of thousands across several demographic groups. But when I looked at the average number of victims per incident instead of the total, the pattern flipped, with female victims tied to more casualties per incident across almost every racial group. White female victims had the highest average, at roughly 1.3 victims per incident, meaning that although homicides involving female victims happen less often overall, those incidents are more likely to involve more than one victim.</li>
+</ol>
+<p><img alt="Victim demographics trend highlights" src="../assets/img/real-data-wrangling/Average_Homicides_Table_and_Plot.jpg" /></p>
+<ol>
+<li>Weather has almost nothing to do with victim age or how many officers patrol an area. A correlation matrix across temperature, rainfall, snowfall, victim age, number of full-time sworn officers, humidity, and agency population showed exactly what you would expect between the weather variables themselves, more rain meant higher humidity, lower temperatures, and more snowfall. It also showed a near-perfect correlation between agency population and the number of officers, since larger communities simply need more police. But none of the weather variables showed any real relationship with victim age or the size of a police force, which means everyday weather does not seem to influence either of those things.</li>
+</ol>
+<p><img alt="Weather and agency intersection correlation matrix" src="../assets/img/real-data-wrangling/Weather_and_Agency_Intersection_Correlation_plot.jpg" /></p>
+<p>Looking back, if I had more time, there are a few directions I would want to dig into further. I would look more closely at victim demographics alongside the specific weapons used to better understand what is actually driving these incidents. I would also want to bring in offender demographics and their relationship to the victim to look for recurring patterns or risk factors. And I would want to break the geography down further than the city level, down to something like zip codes, since the broad surrounding areas in this analysis might be smoothing over smaller, more specific clusters that a closer look could reveal.</p>
+<h2>Conclusion</h2>
+<p>This project ended up being less about the final research question and more about learning how to actually get to a research question in the first place. Gathering four different datasets, through manual downloads and two separate APIs, forced me to slow down and build a real process instead of just grabbing whatever file was easiest to find. Assessing each dataset for quality and structural issues before touching any of the actual cleaning taught me to separate whether a value was wrong from whether a table was shaped wrong, which is a distinction I did not think about clearly before this project. And cleaning everything down to one combined dataset with the right data types showed me just how much smaller and faster data can run once it is actually organized the way it should be.</p>
+<p>Once I had that clean dataset, the research question itself turned out to have a clear answer. Homicides cluster close to law enforcement rather than spreading out into surrounding areas, weather patterns around these incidents shift depending on the victim's race, and female victims, while less common overall, are more likely to be part of a multi-victim incident. Weather, on the other hand, had almost nothing to do with whether a case gets solved or how large a local police force is.</p>
+<p>As the first project in the Advanced Data Wrangling and Data Modeling course, this set the foundation for everything after it. The biggest lesson I am taking forward is that the API pipeline work, batching requests, handling errors, and following the rubric closely enough not to veer off course, is a skill on its own, separate from the analysis it eventually supports.</p>
+          </article>
+        </div>
+
+        <!--Right panel — resources + elsewhere-->
+        <div class="col-md-4">
+          <div class="position-sticky" style="top: 2rem">
+            <div>
+              <h4 class="fst-italic">Resources used</h4>
+              <ul class="list-unstyled">
+                                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.datalumos.org/datalumos/project/239493/version/V1/view?path=/datalumos/239493/fcr:versions/V1" target="_blank" class="link-body-emphasis text-decoration-none">HIFLD Law Enforcement Locations</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/datalumosLogo.png" alt="HIFLD Law Enforcement Locations" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Dataset: February 8, 2026 | Source of local law enforcement location and staffing data.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.murderdata.org/p/data-docs.html" target="_blank" class="link-body-emphasis text-decoration-none">Murder Accountability Project</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/murderprojectLogo.png" alt="Murder Accountability Project" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Dataset: February 8, 2026 | Source of the Supplementary Homicide Report records.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.kaggle.com/datasets/marcellaharris/us-state-and-territory-latitudelongitude" target="_blank" class="link-body-emphasis text-decoration-none">US State & Territory Lat/Long (Kaggle)</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/kaggleLogo.png" alt="US State & Territory Lat/Long (Kaggle)" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Dataset: February 8, 2026 | Geographic reference data merged with the weather dataset.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://open-meteo.com" target="_blank" class="link-body-emphasis text-decoration-none">Open-Meteo</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/openmeteoLogo.webp" alt="Open-Meteo" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">API: February 8, 2026 | Provided historical weather data linked to homicide records.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://github.com" target="_blank" class="link-body-emphasis text-decoration-none">GitHub</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/githubLogo.png" alt="GitHub" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Data Storage: February 8, 2026 | Stored and reloaded cleaned datasets via the GitHub API mid-notebook.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.udacity.com" target="_blank" class="link-body-emphasis text-decoration-none">Udacity</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/udacity.png" alt="Udacity" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Course Platform: February 8, 2026 | Delivered the Advanced Data Wrangling and Data Modeling coursework.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://jupyter.org" target="_blank" class="link-body-emphasis text-decoration-none">Jupyter</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/jupyter.png" alt="Jupyter" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Notebook: February 8, 2026 | Used to write and run the analysis notebook.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.python.org" target="_blank" class="link-body-emphasis text-decoration-none">Python</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/python.png" alt="Python" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Language: February 8, 2026 | Used for data gathering, cleaning, and analysis.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://pandas.pydata.org" target="_blank" class="link-body-emphasis text-decoration-none">pandas</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/pandasLogo.png" alt="pandas" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Library: February 8, 2026 | Used to load, clean, and manipulate the datasets.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://numpy.org" target="_blank" class="link-body-emphasis text-decoration-none">NumPy</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/numpyLogo.png" alt="NumPy" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Library: February 8, 2026 | Used for numerical computation underlying the analysis.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://seaborn.pydata.org" target="_blank" class="link-body-emphasis text-decoration-none">seaborn</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/seabornLogo.png" alt="seaborn" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Library: February 8, 2026 | Used to build the research-question visualizations.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://matplotlib.org" target="_blank" class="link-body-emphasis text-decoration-none">matplotlib</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/matplotlibLogo.png" alt="matplotlib" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Library: February 8, 2026 | Used for supporting plot customization.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://geopandas.org" target="_blank" class="link-body-emphasis text-decoration-none">geopandas</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/geopandasLogo.png" alt="geopandas" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Library: February 8, 2026 | Used for geospatial handling of the law enforcement data.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://plotnine.org" target="_blank" class="link-body-emphasis text-decoration-none">plotnine</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/real-data-wrangling/plotnineLogo.png" alt="plotnine" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Library: February 8, 2026 | Used for early grammar-of-graphics visualizations.</small>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <h4 class="fst-italic">Elsewhere</h4>
+              <ol class="list-unstyled">
+                <li><a href="https://www.linkedin.com/in/marcellalharris" style="color: var(--proj-small-color) !important;">LinkedIn</a></li>
+                <li><a href="https://github.com/MarcellaHarr" style="color: var(--proj-small-color) !important;">GitHub</a></li>
+                <li><a href="https://twitter.com/MarcellaDaANLST" style="color: var(--proj-small-color) !important;">Twitter</a></li>
+                <li><a href="mailto:marlorraineharr@gmail.com" style="color: var(--proj-small-color) !important;">Email</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
+      <p>Blog template forked from <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p class="mb-0"><a href="#">Back to top</a></p>
+    </footer>
+
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
