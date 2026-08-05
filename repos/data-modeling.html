@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="../assets/js/color-modes.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A data-modeling project that designs a Postgres star schema and Python ETL pipeline to load and organize song-play activity for a fictional music streaming app." />
+    <meta name="author" content="Marcella Harris" />
+    <title>Marcella Harris · DataPortfolio</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="../assets/img/favicons/apple-touch-icon.png" sizes="180x180" />
+    <link rel="icon" href="../assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="../assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="manifest" href="../assets/img/favicons/android-chrome-192x192.png" />
+    <link rel="mask-icon" href="../assets/img/favicons/safari-pinned-tab.svg" color="#712cf9" />
+    <link rel="icon" href="../assets/img/favicons/favicon.ico" />
+    <meta name="theme-color" content="#712cf9" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg { font-size: 3.5rem; }
+      }
+      .bi { vertical-align: -0.125em; fill: currentColor; }
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      .bd-mode-toggle { z-index: 1500; }
+      .bd-mode-toggle .dropdown-menu .active .bi { display: block !important; }
+
+      /* Per-project heading/subtitle/accent colors, picked from this project's
+         images and contrast-checked per theme (see meta.yml's colors: block). */
+      [data-bs-theme="light"] {
+        --proj-heading-color: #1B7EA9;
+        --proj-subtitle-color: #90730E;
+        --proj-accent-color: #E5203C;
+        --proj-small-color: #6E6E6E;
+      }
+      [data-bs-theme="dark"] {
+        --proj-heading-color: #40B0E0;
+        --proj-subtitle-color: #F0D060;
+        --proj-accent-color: #F08090;
+        --proj-small-color: #E0E0E0;
+      }
+    </style>
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap" rel="stylesheet" />
+    <link href="../assets/css/blog.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!--Bootstrap colormode and interactive settings begin-->
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+      </symbol>
+    </svg>
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+        id="bd-theme" type="button" aria-expanded="false"
+        data-bs-toggle="dropdown" aria-label="Toggle theme (dark)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+          <use href="#moon-stars-fill"></use>
+        </svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark" aria-pressed="true">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <!--Bootstrap colormode and interactive settings end-->
+
+    <div class="container">
+      <!--Header-->
+      <header class="border-bottom lh-1 py-3">
+        <div class="row flex-nowrap justify-content-center align-items-center">
+          <div class="col-4 text-center">
+            <a class="blog-header-logo text-body-emphasis text-decoration-none" href="https://marcellaharr.github.io">Marcella Harris</a>
+          </div>
+        </div>
+      </header>
+      <!--Nav-->
+      <div class="nav-scroller py-1 mb-3 border-bottom">
+        <nav class="nav nav-underline justify-content-between">
+          <a class="nav-item nav-link link-body-emphasis" href="https://marcellaharr.github.io">Home</a>
+          <a class="nav-item nav-link link-body-emphasis" href="https://github.com/MarcellaHarr" target="_blank">GitHub Profile</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../r-studio.html">R-Studio repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../excel.html">Excel repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../web-dev.html">Web Dev repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../sql-repo.html">SQL repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../jupyter.html">Jupyter repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../education.html">Education repo</a>
+          <a class="nav-item nav-link link-body-emphasis" href="../follow-along.html">Follow-Along repo</a>
+        </nav>
+      </div>
+    </div>
+
+    <main class="container">
+      <div class="row g-5">
+
+        <!--Left panel — article content-->
+        <div class="col-md-8">
+          <article class="blog-post">
+            <h2 class="display-5 link-body-emphasis mb-1">Data Modeling</h2>
+            <p class="blog-post-meta">
+              February 8 – April 15, 2026 &nbsp;&middot;&nbsp; Python · Database Design by <a href="#" style="color: var(--proj-small-color) !important;">Marcella</a>
+            </p>
+            
+            <h2>Overview</h2>
+<p>This was the second project in the Advanced Data Wrangling and Data Modeling course, and it followed directly after Real World Data Wrangling. Where that first project focused on gathering and cleaning data from scratch, this one flipped the focus to organizing already-collected data into a proper relational database.</p>
+<p>The assignment came from Udacity, using a fictional music streaming company called Sparkify as the scenario. Sparkify's analytics team wanted to understand what songs users were listening to, but their data was sitting in raw JSON log files and song metadata files instead of a queryable database. My job was to build a Postgres database using a star schema, then write a Python ETL pipeline to extract data from the JSON files, transform it into the right shape, and load it into that database.</p>
+<p>The star schema itself was part of the assignment's requirements rather than something I designed from scratch. It called for one fact table, songplays, to record each individual song play event, and four dimension tables, users, songs, artists, and time, to hold the supporting details around each play. I still had to work out the specific columns, data types, and relationships myself, but the overall shape of the schema was dictated by the project.</p>
+<p>The hardest part of the whole project was writing the song_select query that connects a song play log entry back to the right song and artist. The log files don't include a song ID or artist ID directly, so I had to query the songs and artists tables using the song title, artist name, and duration from the log to find a match. Since the log data only covers a small sample of user activity while the song data covers a much larger, separate catalog, most log entries wouldn't find a matching song in the songs table, so the query was written to handle that gracefully and insert a NULL songid and artistid whenever no match was found.</p>
+<h2>Designing the Star Schema</h2>
+<p>The database follows a star schema, with one fact table at the center and four supporting dimension tables around it. The songplays table is the fact table, and it records every individual song play event pulled from the log files. The four dimension tables, users, songs, artists, and time, hold the descriptive details that give each song play its context.</p>
+<ul>
+<li>songplays: songplay_id, start_time, user_id, level, song_id, artist_id, session_id, location, user_agent</li>
+<li>users: user_id, first_name, last_name, gender, level</li>
+<li>songs: song_id, title, artist_id, year, duration</li>
+<li>artists: artist_id, name, location, latitude, longitude</li>
+<li>time: start_time, hour, day, week, month, year, weekday</li>
+</ul>
+<p>This structure was set by the project itself rather than something I chose on my own. Udacity's rubric specifically called for a fact table and four dimension tables in this exact configuration. Working within that structure still meant deciding on the actual column types, primary keys, and constraints myself, and it made clear why a star schema fits this kind of data in the first place. Splitting user, song, artist, and time details out into their own tables means none of that information has to repeat on every single songplay row, and it keeps each table focused on one kind of information instead of mixing them together.</p>
+<p>For the NOT NULL constraints, I applied them wherever the rubric allowed it, mainly on the primary keys and on the fields that the log data always provides, like user_id and start_time. I left songid and artistid in the songplays table nullable, since the song_select query often can't find a match between a log entry and the songs table, and forcing NOT NULL there would have broken the insert step every time that happened.</p>
+<p>create_tables.py drops and recreates all five tables at the start of every run, which kept the schema clean each time I tested changes to the ETL pipeline without worrying about leftover data from a previous run.</p>
+<h2>Building the ETL Pipeline</h2>
+<p>Before I touched the etl.py script file, I built and tested every step in the etl.ipynb notebook, working through one song file and one log file at a time until each piece worked the way it was supposed to. Once something worked in the notebook, I moved it over into the script file as its own function.</p>
+<p>Song data and log data ended up going through the same basic process. Read the JSON file into a dataframe, pull out and reshape the columns each table needed, then insert. The song file logic was fairly direct, since each file only holds one song and one artist. The log file logic did more work up front, filtering down to just the NextSong events and converting the timestamp before it could build out the time, users, and songplays records, including the song_select lookup for matching a log entry back to its songid and artistid.</p>
+<p>What actually let the script file run across the whole dataset, instead of just the one file I tested in the notebook, was a function that walks through a folder, finds every JSON file in it, and then loops over that list running whichever processing step it was handed. It also commits after every file and prints a running count of how many files it had gotten through, which mattered more than I expected. Watching "12 of 30 files processed" scroll by was the difference between knowing the pipeline was working and just hoping it hadn't silently stalled somewhere in the middle.</p>
+<p>I also had to think through what should happen when the same record showed up more than once across different files. For songs, artists, and time, I just skipped the insert if that record already existed, since none of that data changes once it's created. Users were different. A user's subscription level can flip from free to paid or back again between log files, so instead of skipping the insert, I updated the existing row with whatever level showed up most recently. That felt like the more accurate approach, since I wanted the users table to reflect where someone's account actually stood, not just what it looked like the first time they showed up in the logs.</p>
+<p>Every function in the script file also got a docstring explaining what it does and what it takes in, which the rubric called for directly as part of code quality. It was a small thing, but it made the script easier to read back later.</p>
+<h2>Conclusion</h2>
+<p>By the end of this project, I'd built both halves of what a working database needs, a schema that made sense for the data and a pipeline that could actually fill it. Designing the star schema forced me to think about table structure, keys, and constraints on their own, before any ETL logic came into play. Then building the pipeline meant handling the messier reality of the data itself, log entries that didn't match a song, users whose subscription level changed mid-stream, and records that could show up more than once across different files. Both halves mattered about equally. A well-designed schema doesn't help much if the pipeline loading it can't handle real data, and a solid pipeline doesn't mean much without a schema that organizes what it's loading.</p>
+<p>Once the tables were built and the pipeline had run, I used the test.ipynb notebook Udacity provided to run through the sanity tests, checking that every table had actually been created and that records had landed where they should. That verification step gave me confidence the whole pipeline worked end to end, not just that individual pieces ran without errors.</p>
+<p>As the second project in the Advanced Data Wrangling and Data Modeling course, this one felt like a natural next step after Real World Data Wrangling. That first project was about gathering and cleaning data from scratch, and this one picked up from there, taking already-collected data and giving it a proper home in a relational database built for the kind of questions Sparkify's analytics team would actually want to ask.</p>
+          </article>
+        </div>
+
+        <!--Right panel — resources + elsewhere-->
+        <div class="col-md-4">
+          <div class="position-sticky" style="top: 2rem">
+            <div>
+              <h4 class="fst-italic">Resources used</h4>
+              <ul class="list-unstyled">
+                                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.python.org" target="_blank" class="link-body-emphasis text-decoration-none">Python</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/data-modeling/python.png" alt="Python" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Language: February 8, 2026 | Used for the ETL pipeline and database schema scripts.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://pandas.pydata.org" target="_blank" class="link-body-emphasis text-decoration-none">pandas</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/data-modeling/pandasLogo.png" alt="pandas" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Library: February 8, 2026 | Used to read, filter, and reshape the song and log JSON data.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.psycopg.org" target="_blank" class="link-body-emphasis text-decoration-none">psycopg2</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/data-modeling/psycopg2Logo.png" alt="psycopg2" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Library: February 8, 2026 | Connected the pipeline to the Postgres database and executed the SQL queries.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://jupyter.org" target="_blank" class="link-body-emphasis text-decoration-none">Jupyter</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/data-modeling/jupyter.png" alt="Jupyter" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Notebook: February 8, 2026 | Used to draft and test the ETL logic before finalizing etl.py.</small>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="resource-row border-top">
+                    <div class="resource-name">
+                      <a href="https://www.udacity.com/course/data-engineering-with-microsoft-azure-nanodegree--nd0277" target="_blank" class="link-body-emphasis text-decoration-none">Udacity</a>
+                    </div>
+                    <div class="resource-media">
+                      <span class="resource-image-card">
+                        <img src="../assets/img/data-modeling/udacity.png" alt="Udacity" />
+                      </span>
+                      <small class="resource-caption text-body-secondary">Course Platform: February 8, 2026 | Delivered the Advanced Data Wrangling and Data Modeling coursework.</small>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <h4 class="fst-italic">Elsewhere</h4>
+              <ol class="list-unstyled">
+                <li><a href="https://www.linkedin.com/in/marcellalharris" style="color: var(--proj-small-color) !important;">LinkedIn</a></li>
+                <li><a href="https://github.com/MarcellaHarr" style="color: var(--proj-small-color) !important;">GitHub</a></li>
+                <li><a href="https://twitter.com/MarcellaDaANLST" style="color: var(--proj-small-color) !important;">Twitter</a></li>
+                <li><a href="mailto:marlorraineharr@gmail.com" style="color: var(--proj-small-color) !important;">Email</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
+      <p>Blog template forked from <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p class="mb-0"><a href="#">Back to top</a></p>
+    </footer>
+
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

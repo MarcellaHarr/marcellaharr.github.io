@@ -1,0 +1,46 @@
+title: Data Modeling
+date: February 8 – April 15, 2026
+category: Python · Database Design
+description: A data-modeling project that designs a Postgres star schema and Python ETL pipeline to load and organize song-play activity for a fictional music streaming app.
+github_url:
+
+repo_page: education.html
+
+thumbnail: datamodelingLogo.png
+
+colors:
+  heading:  { light: "#1B7EA9", dark: "#40B0E0" }
+  subtitle: { light: "#90730E", dark: "#F0D060" }
+  accent:   { light: "#E5203C", dark: "#F08090" }
+
+resources:
+  - title: Python
+    role: Language
+    date: February 8, 2026
+    caption: Used for the ETL pipeline and database schema scripts.
+    image: python.png
+    url: https://www.python.org
+  - title: pandas
+    role: Library
+    date: February 8, 2026
+    caption: Used to read, filter, and reshape the song and log JSON data.
+    image: pandasLogo.png
+    url: https://pandas.pydata.org
+  - title: psycopg2
+    role: Library
+    date: February 8, 2026
+    caption: Connected the pipeline to the Postgres database and executed the SQL queries.
+    image: psycopg2Logo.png
+    url: https://www.psycopg.org
+  - title: Jupyter
+    role: Notebook
+    date: February 8, 2026
+    caption: Used to draft and test the ETL logic before finalizing etl.py.
+    image: jupyter.png
+    url: https://jupyter.org
+  - title: Udacity
+    role: Course Platform
+    date: February 8, 2026
+    caption: Delivered the Advanced Data Wrangling and Data Modeling coursework.
+    image: udacity.png
+    url: https://www.udacity.com/course/data-engineering-with-microsoft-azure-nanodegree--nd0277
